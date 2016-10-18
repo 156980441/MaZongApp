@@ -9,7 +9,10 @@
 #import "MainViewController.h"
 
 @class DeviceModel;
+@class MainView;
 
-@interface DeviceDetailViewController : MainViewController
+@interface DeviceDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet MainView *mainView;
 @property (nonatomic, strong) DeviceModel *device;
+@property (nonatomic, strong) NSMutableArray* deviceDataSource;
 @end

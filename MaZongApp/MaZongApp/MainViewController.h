@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class MainView;
+
 @interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-@property (strong, nonatomic) IBOutlet UIScrollView *staticAdsScrollView;
-@property (strong, nonatomic) IBOutlet UIScrollView *dynamicAdsScrollView;
-@property (strong, nonatomic) IBOutlet UITableView *deviceTableView;
+@property (strong, nonatomic) IBOutlet MainView *mainView;
+
 @property (nonatomic, strong) NSMutableArray *deviceDataSource;
-@property (nonatomic, strong) NSMutableArray *adsImages;
+
 @end

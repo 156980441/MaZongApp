@@ -8,6 +8,7 @@
 
 #import "DeviceDetailViewController.h"
 #import "DeviceModel.h"
+#import "MainView.h"
 
 static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
 
@@ -21,6 +22,16 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    MainView* mainView = [MainView viewFromNIB];
+    mainView.frame = self.mainView.frame;
+    self.mainView = mainView;
+    NSLog(@"mainView:%f,%f,%f,%f",self.mainView.frame.origin.x,self.mainView.frame.origin.y,self.mainView.frame.size.width,self.mainView.frame.size.height);
+    NSLog(@"view:%f,%f,%f,%f",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.width,self.view.frame.size.height);
+    [self.view addSubview:self.mainView];
+    
+    self.mainView.deviceTableView.delegate = self;
+    self.mainView.deviceTableView.dataSource = self;
+    
     self.title = @"设备详情";
     NSString* temperature = [NSString stringWithFormat:@"温度：%@",self.device.temperature];
     NSString* tds = [NSString stringWithFormat:@"TDS：%@",self.device.tds];
@@ -28,7 +39,7 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
     NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.device.temperature];
     self.deviceDataSource = [NSMutableArray arrayWithObjects:temperature,tds,ph,isOff, nil];
     
-    [self.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceDetailCell_identifier];
+    [self.mainView.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceDetailCell_identifier];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,8 +66,7 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:deviceDetailCell_identifier];
-    DeviceModel* device = [self.deviceDataSource objectAtIndex:indexPath.row];
-    cell.textLabel.text = device.name;
+    cell.textLabel.text = [self.deviceDataSource objectAtIndex:indexPath.row];
     return cell;
 }
 

@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MainView : UIView
++ (instancetype) viewFromNIB;
 @property (strong, nonatomic) IBOutlet UIScrollView *staticAdsScrollView;
-@property (strong, nonatomic) IBOutlet UIScrollView *dynamicAdsScrollView;
 @property (strong, nonatomic) IBOutlet UITableView *deviceTableView;
+@property (strong, nonatomic) IBOutlet UIScrollView *dynamicAdsScrollView;
 @end
