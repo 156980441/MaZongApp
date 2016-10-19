@@ -11,7 +11,7 @@
 @class MainView;
 
 @interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-@property (strong, nonatomic) IBOutlet MainView *mainView;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @property (nonatomic, strong) NSMutableArray *deviceDataSource;
 

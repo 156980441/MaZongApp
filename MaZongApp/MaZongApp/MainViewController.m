@@ -24,15 +24,15 @@ static NSString* deviceCell_identifier = @"deviceCell_identifier";
     // Do any additional setup after loading the view.
     MainView* mainView = [MainView viewFromNIB];
     mainView.frame = self.mainView.frame;
-    self.mainView = mainView;
+    
+    mainView.deviceTableView.delegate = self;
+    mainView.deviceTableView.dataSource = self;
+    
+    [mainView.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceCell_identifier];
+    
+    [self.mainView addSubview:mainView];
     NSLog(@"mainView:%f,%f,%f,%f",self.mainView.frame.origin.x,self.mainView.frame.origin.y,self.mainView.frame.size.width,self.mainView.frame.size.height);
     NSLog(@"view:%f,%f,%f,%f",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.width,self.view.frame.size.height);
-    [self.view addSubview:self.mainView];
-    
-    self.mainView.deviceTableView.delegate = self;
-    self.mainView.deviceTableView.dataSource = self;
-    
-     [self.mainView.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceCell_identifier];
     
     self.title = @"设备列表";
     self.deviceDataSource = [NSMutableArray array];
