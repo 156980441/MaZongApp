@@ -9,7 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MainView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="426" height="1225"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="94U-bN-aOg">
@@ -39,11 +39,13 @@
                 <constraint firstItem="cmO-7c-Ee3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="snf-82-Two"/>
                 <constraint firstItem="cmO-7c-Ee3" firstAttribute="top" secondItem="31a-a9-KaB" secondAttribute="bottom" id="ziF-FK-qkT"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="deviceTableView" destination="31a-a9-KaB" id="xNf-HB-lub"/>
                 <outlet property="dynamicAdsScrollView" destination="cmO-7c-Ee3" id="r14-cs-1lT"/>
                 <outlet property="staticAdsScrollView" destination="94U-bN-aOg" id="Xty-RL-6Yx"/>
             </connections>
+            <point key="canvasLocation" x="-232" y="372.5"/>
         </view>
     </objects>
 </document>

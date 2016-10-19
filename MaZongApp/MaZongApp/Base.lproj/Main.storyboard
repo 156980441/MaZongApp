@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DSW-D4-WIc">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DSW-D4-WIc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -17,7 +17,7 @@
                         <viewControllerLayoutGuide type="bottom" id="KHS-EC-Kpj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Oe8-dQ-QWs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bvd-NI-qbE">
@@ -35,11 +35,53 @@
                     <connections>
                         <outlet property="mainView" destination="Bvd-NI-qbE" id="DOs-ei-dyG"/>
                         <segue destination="taq-Re-5C4" kind="show" identifier="detail" id="7Fe-bG-cgc"/>
+                        <segue destination="oWn-Lb-wBq" kind="presentation" identifier="showAds" id="Gqs-ho-JpL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvA-pT-Iid" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="820" y="1171.6641679160421"/>
+        </scene>
+        <!--Ads View Controller-->
+        <scene sceneID="ctl-SE-Csg">
+            <objects>
+                <viewController id="oWn-Lb-wBq" customClass="AdsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uyg-g3-KhO"/>
+                        <viewControllerLayoutGuide type="bottom" id="lg0-DL-Q8R"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b9v-4Y-Lc2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WfH-5d-zCX">
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avG-Wp-wqE">
+                                <state key="normal" title="❎"/>
+                                <connections>
+                                    <action selector="exitBtnPress:" destination="oWn-Lb-wBq" eventType="touchUpInside" id="41T-GF-rOY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="avG-Wp-wqE" firstAttribute="trailing" secondItem="b9v-4Y-Lc2" secondAttribute="trailingMargin" id="NbP-bq-18G"/>
+                            <constraint firstItem="avG-Wp-wqE" firstAttribute="top" secondItem="uyg-g3-KhO" secondAttribute="bottom" constant="8" id="QYR-wR-HSO"/>
+                            <constraint firstItem="WfH-5d-zCX" firstAttribute="leading" secondItem="b9v-4Y-Lc2" secondAttribute="leading" id="eG7-Km-bFL"/>
+                            <constraint firstItem="WfH-5d-zCX" firstAttribute="top" secondItem="b9v-4Y-Lc2" secondAttribute="top" id="jsn-cv-c4c"/>
+                            <constraint firstAttribute="trailing" secondItem="WfH-5d-zCX" secondAttribute="trailing" id="nAy-ys-NlF"/>
+                            <constraint firstItem="lg0-DL-Q8R" firstAttribute="top" secondItem="WfH-5d-zCX" secondAttribute="bottom" id="qXg-Ga-6fK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="adsWebView" destination="WfH-5d-zCX" id="lTh-G7-WRj"/>
+                        <outlet property="exitBtn" destination="avG-Wp-wqE" id="18t-57-Wb5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kKK-qj-VXN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="820" y="1987.5562218890557"/>
         </scene>
         <!--Device Detail View Controller-->
         <scene sceneID="ANo-bt-jjz">
@@ -50,10 +92,10 @@
                         <viewControllerLayoutGuide type="bottom" id="eJ2-sF-rTv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qaE-hZ-Pcw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Frj-7H-CzF" customClass="MainView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Frj-7H-CzF">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -66,7 +108,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="mainView" destination="Frj-7H-CzF" id="lyp-4j-Wa3"/>
+                        <outlet property="mainView" destination="Frj-7H-CzF" id="eD7-Ni-qcu"/>
+                        <segue destination="oWn-Lb-wBq" kind="presentation" identifier="showAds" id="rFi-AE-I4R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JXd-i1-dr4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -82,7 +125,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGA-Te-e27">
@@ -171,7 +214,7 @@
                         <viewControllerLayoutGuide type="bottom" id="kEj-OF-fPE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Jfk-1d-tqD">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d4C-UG-dmw">
@@ -308,4 +351,7 @@
             <point key="canvasLocation" x="-1201" y="1172"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Gqs-ho-JpL"/>
+    </inferredMetricsTieBreakers>
 </document>

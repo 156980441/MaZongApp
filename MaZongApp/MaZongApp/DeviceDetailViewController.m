@@ -24,13 +24,19 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
     
     MainView* mainView = [MainView viewFromNIB];
     mainView.frame = self.mainView.frame;
-    self.mainView = mainView;
+    
+    mainView.deviceTableView.delegate = self;
+    mainView.deviceTableView.dataSource = self;
+    
+    [mainView.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceDetailCell_identifier];
+    
+    [self.mainView addSubview:mainView];
     NSLog(@"mainView:%f,%f,%f,%f",self.mainView.frame.origin.x,self.mainView.frame.origin.y,self.mainView.frame.size.width,self.mainView.frame.size.height);
     NSLog(@"view:%f,%f,%f,%f",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.width,self.view.frame.size.height);
-    [self.view addSubview:self.mainView];
     
-    self.mainView.deviceTableView.delegate = self;
-    self.mainView.deviceTableView.dataSource = self;
+    // 添加手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOfTapInScrollView:)];
+    [mainView.dynamicAdsScrollView addGestureRecognizer:tap];
     
     self.title = @"设备详情";
     NSString* temperature = [NSString stringWithFormat:@"温度：%@",self.device.temperature];
@@ -38,8 +44,11 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
     NSString* ph = [NSString stringWithFormat:@"PH：%@",self.device.ph];
     NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.device.temperature];
     self.deviceDataSource = [NSMutableArray arrayWithObjects:temperature,tds,ph,isOff, nil];
-    
-    [self.mainView.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceDetailCell_identifier];
+}
+
+- (void)handleOfTapInScrollView:(UITapGestureRecognizer*)tap
+{
+    [self performSegueWithIdentifier:@"showAds" sender:nil];
 }
 
 - (void)didReceiveMemoryWarning {

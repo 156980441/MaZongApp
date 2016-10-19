@@ -31,6 +31,11 @@ static NSString* deviceCell_identifier = @"deviceCell_identifier";
     [mainView.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceCell_identifier];
     
     [self.mainView addSubview:mainView];
+    
+    // 添加手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOfTapInScrollView:)];
+    [mainView.dynamicAdsScrollView addGestureRecognizer:tap];
+    
     NSLog(@"mainView:%f,%f,%f,%f",self.mainView.frame.origin.x,self.mainView.frame.origin.y,self.mainView.frame.size.width,self.mainView.frame.size.height);
     NSLog(@"view:%f,%f,%f,%f",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.width,self.view.frame.size.height);
     
@@ -47,7 +52,10 @@ static NSString* deviceCell_identifier = @"deviceCell_identifier";
     }
 }
 
-
+- (void)handleOfTapInScrollView:(UITapGestureRecognizer*)tap
+{
+    [self performSegueWithIdentifier:@"showAds" sender:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -60,8 +68,11 @@ static NSString* deviceCell_identifier = @"deviceCell_identifier";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    DeviceDetailViewController* deviceDetail = (DeviceDetailViewController*)[segue destinationViewController];
-    deviceDetail.device = self.selectedDevice;
+    if (self.selectedDevice != nil) {
+        DeviceDetailViewController* deviceDetail = (DeviceDetailViewController*)[segue destinationViewController];
+        deviceDetail.device = self.selectedDevice;
+    }
+    
 }
 
 #pragma - mark UITableViewDelegate

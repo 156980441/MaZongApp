@@ -28,6 +28,7 @@
 		19D9A0DF1DB0C98600CE77B3 /* IMG_009.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 19D9A0D61DB0C98600CE77B3 /* IMG_009.JPG */; };
 		19D9A0E71DB0E72B00CE77B3 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D9A0E61DB0E72B00CE77B3 /* MainView.xib */; };
 		19D9A0EA1DB0E74100CE77B3 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D9A0E91DB0E74100CE77B3 /* MainView.m */; };
+		D7D2DE101DB7C89900729CD8 /* AdsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D2DE0F1DB7C89900729CD8 /* AdsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,8 @@
 		19D9A0E61DB0E72B00CE77B3 /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		19D9A0E81DB0E74100CE77B3 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
 		19D9A0E91DB0E74100CE77B3 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
+		D7D2DE0E1DB7C89900729CD8 /* AdsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdsViewController.h; sourceTree = "<group>"; };
+		D7D2DE0F1DB7C89900729CD8 /* AdsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,26 +96,28 @@
 		19D9A0A31DB0846E00CE77B3 /* MaZongApp */ = {
 			isa = PBXGroup;
 			children = (
-				19D9A0CD1DB0C98600CE77B3 /* ImageSource */,
+				D7D2DE0E1DB7C89900729CD8 /* AdsViewController.h */,
+				D7D2DE0F1DB7C89900729CD8 /* AdsViewController.m */,
 				19D9A0A71DB0846E00CE77B3 /* AppDelegate.h */,
 				19D9A0A81DB0846E00CE77B3 /* AppDelegate.m */,
-				19D9A0BB1DB084E800CE77B3 /* LoginViewViewController.h */,
-				19D9A0BC1DB084E800CE77B3 /* LoginViewViewController.m */,
-				19D9A0BE1DB0877700CE77B3 /* MainViewController.h */,
-				19D9A0BF1DB0877700CE77B3 /* MainViewController.m */,
-				19D9A0E81DB0E74100CE77B3 /* MainView.h */,
-				19D9A0E91DB0E74100CE77B3 /* MainView.m */,
-				19D9A0E61DB0E72B00CE77B3 /* MainView.xib */,
+				19D9A0B01DB0846E00CE77B3 /* Assets.xcassets */,
 				19D9A0CA1DB0C49100CE77B3 /* DeviceDetailViewController.h */,
 				19D9A0CB1DB0C49100CE77B3 /* DeviceDetailViewController.m */,
 				19D9A0C41DB0C11600CE77B3 /* DeviceModel.h */,
 				19D9A0C51DB0C11600CE77B3 /* DeviceModel.m */,
+				19D9A0CD1DB0C98600CE77B3 /* ImageSource */,
+				19D9A0B51DB0846E00CE77B3 /* Info.plist */,
+				19D9A0B21DB0846E00CE77B3 /* LaunchScreen.storyboard */,
+				19D9A0BB1DB084E800CE77B3 /* LoginViewViewController.h */,
+				19D9A0BC1DB084E800CE77B3 /* LoginViewViewController.m */,
+				19D9A0AD1DB0846E00CE77B3 /* Main.storyboard */,
+				19D9A0E81DB0E74100CE77B3 /* MainView.h */,
+				19D9A0E91DB0E74100CE77B3 /* MainView.m */,
+				19D9A0E61DB0E72B00CE77B3 /* MainView.xib */,
+				19D9A0BE1DB0877700CE77B3 /* MainViewController.h */,
+				19D9A0BF1DB0877700CE77B3 /* MainViewController.m */,
 				19D9A0C11DB08AEB00CE77B3 /* RegisterViewController.h */,
 				19D9A0C21DB08AEB00CE77B3 /* RegisterViewController.m */,
-				19D9A0AD1DB0846E00CE77B3 /* Main.storyboard */,
-				19D9A0B01DB0846E00CE77B3 /* Assets.xcassets */,
-				19D9A0B21DB0846E00CE77B3 /* LaunchScreen.storyboard */,
-				19D9A0B51DB0846E00CE77B3 /* Info.plist */,
 				19D9A0A41DB0846E00CE77B3 /* Supporting Files */,
 			);
 			path = MaZongApp;
@@ -224,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19D9A0CC1DB0C49100CE77B3 /* DeviceDetailViewController.m in Sources */,
+				D7D2DE101DB7C89900729CD8 /* AdsViewController.m in Sources */,
 				19D9A0C31DB08AEB00CE77B3 /* RegisterViewController.m in Sources */,
 				19D9A0BD1DB084E800CE77B3 /* LoginViewViewController.m in Sources */,
 				19D9A0A91DB0846E00CE77B3 /* AppDelegate.m in Sources */,
