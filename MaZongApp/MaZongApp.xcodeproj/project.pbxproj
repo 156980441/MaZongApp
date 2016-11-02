@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19C647AF1DC9E53700262F25 /* YLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647AE1DC9E53700262F25 /* YLToast.m */; };
+		19C647B21DC9E5AF00262F25 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647B11DC9E5AF00262F25 /* User.m */; };
+		19C647B61DC9E93800262F25 /* YLCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647B51DC9E93800262F25 /* YLCommon.m */; };
 		19D9A0A61DB0846E00CE77B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D9A0A51DB0846E00CE77B3 /* main.m */; };
 		19D9A0A91DB0846E00CE77B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D9A0A81DB0846E00CE77B3 /* AppDelegate.m */; };
 		19D9A0AF1DB0846E00CE77B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D9A0AD1DB0846E00CE77B3 /* Main.storyboard */; };
@@ -33,6 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19C647AD1DC9E53700262F25 /* YLToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLToast.h; sourceTree = "<group>"; };
+		19C647AE1DC9E53700262F25 /* YLToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLToast.m; sourceTree = "<group>"; };
+		19C647B01DC9E5AF00262F25 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		19C647B11DC9E5AF00262F25 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		19C647B31DC9E64300262F25 /* stdafx_MaZongApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdafx_MaZongApp.h; sourceTree = "<group>"; };
+		19C647B41DC9E93800262F25 /* YLCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLCommon.h; sourceTree = "<group>"; };
+		19C647B51DC9E93800262F25 /* YLCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLCommon.m; sourceTree = "<group>"; };
 		19D9A0A11DB0846E00CE77B3 /* MaZongApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaZongApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D9A0A51DB0846E00CE77B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		19D9A0A71DB0846E00CE77B3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -91,6 +101,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		19C647AC1DC9E51B00262F25 /* vendors */ = {
+			isa = PBXGroup;
+			children = (
+				19C647AD1DC9E53700262F25 /* YLToast.h */,
+				19C647AE1DC9E53700262F25 /* YLToast.m */,
+				19C647B41DC9E93800262F25 /* YLCommon.h */,
+				19C647B51DC9E93800262F25 /* YLCommon.m */,
+			);
+			name = vendors;
+			sourceTree = "<group>";
+		};
 		19D9A0981DB0846E00CE77B3 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +133,7 @@
 		19D9A0A31DB0846E00CE77B3 /* MaZongApp */ = {
 			isa = PBXGroup;
 			children = (
+				19C647AC1DC9E51B00262F25 /* vendors */,
 				D7D2DE0E1DB7C89900729CD8 /* AdsViewController.h */,
 				D7D2DE0F1DB7C89900729CD8 /* AdsViewController.m */,
 				19D9A0A71DB0846E00CE77B3 /* AppDelegate.h */,
@@ -121,11 +143,14 @@
 				19D9A0CB1DB0C49100CE77B3 /* DeviceDetailViewController.m */,
 				19D9A0C41DB0C11600CE77B3 /* DeviceModel.h */,
 				19D9A0C51DB0C11600CE77B3 /* DeviceModel.m */,
+				19C647B01DC9E5AF00262F25 /* User.h */,
+				19C647B11DC9E5AF00262F25 /* User.m */,
 				19D9A0CD1DB0C98600CE77B3 /* ImageSource */,
 				19D9A0B51DB0846E00CE77B3 /* Info.plist */,
 				19D9A0B21DB0846E00CE77B3 /* LaunchScreen.storyboard */,
 				19D9A0BB1DB084E800CE77B3 /* LoginViewViewController.h */,
 				19D9A0BC1DB084E800CE77B3 /* LoginViewViewController.m */,
+				19C647B31DC9E64300262F25 /* stdafx_MaZongApp.h */,
 				19D9A0AD1DB0846E00CE77B3 /* Main.storyboard */,
 				19D9A0E81DB0E74100CE77B3 /* MainView.h */,
 				19D9A0E91DB0E74100CE77B3 /* MainView.m */,
@@ -305,9 +330,12 @@
 			files = (
 				19D9A0CC1DB0C49100CE77B3 /* DeviceDetailViewController.m in Sources */,
 				D7D2DE101DB7C89900729CD8 /* AdsViewController.m in Sources */,
+				19C647AF1DC9E53700262F25 /* YLToast.m in Sources */,
 				19D9A0C31DB08AEB00CE77B3 /* RegisterViewController.m in Sources */,
 				19D9A0BD1DB084E800CE77B3 /* LoginViewViewController.m in Sources */,
 				19D9A0A91DB0846E00CE77B3 /* AppDelegate.m in Sources */,
+				19C647B21DC9E5AF00262F25 /* User.m in Sources */,
+				19C647B61DC9E93800262F25 /* YLCommon.m in Sources */,
 				19D9A0A61DB0846E00CE77B3 /* main.m in Sources */,
 				19D9A0EA1DB0E74100CE77B3 /* MainView.m in Sources */,
 				19D9A0C01DB0877700CE77B3 /* MainViewController.m in Sources */,
