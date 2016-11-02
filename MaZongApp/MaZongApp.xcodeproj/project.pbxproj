@@ -29,6 +29,7 @@
 		19D9A0E71DB0E72B00CE77B3 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D9A0E61DB0E72B00CE77B3 /* MainView.xib */; };
 		19D9A0EA1DB0E74100CE77B3 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D9A0E91DB0E74100CE77B3 /* MainView.m */; };
 		D7D2DE101DB7C89900729CD8 /* AdsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D2DE0F1DB7C89900729CD8 /* AdsViewController.m */; };
+		E447264BBB81A2A8E5E04B73 /* libPods-MaZongApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B86CE7F2E212942CD7D3D31A /* libPods-MaZongApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,9 @@
 		19D9A0E61DB0E72B00CE77B3 /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		19D9A0E81DB0E74100CE77B3 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
 		19D9A0E91DB0E74100CE77B3 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
+		72CBCC97181D935B897809FA /* Pods-MaZongApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaZongApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaZongApp/Pods-MaZongApp.debug.xcconfig"; sourceTree = "<group>"; };
+		A868ECD3547EFE382B340B04 /* Pods-MaZongApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaZongApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MaZongApp/Pods-MaZongApp.release.xcconfig"; sourceTree = "<group>"; };
+		B86CE7F2E212942CD7D3D31A /* libPods-MaZongApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaZongApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7D2DE0E1DB7C89900729CD8 /* AdsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdsViewController.h; sourceTree = "<group>"; };
 		D7D2DE0F1DB7C89900729CD8 /* AdsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,17 +75,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E447264BBB81A2A8E5E04B73 /* libPods-MaZongApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E27F25AED8DDBF7AA2215FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				72CBCC97181D935B897809FA /* Pods-MaZongApp.debug.xcconfig */,
+				A868ECD3547EFE382B340B04 /* Pods-MaZongApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		19D9A0981DB0846E00CE77B3 = {
 			isa = PBXGroup;
 			children = (
 				19D9A0A31DB0846E00CE77B3 /* MaZongApp */,
 				19D9A0A21DB0846E00CE77B3 /* Products */,
+				0E27F25AED8DDBF7AA2215FA /* Pods */,
+				F00D9011969555AC10F67CF5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +163,14 @@
 			path = ImageSource;
 			sourceTree = "<group>";
 		};
+		F00D9011969555AC10F67CF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B86CE7F2E212942CD7D3D31A /* libPods-MaZongApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -154,9 +178,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 19D9A0B81DB0846E00CE77B3 /* Build configuration list for PBXNativeTarget "MaZongApp" */;
 			buildPhases = (
+				E6A7415939FC33673F7A846F /* [CP] Check Pods Manifest.lock */,
 				19D9A09D1DB0846E00CE77B3 /* Sources */,
 				19D9A09E1DB0846E00CE77B3 /* Frameworks */,
 				19D9A09F1DB0846E00CE77B3 /* Resources */,
+				C4E4C0A734C5204DCF30453C /* [CP] Embed Pods Frameworks */,
+				833EA15CA5935C2CBFB99756 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -222,6 +249,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		833EA15CA5935C2CBFB99756 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MaZongApp/Pods-MaZongApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4E4C0A734C5204DCF30453C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MaZongApp/Pods-MaZongApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6A7415939FC33673F7A846F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		19D9A09D1DB0846E00CE77B3 /* Sources */ = {
@@ -352,6 +427,7 @@
 		};
 		19D9A0B91DB0846E00CE77B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72CBCC97181D935B897809FA /* Pods-MaZongApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3LSEEJ9FH2;
@@ -364,6 +440,7 @@
 		};
 		19D9A0BA1DB0846E00CE77B3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A868ECD3547EFE382B340B04 /* Pods-MaZongApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 3LSEEJ9FH2;
