@@ -48,7 +48,8 @@
 }
 -(void)checkuser:(NSString*)name withPass:(NSString*)pass
 {
-    NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:name,@"USER_NAME",pass,@"PASSWORD", nil];
+    NSString* jsonData = [NSString stringWithFormat:@"\"USER_NAME\":\"%@\",\"PASSWORD\":\"%@\"",name,pass];
+    NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:jsonData,@"jsonData",nil];
     [[AFHTTPSessionManager manager] POST:URL_USER_LOGIN parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         if([responseObject isKindOfClass:[NSDictionary class]]) {
             NSString* result = [(NSDictionary*)responseObject objectForKey:@"result"];

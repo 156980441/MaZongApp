@@ -273,12 +273,12 @@ static NSString* URL_CAR_RESERVED = @"http://120.24.234.67/DongGuan/car/getCarAp
 /**
  * 注销登录接口
  */
-static NSString* URL_USER_LOGIN = @"http://localhost:8000/interface/login?";
-static NSString* URL_REGISTER = @"http://localhost:8000/interface/addUserInfo?";
-static NSString* URL_ADD_DEVICE = @"http://localhost:8000/interface/addMachineInfo?";
-static NSString* URL_STITIC_ADS = @"http://localhost:8000/interface/getAdvertiseList?";
-static NSString* URL_DY_ADS = @"http://localhost:8000/interface/getAdvertiseList?";
-static NSString* URL_DEVICE_LIST = @"http://localhost:8000/interface/getMachineList?";
-static NSString* URL_DEVICE_INFO = @"http://localhost:8000/interface/getMachineInfo?";
+static NSString* URL_USER_LOGIN = @"http://115.29.147.177:8099/:8000/interface/login?";
+static NSString* URL_REGISTER = @"http://115.29.147.177:8099/:8000/interface/addUserInfo?";
+static NSString* URL_ADD_DEVICE = @"http://115.29.147.177:8099/:8000/interface/addMachineInfo?";
+static NSString* URL_STITIC_ADS = @"http://115.29.147.177:8099/:8000/interface/getAdvertiseList?";
+static NSString* URL_DY_ADS = @"http://115.29.147.177:8099/:8000/interface/getAdvertiseList?";
+static NSString* URL_DEVICE_LIST = @"http://115.29.147.177:8099/:8000/interface/getMachineList?";
+static NSString* URL_DEVICE_INFO = @"http://115.29.147.177:8099/:8000/interface/getMachineInfo?";
 
 #endif /* stdafx_MaZongApp_h */
