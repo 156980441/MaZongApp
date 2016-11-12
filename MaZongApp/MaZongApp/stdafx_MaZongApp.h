@@ -274,8 +274,8 @@ static NSString* URL_CAR_RESERVED = @"http://120.24.234.67/DongGuan/car/getCarAp
  * 注销登录接口
  */
 static NSString* URL_USER_LOGIN = @"http://115.29.147.177:8099/interface/login";
-static NSString* URL_REGISTER = @"http://115.29.147.177:8099/:8000/interface/addUserInfo?";
-static NSString* URL_ADD_DEVICE = @"http://115.29.147.177:8099/:8000/interface/addMachineInfo?";
+static NSString* URL_USER_REGISTER = @"http://115.29.147.177:8099/interface/addUserInfo";
+static NSString* URL_ADD_DEVICE = @"http://115.29.147.177:8099/interface/addMachineInfo";
 static NSString* URL_STITIC_ADS = @"http://115.29.147.177:8099/:8000/interface/getAdvertiseList?";
 static NSString* URL_DY_ADS = @"http://115.29.147.177:8099/:8000/interface/getAdvertiseList?";
 static NSString* URL_DEVICE_LIST = @"http://115.29.147.177:8099/interface/getMachineList/";

@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "MainView.h"
 #import "DeviceDetailViewController.h"
+#import "AddDeviceViewController.h"
 #import "DeviceModel.h"
 #import "User.h"
 
@@ -89,8 +90,14 @@ static NSString* deviceCell_identifier = @"deviceCell_identifier";
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if (self.selectedDevice != nil) {
-        DeviceDetailViewController* deviceDetail = (DeviceDetailViewController*)[segue destinationViewController];
-        deviceDetail.device = self.selectedDevice;
+        UIViewController* vc = [segue destinationViewController];
+        if ([vc isKindOfClass:[DeviceDetailViewController class]]) {
+            DeviceDetailViewController* deviceDetail = (DeviceDetailViewController*)vc;
+            deviceDetail.device = self.selectedDevice;
+        }
+        if ([vc isKindOfClass:[AddDeviceViewController class]]) {
+            
+        }
     }
     
 }
@@ -98,20 +105,36 @@ static NSString* deviceCell_identifier = @"deviceCell_identifier";
 #pragma - mark UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.selectedDevice = [self.deviceDataSource objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"detail" sender:nil];
+    // indexPath.row 是从 0 开始的
+    if (indexPath.row < self.deviceDataSource.count) {
+        self.selectedDevice = [self.deviceDataSource objectAtIndex:indexPath.row];
+        [self performSegueWithIdentifier:@"detail" sender:nil];
+    }
+    else {
+        [self performSegueWithIdentifier:@"add_device" sender:nil];
+    }
 }
 #pragma - mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.deviceDataSource.count;
+    if (self.deviceDataSource.count != 0) {
+        return self.deviceDataSource.count + 1;//多的一个显示添加设备按钮
+    }
+    else {
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:deviceCell_identifier];
-    DeviceModel* device = [self.deviceDataSource objectAtIndex:indexPath.row];
-    cell.textLabel.text = device.name;
+    if (self.deviceDataSource.count > 0 && self.deviceDataSource.count != indexPath.row) {
+        DeviceModel* device = [self.deviceDataSource objectAtIndex:indexPath.row];
+        cell.textLabel.text = device.name;
+    }
+    else {
+        cell.textLabel.text = @"添加设备";
+    }
     return cell;
 }
 @end

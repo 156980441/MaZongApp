@@ -31,6 +31,7 @@
 		19D9A0DF1DB0C98600CE77B3 /* IMG_009.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 19D9A0D61DB0C98600CE77B3 /* IMG_009.JPG */; };
 		19D9A0E71DB0E72B00CE77B3 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D9A0E61DB0E72B00CE77B3 /* MainView.xib */; };
 		19D9A0EA1DB0E74100CE77B3 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D9A0E91DB0E74100CE77B3 /* MainView.m */; };
+		D710C9481DD784F3004CC2B6 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D710C9471DD784F3004CC2B6 /* AddDeviceViewController.m */; };
 		D7D2DE101DB7C89900729CD8 /* AdsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D2DE0F1DB7C89900729CD8 /* AdsViewController.m */; };
 		E447264BBB81A2A8E5E04B73 /* libPods-MaZongApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B86CE7F2E212942CD7D3D31A /* libPods-MaZongApp.a */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,8 @@
 		72CBCC97181D935B897809FA /* Pods-MaZongApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaZongApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaZongApp/Pods-MaZongApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A868ECD3547EFE382B340B04 /* Pods-MaZongApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaZongApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MaZongApp/Pods-MaZongApp.release.xcconfig"; sourceTree = "<group>"; };
 		B86CE7F2E212942CD7D3D31A /* libPods-MaZongApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaZongApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D710C9461DD784F3004CC2B6 /* AddDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceViewController.h; sourceTree = "<group>"; };
+		D710C9471DD784F3004CC2B6 /* AddDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceViewController.m; sourceTree = "<group>"; };
 		D7D2DE0E1DB7C89900729CD8 /* AdsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdsViewController.h; sourceTree = "<group>"; };
 		D7D2DE0F1DB7C89900729CD8 /* AdsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,6 +155,8 @@
 				19D9A0BC1DB084E800CE77B3 /* LoginViewViewController.m */,
 				19C647B31DC9E64300262F25 /* stdafx_MaZongApp.h */,
 				19D9A0AD1DB0846E00CE77B3 /* Main.storyboard */,
+				D710C9461DD784F3004CC2B6 /* AddDeviceViewController.h */,
+				D710C9471DD784F3004CC2B6 /* AddDeviceViewController.m */,
 				19D9A0E81DB0E74100CE77B3 /* MainView.h */,
 				19D9A0E91DB0E74100CE77B3 /* MainView.m */,
 				19D9A0E61DB0E72B00CE77B3 /* MainView.xib */,
@@ -340,6 +345,7 @@
 				19D9A0EA1DB0E74100CE77B3 /* MainView.m in Sources */,
 				19D9A0C01DB0877700CE77B3 /* MainViewController.m in Sources */,
 				19D9A0C61DB0C11600CE77B3 /* DeviceModel.m in Sources */,
+				D710C9481DD784F3004CC2B6 /* AddDeviceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

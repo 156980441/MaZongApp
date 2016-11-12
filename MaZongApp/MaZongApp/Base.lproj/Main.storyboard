@@ -36,6 +36,7 @@
                         <outlet property="mainView" destination="Bvd-NI-qbE" id="DOs-ei-dyG"/>
                         <segue destination="taq-Re-5C4" kind="show" identifier="detail" id="7Fe-bG-cgc"/>
                         <segue destination="oWn-Lb-wBq" kind="presentation" identifier="showAds" id="Gqs-ho-JpL"/>
+                        <segue destination="728-ad-AIM" kind="show" identifier="add_device" id="srh-f9-nWv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvA-pT-Iid" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,7 +204,7 @@
                     <connections>
                         <outlet property="nameTxt" destination="Zy0-Ft-ZeZ" id="ZqO-hb-vsK"/>
                         <outlet property="passTxt" destination="BFD-Ot-UdW" id="Urt-0h-PeZ"/>
-                        <segue destination="AZg-mv-r4j" kind="show" identifier="login" id="KEq-2l-DQo"/>
+                        <segue destination="AZg-mv-r4j" kind="show" identifier="main" id="KEq-2l-DQo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -282,6 +283,9 @@
                                 <state key="normal" title="注册">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="registerBtnPress:" destination="g0t-0a-7nt" eventType="touchUpInside" id="k3i-b4-phH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -344,6 +348,88 @@
             </objects>
             <point key="canvasLocation" x="-359" y="1988"/>
         </scene>
+        <!--Add Device View Controller-->
+        <scene sceneID="xTI-mK-fN8">
+            <objects>
+                <viewController id="728-ad-AIM" customClass="AddDeviceViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cfE-Ac-arK"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cen-qO-beQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tfe-x4-p7c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备名称：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Sh-MD-4x9">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7Sh-MD-4x9" secondAttribute="height" multiplier="92:35" id="Cdm-Lp-0A5"/>
+                                    <constraint firstAttribute="width" constant="90" id="tib-Sy-AtV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备ID：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8R-ah-K75">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S1c-2j-nbl">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="g0U-zg-hl7"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vdd-XT-iMx">
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubV-kH-umP">
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="mi2-Mh-EAg"/>
+                                </constraints>
+                                <state key="normal" title="添加设备">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addDeviceBtnPress:" destination="728-ad-AIM" eventType="touchUpInside" id="Yaq-Um-6aJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Sh-MD-4x9" firstAttribute="leading" secondItem="Tfe-x4-p7c" secondAttribute="leadingMargin" constant="12" id="3MO-vY-06L"/>
+                            <constraint firstItem="Vdd-XT-iMx" firstAttribute="width" secondItem="S1c-2j-nbl" secondAttribute="width" id="A6m-05-Ycb"/>
+                            <constraint firstItem="S1c-2j-nbl" firstAttribute="top" secondItem="cfE-Ac-arK" secondAttribute="bottom" constant="72" id="ChY-iK-gnJ"/>
+                            <constraint firstItem="ubV-kH-umP" firstAttribute="leading" secondItem="E8R-ah-K75" secondAttribute="leading" id="LNk-OY-eYX"/>
+                            <constraint firstItem="E8R-ah-K75" firstAttribute="width" secondItem="7Sh-MD-4x9" secondAttribute="width" id="Vh5-0i-ziq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="S1c-2j-nbl" secondAttribute="trailing" constant="10" id="W0M-Hg-h0l"/>
+                            <constraint firstItem="Vdd-XT-iMx" firstAttribute="height" secondItem="S1c-2j-nbl" secondAttribute="height" id="XXw-cf-Amk"/>
+                            <constraint firstItem="Vdd-XT-iMx" firstAttribute="trailing" secondItem="S1c-2j-nbl" secondAttribute="trailing" id="Xqq-Bz-IKa"/>
+                            <constraint firstItem="E8R-ah-K75" firstAttribute="leading" secondItem="7Sh-MD-4x9" secondAttribute="leading" id="gYW-oo-CrX"/>
+                            <constraint firstItem="ubV-kH-umP" firstAttribute="trailing" secondItem="Vdd-XT-iMx" secondAttribute="trailing" id="gn8-cw-isV"/>
+                            <constraint firstItem="ubV-kH-umP" firstAttribute="top" secondItem="Vdd-XT-iMx" secondAttribute="bottom" constant="30" id="lad-3C-dUI"/>
+                            <constraint firstItem="Vdd-XT-iMx" firstAttribute="top" secondItem="S1c-2j-nbl" secondAttribute="bottom" constant="34" id="mdT-WN-Ab4"/>
+                            <constraint firstItem="S1c-2j-nbl" firstAttribute="leading" secondItem="7Sh-MD-4x9" secondAttribute="trailing" constant="10" id="pOQ-gd-qi5"/>
+                            <constraint firstItem="Vdd-XT-iMx" firstAttribute="leading" secondItem="S1c-2j-nbl" secondAttribute="leading" id="pjf-1O-wrT"/>
+                            <constraint firstItem="7Sh-MD-4x9" firstAttribute="top" secondItem="cfE-Ac-arK" secondAttribute="bottom" constant="70" id="qDL-ig-TtR"/>
+                            <constraint firstItem="E8R-ah-K75" firstAttribute="height" secondItem="7Sh-MD-4x9" secondAttribute="height" id="r99-z8-451"/>
+                            <constraint firstItem="E8R-ah-K75" firstAttribute="top" secondItem="7Sh-MD-4x9" secondAttribute="bottom" constant="30" id="tNn-hj-yLj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="deviceIdTxtField" destination="Vdd-XT-iMx" id="Xtl-dn-LZq"/>
+                        <outlet property="deviceNameTxtField" destination="S1c-2j-nbl" id="hnA-TV-124"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OKc-cz-veR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1800.8" y="333.28335832083962"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Jc-1b-cpZ">
             <objects>
@@ -364,6 +450,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rFi-AE-I4R"/>
+        <segue reference="Gqs-ho-JpL"/>
     </inferredMetricsTieBreakers>
 </document>

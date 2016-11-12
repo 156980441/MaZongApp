@@ -1,49 +1,44 @@
 //
-//  RegisterViewController.m
+//  AddDeviceViewController.m
 //  MaZongApp
 //
-//  Created by fanyunlong on 16/10/14.
+//  Created by 赵雪莹 on 2016/11/13.
 //  Copyright © 2016年 fanyl. All rights reserved.
 //
 
-#import "RegisterViewController.h"
+#import "AddDeviceViewController.h"
 
 #import "stdafx_MaZongApp.h"
-#import "AFHTTPSessionManager.h"
 #import "AFHTTPRequestOperationManager.h"
 
-@interface RegisterViewController ()
+@interface AddDeviceViewController ()
 
 @end
 
-@implementation RegisterViewController
+@implementation AddDeviceViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.title = @"注册";
-    self.nameTxtField.text = @"fanyl";
-    self.passTxtFiled.text = @"123";
-    self.confirmPassTxtFiled.text = @"123";
-    self.deviceIDTxtField.text = @"FYL201688888888";
-    self.validTxtField.text = @"aaa";
+    self.title = @"添加设备";
+    self.deviceIdTxtField.text = @"fanyl201788888888";
+    self.deviceNameTxtField.text = @"有二三四五六";
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)registerBtnPress:(id)sender {
+- (IBAction)addDeviceBtnPress:(id)sender {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     
     
-    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:self.nameTxtField.text,@"USER_NAME",self.passTxtFiled.text,@"PASSWORD", nil];
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:self.deviceIdTxtField.text,@"MACHINE_ID",self.deviceNameTxtField.text,@"MACHINE_TITLE",@"5",@"USER_NO", nil];
     
-    [manager POST:URL_USER_REGISTER parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:URL_ADD_DEVICE parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSLog(@"POST请求完成,%@",responseObject);
         
@@ -54,7 +49,6 @@
         
         
     }];
-    
 }
 
 /*

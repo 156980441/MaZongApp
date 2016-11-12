@@ -69,7 +69,7 @@
         self.user.pass = [admin_dic objectForKey:@"password"];
         self.user.userNo = ((NSNumber*)[admin_dic objectForKey:@"userNo"]).integerValue;
         [self saveToArchiver:self.user];
-        [self performSegueWithIdentifier:@"login" sender:self];
+        [self performSegueWithIdentifier:@"main" sender:self];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
