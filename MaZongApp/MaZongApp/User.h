@@ -11,4 +11,5 @@
 @interface User : NSObject
 @property(nonatomic,strong) NSString* name;
 @property (nonatomic, strong) NSString *pass;
+@property (nonatomic, assign) NSInteger userNo;
 @end

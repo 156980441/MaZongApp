@@ -8,6 +8,7 @@
 
 #import "LoginViewViewController.h"
 #import "User.h"
+#import "MainViewController.h"
 
 #import "YLToast.h"
 #import "YLCommon.h"
@@ -15,6 +16,7 @@
 #import "stdafx_MaZongApp.h"
 #import "AFNetworkReachabilityManager.h"
 #import "AFHTTPSessionManager.h"
+#import "AFHTTPRequestOperationManager.h"
 
 @interface LoginViewViewController ()
 
@@ -49,30 +51,56 @@
 -(void)checkuser:(NSString*)name withPass:(NSString*)pass
 {
     
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    session.requestSerializer = [AFJSONRequestSerializer serializer];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"USER_NAME"] = name;
-    params[@"PASSWORD"] = pass;
-    [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:URL_USER_LOGIN parameters:params error:nil];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    [session POST:URL_USER_LOGIN parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        if([responseObject isKindOfClass:[NSDictionary class]]) {
-            NSString* result = [(NSDictionary*)responseObject objectForKey:@"result"];
-            if ([result isEqualToString:@"success"]) {
-                self.user.name = name;
-                self.user.pass = pass;
-                [self saveToArchiver:self.user];
-                
-                [self performSegueWithIdentifier:@"login" sender:self];
-            }
-            else {
-                [YLToast showWithText:result];
-            }
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [YLToast showWithText:@"网络连接失败，请检查网络配置"];
+    
+    
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:name,@"USER_NAME",pass,@"PASSWORD", nil];
+    
+    [manager POST:URL_USER_LOGIN parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"POST请求完成,%@",responseObject);
+        NSDictionary* jsonData = (NSDictionary*)responseObject;
+        NSDictionary* admin_dic = [jsonData objectForKey:@"admin"];
+        self.user = [[User alloc] init];
+        self.user.name = [admin_dic objectForKey:@"username"];
+        self.user.pass = [admin_dic objectForKey:@"password"];
+        self.user.userNo = ((NSNumber*)[admin_dic objectForKey:@"userNo"]).integerValue;
+        [self saveToArchiver:self.user];
+        [self performSegueWithIdentifier:@"login" sender:self];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+         [YLToast showWithText:@"网络连接失败，请检查网络配置"];
+        
     }];
+    
+//    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+//    session.requestSerializer = [AFJSONRequestSerializer serializer];
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    params[@"USER_NAME"] = name;
+//    params[@"PASSWORD"] = pass;
+//    [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:URL_USER_LOGIN parameters:params error:nil];
+//    
+//    [session POST:URL_USER_LOGIN parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+//        if([responseObject isKindOfClass:[NSDictionary class]]) {
+//            NSString* result = [(NSDictionary*)responseObject objectForKey:@"result"];
+//            if ([result isEqualToString:@"success"]) {
+//                self.user.name = name;
+//                self.user.pass = pass;
+//                [self saveToArchiver:self.user];
+//                
+//                [self performSegueWithIdentifier:@"login" sender:self];
+//            }
+//            else {
+//                [YLToast showWithText:result];
+//            }
+//        }
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        [YLToast showWithText:@"网络连接失败，请检查网络配置"];
+//    }];
 }
 - (BOOL)saveToArchiver:(User*)user {
     NSString* fileName = [YLCommon docPath:@"user.archiver"];
@@ -82,14 +110,19 @@
     [archiver finishEncoding];
     return [data writeToFile:fileName atomically:YES];
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UIViewController* vc = [segue destinationViewController];
+    if ([vc isKindOfClass:[MainViewController class]]) {
+        MainViewController* mainVc = (MainViewController*)vc;
+        mainVc.user = self.user;
+    }
 }
-*/
+
 
 @end

@@ -10,6 +10,10 @@
 #import "MainView.h"
 #import "DeviceDetailViewController.h"
 #import "DeviceModel.h"
+#import "User.h"
+
+#import "stdafx_MaZongApp.h"
+#import "AFHTTPSessionManager.h"
 
 static NSString* deviceCell_identifier = @"deviceCell_identifier";
 
@@ -41,15 +45,31 @@ static NSString* deviceCell_identifier = @"deviceCell_identifier";
     
     self.title = @"设备列表";
     self.deviceDataSource = [NSMutableArray array];
-    for (int i = 0; i < 10; i++) {
-        DeviceModel* deviceModel = [[DeviceModel alloc] init];
-        deviceModel.name = [NSString stringWithFormat:@"设备 %d",i];
-        deviceModel.temperature = @"21.6";
-        deviceModel.tds = @"200";
-        deviceModel.ph = @"3.3";
-        deviceModel.isOff = YES;
-        [self.deviceDataSource addObject:deviceModel];
-    }
+    
+    
+    
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+//    NSString* url = [NSString stringWithFormat:@"%@%zd",URL_DEVICE_LIST,self.user.userNo];
+    NSString* url = [NSString stringWithFormat:@"%@5",URL_DEVICE_LIST];
+    [session GET:url parameters:nil
+         success:^(NSURLSessionDataTask *task, id responseObject) {
+             NSLog(@"%@",responseObject);
+             NSArray* arr = (NSArray*)responseObject;
+             for (NSDictionary* dic in arr) {
+                 DeviceModel* dev = [[DeviceModel alloc] init];
+                 dev.name = [dic objectForKey:@"TITLE"];
+                 dev.deviceId = [dic objectForKey:@"ID"];
+                 dev.ph = [dic objectForKey:@"PH"];
+                 dev.temperature = [dic objectForKey:@"TEMPERATURE"];
+                 dev.tds = [dic objectForKey:@"TDS"];
+                 [self.deviceDataSource addObject:dev];
+             }
+             [mainView.deviceTableView reloadData];
+         }
+         failure:^(NSURLSessionDataTask *task, NSError *error) {
+             NSLog(@"%@",error);
+         }];
+    
 }
 
 - (void)handleOfTapInScrollView:(UITapGestureRecognizer*)tap
