@@ -18,6 +18,23 @@
 
 static NSString* deviceCell_identifier = @"deviceCell_identifier";
 
+void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^errorBlock)(void) )
+{
+    dispatch_async( dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0 ), ^(void)
+                   {
+                       NSData * data = [[NSData alloc] initWithContentsOfURL:URL];
+                       UIImage * image = [[UIImage alloc] initWithData:data];
+                       dispatch_async( dispatch_get_main_queue(), ^(void){
+                           if( image != nil )
+                           {
+                               imageBlock( image );
+                           } else {
+                               errorBlock();
+                           }
+                       });
+                   });
+}
+
 @interface MainViewController ()
 @property (nonatomic, strong) DeviceModel *selectedDevice;
 @end
@@ -34,6 +51,18 @@ static NSString* deviceCell_identifier = @"deviceCell_identifier";
     mainView.deviceTableView.dataSource = self;
     
     [mainView.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceCell_identifier];
+    
+    NSMutableArray* adsImages = [NSMutableArray array];
+    for (int i = 1; i < 4; i ++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"IMG_00%d.JPG",i]];
+        [adsImages addObject:image];
+    }
+    NSMutableArray* images = [NSMutableArray array];
+    for (int i = 4; i < 7; i ++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"IMG_00%d.JPG",i]];
+        [images addObject:image];
+    }
+    [mainView setStaticAdsImages:adsImages withDynamicAdsImages:images];
     
     [self.mainView addSubview:mainView];
     
@@ -54,7 +83,6 @@ static NSString* deviceCell_identifier = @"deviceCell_identifier";
     NSString* url = [NSString stringWithFormat:@"%@5",URL_DEVICE_LIST];
     [session GET:url parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
-             NSLog(@"%@",responseObject);
              NSArray* arr = (NSArray*)responseObject;
              for (NSDictionary* dic in arr) {
                  DeviceModel* dev = [[DeviceModel alloc] init];
@@ -71,6 +99,81 @@ static NSString* deviceCell_identifier = @"deviceCell_identifier";
              NSLog(@"%@",error);
          }];
     
+    __block NSMutableArray* staticImages = [NSMutableArray array];
+    NSString* url_stitic_ad = [NSString stringWithFormat:@"%@/1",URL_STITIC_ADS];
+    [session GET:url_stitic_ad parameters:nil
+         success:^(NSURLSessionDataTask *task, id responseObject) {
+             NSLog(@"%@",responseObject);
+             NSArray* arr = (NSArray*)responseObject;
+             for (NSDictionary* dic in arr) {
+                 NSString* url_image1 = [dic objectForKey:@"PIC_URL1"];
+                 NSString* url_image2 = [dic objectForKey:@"PIC_URL2"];
+                 NSString* url_image3 = [dic objectForKey:@"PIC_URL3"];
+                 if (![url_image1 isKindOfClass:[NSNull class]]) {
+                     UIImageFromURL([NSURL URLWithString:url_image1],^( UIImage * image )
+                     {
+                         [staticImages addObject:image];
+                     }, ^(void){
+                         NSLog(@"%@",@"error!");
+                     });
+                 }
+                 if (![url_image1 isKindOfClass:[NSNull class]]) {
+                     UIImageFromURL([NSURL URLWithString:url_image2],^( UIImage * image )
+                                    {
+                                        [staticImages addObject:image];
+                                    }, ^(void){
+                                        NSLog(@"%@",@"error!");
+                                    });
+                 }
+                 if (![url_image1 isKindOfClass:[NSNull class]]) {
+                     UIImageFromURL([NSURL URLWithString:url_image3],^( UIImage * image )
+                                    {
+                                        [staticImages addObject:image];
+                                    }, ^(void){
+                                        NSLog(@"%@",@"error!");
+                                    });
+                 }
+             }
+             
+         }
+         failure:^(NSURLSessionDataTask *task, NSError *error) {
+             NSLog(@"%@",error);
+         }];
+    
+    __block NSMutableArray* dynaticImages = [NSMutableArray array];
+    NSString* url_dyl_ad = [NSString stringWithFormat:@"%@/0",URL_DY_ADS];
+    [session GET:url_dyl_ad parameters:nil
+         success:^(NSURLSessionDataTask *task, id responseObject) {
+             NSLog(@"%@",responseObject);
+             NSLog(@"%@",responseObject);
+             NSArray* arr = (NSArray*)responseObject;
+             for (NSDictionary* dic in arr) {
+                 NSString* root_url = [dic objectForKey:@"ADV_URL"];
+                 NSString* url_image1 = [dic objectForKey:@"PIC_URL1"];
+                 NSString* url_image2 = [dic objectForKey:@"PIC_URL2"];
+                 NSString* url_image3 = [dic objectForKey:@"PIC_URL3"];
+                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                     NSData * data1 = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@",URL_ROOT,url_image1]]];
+                     NSData * data2 = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@",URL_ROOT,url_image2]]];
+                     NSData * data3 = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@",URL_ROOT,url_image3]]];
+                     UIImage *image1 = [[UIImage alloc]initWithData:data1];
+                     UIImage *image2 = [[UIImage alloc]initWithData:data2];
+                     UIImage *image3 = [[UIImage alloc]initWithData:data3];
+                     [dynaticImages addObject:image1];
+                     [dynaticImages addObject:image2];
+                     [dynaticImages addObject:image3];
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         //在这里做UI操作(UI操作都要放在主线程中执行)
+                     });
+                 });
+             }
+             
+         }
+         failure:^(NSURLSessionDataTask *task, NSError *error) {
+             NSLog(@"%@",error);
+         }];
+    
+    [mainView setStaticAdsImages:staticImages withDynamicAdsImages:dynaticImages];
 }
 
 - (void)handleOfTapInScrollView:(UITapGestureRecognizer*)tap

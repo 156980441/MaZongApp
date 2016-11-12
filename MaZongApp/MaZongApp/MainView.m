@@ -9,7 +9,8 @@
 #import "MainView.h"
 
 @interface MainView ()
-@property (nonatomic, strong) NSMutableArray *adsImages;
+@property (nonatomic, strong) NSArray* staticImages;
+@property (nonatomic, strong) NSArray* dynamicImages;
 @end
 
 @implementation MainView
@@ -31,43 +32,7 @@
 
 - (void)awakeFromNib {
     // 视图内容布局
-    [super awakeFromNib];
-    // 定时轮播
-    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(autoPlay) userInfo:nil repeats:YES];
-    
-    self.adsImages = [NSMutableArray array];
-    for (int i = 1; i < 4; i ++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"IMG_00%d.JPG",i]];
-        [self.adsImages addObject:image];
-    }
-    CGFloat width = CGRectGetWidth(self.frame);
-    CGFloat height = CGRectGetHeight(self.staticAdsScrollView.frame);
-    for (int i = 0; i < self.adsImages.count; i ++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:(CGRectMake(width * i, 0, width, height))];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        imageView.image = [self.adsImages objectAtIndex:i];
-        [self.staticAdsScrollView addSubview:imageView];
-    }
-    self.staticAdsScrollView.contentSize = CGSizeMake(width * self.adsImages.count, height);//设置内容大小
-    self.staticAdsScrollView.contentOffset = CGPointMake(width, 0);//设置内容偏移量
-    self.staticAdsScrollView.pagingEnabled = YES;//打开整屏滑动
-    self.staticAdsScrollView.showsHorizontalScrollIndicator = NO;
-    
-    self.adsImages = [NSMutableArray array];
-    for (int i = 4; i < 7; i ++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"IMG_00%d.JPG",i]];
-        [self.adsImages addObject:image];
-    }
-    for (int i = 0; i < self.adsImages.count; i ++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:(CGRectMake(width * i, 0, width, height))];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        imageView.image = [self.adsImages objectAtIndex:i];
-        [self.dynamicAdsScrollView addSubview:imageView];
-    }
-    self.dynamicAdsScrollView.contentSize = CGSizeMake(width * self.adsImages.count, height);//设置内容大小
-    self.dynamicAdsScrollView.contentOffset = CGPointMake(width, 0);//设置内容偏移量
-    self.dynamicAdsScrollView.pagingEnabled = YES;//打开整屏滑动
-    self.dynamicAdsScrollView.showsHorizontalScrollIndicator = NO;
+    [super awakeFromNib]; 
 
 }
 
@@ -93,4 +58,29 @@
         [self.dynamicAdsScrollView setContentOffset:(CGPointMake(x_dynamicAds + width, 0)) animated:YES];
     }
 }
+-(void)setStaticAdsImages:(NSArray*)staticImages withDynamicAdsImages:(NSArray*)dynamicImages
+{
+    self.staticImages = [NSArray arrayWithArray:staticImages];
+    self.dynamicImages = [NSArray arrayWithArray:dynamicImages];
+    [self layoutScrollView:self.staticAdsScrollView images:self.staticImages];
+    [self layoutScrollView:self.dynamicAdsScrollView images:self.dynamicImages];
+    // 定时轮播
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(autoPlay) userInfo:nil repeats:YES];
+}
+-(void)layoutScrollView:(UIScrollView*)scrollView images:(NSArray*)images
+{
+    CGFloat width = CGRectGetWidth(self.frame);
+    CGFloat height = CGRectGetHeight(self.staticAdsScrollView.frame);
+    for (int i = 0; i < images.count; i ++) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:(CGRectMake(width * i, 0, width, height))];
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.image = [images objectAtIndex:i];
+        [scrollView addSubview:imageView];
+    }
+    scrollView.contentSize = CGSizeMake(width * images.count, height);//设置内容大小
+    scrollView.contentOffset = CGPointMake(width, 0);//设置内容偏移量
+    scrollView.pagingEnabled = YES;//打开整屏滑动
+    scrollView.showsHorizontalScrollIndicator = NO;
+}
+
 @end

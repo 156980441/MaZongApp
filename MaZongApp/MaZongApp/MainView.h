@@ -13,4 +13,5 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *staticAdsScrollView;
 @property (strong, nonatomic) IBOutlet UITableView *deviceTableView;
 @property (strong, nonatomic) IBOutlet UIScrollView *dynamicAdsScrollView;
+-(void)setStaticAdsImages:(NSArray*)staticImages withDynamicAdsImages:(NSArray*)dynamicImages;
 @end

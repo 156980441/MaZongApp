@@ -235,7 +235,7 @@
 				TargetAttributes = {
 					19D9A0A01DB0846E00CE77B3 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 3LSEEJ9FH2;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -464,7 +464,7 @@
 			baseConfigurationReference = 72CBCC97181D935B897809FA /* Pods-MaZongApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3LSEEJ9FH2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MaZongApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mapbar.MaZongApp;
@@ -477,7 +477,7 @@
 			baseConfigurationReference = A868ECD3547EFE382B340B04 /* Pods-MaZongApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3LSEEJ9FH2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MaZongApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mapbar.MaZongApp;

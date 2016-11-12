@@ -60,8 +60,6 @@
     NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:name,@"USER_NAME",pass,@"PASSWORD", nil];
     
     [manager POST:URL_USER_LOGIN parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSLog(@"POST请求完成,%@",responseObject);
         NSDictionary* jsonData = (NSDictionary*)responseObject;
         NSDictionary* admin_dic = [jsonData objectForKey:@"admin"];
         self.user = [[User alloc] init];
