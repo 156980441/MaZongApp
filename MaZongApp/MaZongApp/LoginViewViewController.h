@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class User;
-
 @interface LoginViewViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITextField *nameTxt;
 @property (strong, nonatomic) IBOutlet UITextField *passTxt;
-@property (strong, nonatomic) User* user;
 @end

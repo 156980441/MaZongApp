@@ -69,8 +69,8 @@
 }
 -(void)layoutScrollView:(UIScrollView*)scrollView images:(NSArray*)images
 {
-    CGFloat width = CGRectGetWidth(self.frame);
-    CGFloat height = CGRectGetHeight(self.staticAdsScrollView.frame);
+    CGFloat width = CGRectGetWidth(scrollView.frame);
+    CGFloat height = CGRectGetHeight(scrollView.frame);
     for (int i = 0; i < images.count; i ++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:(CGRectMake(width * i, 0, width, height))];
         imageView.contentMode = UIViewContentModeScaleToFill;

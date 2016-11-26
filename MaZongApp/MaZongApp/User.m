@@ -8,7 +8,11 @@
 
 #import "User.h"
 
+
 @implementation User
+
+User* g_user = nil;
+
 - (void) encodeWithCoder:(NSCoder *)encoder
 {
     [encoder encodeObject:self.name forKey:@"name"];

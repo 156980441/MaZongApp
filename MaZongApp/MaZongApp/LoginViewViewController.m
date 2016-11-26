@@ -62,11 +62,11 @@
     [manager POST:URL_USER_LOGIN parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary* jsonData = (NSDictionary*)responseObject;
         NSDictionary* admin_dic = [jsonData objectForKey:@"admin"];
-        self.user = [[User alloc] init];
-        self.user.name = [admin_dic objectForKey:@"username"];
-        self.user.pass = [admin_dic objectForKey:@"password"];
-        self.user.userNo = ((NSNumber*)[admin_dic objectForKey:@"userNo"]).integerValue;
-        [self saveToArchiver:self.user];
+        g_user = [[User alloc] init];
+        g_user.name = [admin_dic objectForKey:@"username"];
+        g_user.pass = [admin_dic objectForKey:@"password"];
+        g_user.userNo = ((NSNumber*)[admin_dic objectForKey:@"userNo"]).integerValue;
+        [self saveToArchiver:g_user];
         [self performSegueWithIdentifier:@"main" sender:self];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -86,9 +86,9 @@
 //        if([responseObject isKindOfClass:[NSDictionary class]]) {
 //            NSString* result = [(NSDictionary*)responseObject objectForKey:@"result"];
 //            if ([result isEqualToString:@"success"]) {
-//                self.user.name = name;
-//                self.user.pass = pass;
-//                [self saveToArchiver:self.user];
+//                g_user.name = name;
+//                g_user.pass = pass;
+//                [self saveToArchiver:g_user];
 //                
 //                [self performSegueWithIdentifier:@"login" sender:self];
 //            }
@@ -118,7 +118,7 @@
     UIViewController* vc = [segue destinationViewController];
     if ([vc isKindOfClass:[MainViewController class]]) {
         MainViewController* mainVc = (MainViewController*)vc;
-        mainVc.user = self.user;
+        mainVc.user = g_user;
     }
 }
 

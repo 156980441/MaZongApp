@@ -41,11 +41,11 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 
 @implementation MainViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
     MainView* mainView = [MainView viewFromNIB];
-    mainView.frame = self.mainView.frame;
+    mainView.frame = CGRectMake(0, 0, CGRectGetWidth(self.mainView.frame), CGRectGetHeight(self.mainView.frame));
     
     mainView.deviceTableView.delegate = self;
     mainView.deviceTableView.dataSource = self;
@@ -79,7 +79,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     
     
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-//    NSString* url = [NSString stringWithFormat:@"%@%zd",URL_DEVICE_LIST,self.user.userNo];
+    //    NSString* url = [NSString stringWithFormat:@"%@%zd",URL_DEVICE_LIST,self.user.userNo];
     NSString* url = [NSString stringWithFormat:@"%@5",URL_DEVICE_LIST];
     [session GET:url parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -111,11 +111,11 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                  NSString* url_image3 = [dic objectForKey:@"PIC_URL3"];
                  if (![url_image1 isKindOfClass:[NSNull class]]) {
                      UIImageFromURL([NSURL URLWithString:url_image1],^( UIImage * image )
-                     {
-                         [staticImages addObject:image];
-                     }, ^(void){
-                         NSLog(@"%@",@"error!");
-                     });
+                                    {
+                                        [staticImages addObject:image];
+                                    }, ^(void){
+                                        NSLog(@"%@",@"error!");
+                                    });
                  }
                  if (![url_image1 isKindOfClass:[NSNull class]]) {
                      UIImageFromURL([NSURL URLWithString:url_image2],^( UIImage * image )
@@ -145,7 +145,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [session GET:url_dyl_ad parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
              NSLog(@"%@",responseObject);
-             NSLog(@"%@",responseObject);
+             
              NSArray* arr = (NSArray*)responseObject;
              for (NSDictionary* dic in arr) {
                  NSString* root_url = [dic objectForKey:@"ADV_URL"];
@@ -153,9 +153,15 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                  NSString* url_image2 = [dic objectForKey:@"PIC_URL2"];
                  NSString* url_image3 = [dic objectForKey:@"PIC_URL3"];
                  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                     NSData * data1 = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@",URL_ROOT,url_image1]]];
-                     NSData * data2 = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@",URL_ROOT,url_image2]]];
-                     NSData * data3 = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@%@",URL_ROOT,url_image3]]];
+                     NSString* url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image1];
+                     NSURL* nsurl = [NSURL URLWithString:[url substringToIndex:url.length - 2]];
+                     NSData * data1 = [[NSData alloc] initWithContentsOfURL:nsurl];
+                     url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image2];
+                     nsurl = [NSURL URLWithString:[url substringToIndex:url.length - 2]];
+                     NSData * data2 = [[NSData alloc]initWithContentsOfURL:nsurl];
+                     url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image3];
+                     nsurl = [NSURL URLWithString:[url substringToIndex:url.length]];
+                     NSData * data3 = [[NSData alloc]initWithContentsOfURL:nsurl];
                      UIImage *image1 = [[UIImage alloc]initWithData:data1];
                      UIImage *image2 = [[UIImage alloc]initWithData:data2];
                      UIImage *image3 = [[UIImage alloc]initWithData:data3];
@@ -174,6 +180,12 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
          }];
     
     [mainView setStaticAdsImages:staticImages withDynamicAdsImages:dynaticImages];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
 }
 
 - (void)handleOfTapInScrollView:(UITapGestureRecognizer*)tap
