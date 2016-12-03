@@ -9,12 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @class MainView;
-@class User;
 
 @interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @property (nonatomic, strong) NSMutableArray *deviceDataSource;
-@property (nonatomic, strong) User *user;
 
 @end

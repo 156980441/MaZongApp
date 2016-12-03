@@ -7,7 +7,7 @@
 //
 
 #import "AddDeviceViewController.h"
-
+#import "User.h"
 #import "YLToast.h"
 
 #import "stdafx_MaZongApp.h"
@@ -38,7 +38,7 @@
     
     
     
-    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:self.deviceIdTxtField.text,@"MACHINE_ID",self.deviceNameTxtField.text,@"MACHINE_TITLE",@"5",@"USER_NO", nil];
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:self.deviceIdTxtField.text,@"MACHINE_ID",self.deviceNameTxtField.text,@"MACHINE_TITLE",[NSString stringWithFormat:@"%zd",g_user.userNo],@"USER_NO", nil];
     
     [manager POST:URL_ADD_DEVICE parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         

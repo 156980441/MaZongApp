@@ -12,14 +12,17 @@
 
 #import "YLToast.h"
 #import "YLCommon.h"
+#import "YLLocationManager.h"
 
 #import "stdafx_MaZongApp.h"
 #import "AFNetworkReachabilityManager.h"
 #import "AFHTTPSessionManager.h"
 #import "AFHTTPRequestOperationManager.h"
 
-@interface LoginViewViewController ()
+static NSArray* g_city_arr = nil;
 
+@interface LoginViewViewController ()
+@property (nonatomic, strong) YLLocationManager* location;
 @end
 
 @implementation LoginViewViewController
@@ -29,11 +32,31 @@
     // Do any additional setup after loading the view.
     
     self.title = @"登录";
+    g_city_arr = @[@"北京市"];
+    if (!g_user) {
+        g_user = [[User alloc] init];
+        g_user.cityId = -1;
+    }
     
     // test
     
-    self.nameTxt.text = @"admin5";
+    self.nameTxt.text = @"fdfds";
     self.passTxt.text = @"123456";
+    
+    self.location = [[YLLocationManager alloc] initWithGpsUpdate:^(CLLocation *loc) {
+        // 初始化编码器
+        CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+        // 通过定位获取的经纬度坐标，反编码获取地理信息标记并打印改标记下得城市名
+        [geoCoder reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) {
+            if (g_user.cityId == -1) {
+                CLPlacemark *placemark = [placemarks lastObject];
+                NSString *cityName = placemark.locality;
+                g_user.cityId = [g_city_arr indexOfObject:cityName];
+            }
+        }];
+    }];
+    
+    [self.location startUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,7 +85,6 @@
     [manager POST:URL_USER_LOGIN parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary* jsonData = (NSDictionary*)responseObject;
         NSDictionary* admin_dic = [jsonData objectForKey:@"admin"];
-        g_user = [[User alloc] init];
         g_user.name = [admin_dic objectForKey:@"username"];
         g_user.pass = [admin_dic objectForKey:@"password"];
         g_user.userNo = ((NSNumber*)[admin_dic objectForKey:@"userNo"]).integerValue;
@@ -75,30 +97,8 @@
         
     }];
     
-//    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-//    session.requestSerializer = [AFJSONRequestSerializer serializer];
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    params[@"USER_NAME"] = name;
-//    params[@"PASSWORD"] = pass;
-//    [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:URL_USER_LOGIN parameters:params error:nil];
-//    
-//    [session POST:URL_USER_LOGIN parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-//        if([responseObject isKindOfClass:[NSDictionary class]]) {
-//            NSString* result = [(NSDictionary*)responseObject objectForKey:@"result"];
-//            if ([result isEqualToString:@"success"]) {
-//                g_user.name = name;
-//                g_user.pass = pass;
-//                [self saveToArchiver:g_user];
-//                
-//                [self performSegueWithIdentifier:@"login" sender:self];
-//            }
-//            else {
-//                [YLToast showWithText:result];
-//            }
-//        }
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        [YLToast showWithText:@"网络连接失败，请检查网络配置"];
-//    }];
+    
+    
 }
 - (BOOL)saveToArchiver:(User*)user {
     NSString* fileName = [YLCommon docPath:@"user.archiver"];
@@ -115,11 +115,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    UIViewController* vc = [segue destinationViewController];
-    if ([vc isKindOfClass:[MainViewController class]]) {
-        MainViewController* mainVc = (MainViewController*)vc;
-        mainVc.user = g_user;
-    }
 }
 
 

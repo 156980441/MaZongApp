@@ -279,7 +279,8 @@ static NSString* URL_USER_REGISTER = @"http://139.224.223.73:8099/interface/addU
 static NSString* URL_ADD_DEVICE = @"http://139.224.223.73:8099/interface/addMachineInfo";
 static NSString* URL_STITIC_ADS = @"http://139.224.223.73:8099/interface/getAdvertiseList";
 static NSString* URL_DY_ADS = @"http://139.224.223.73:8099/interface/getAdvertiseList";
-static NSString* URL_DEVICE_LIST = @"http://139.224.223.73:8099/interface/getMachineList/";
+static NSString* URL_CITY_ADS = @"http://139.224.223.73:8099/interface/getAdvertiseListByCity";
+static NSString* URL_DEVICE_LIST = @"http://139.224.223.73:8099/interface/getMachineList";
 static NSString* URL_DEVICE_INFO = @"http://139.224.223.73:8099/:8000/interface/getMachineInfo?";
 
 #endif /* stdafx_MaZongApp_h */

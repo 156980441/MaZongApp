@@ -16,4 +16,5 @@ extern User* g_user;
 @property(nonatomic,strong) NSString* name;
 @property (nonatomic, strong) NSString *pass;
 @property (nonatomic, assign) NSInteger userNo;
+@property (nonatomic, assign) NSInteger cityId;
 @end
