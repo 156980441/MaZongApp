@@ -13,6 +13,7 @@
 #import "DeviceModel.h"
 #import "User.h"
 
+#import "YLToast.h"
 
 #import "stdafx_MaZongApp.h"
 #import "AFHTTPSessionManager.h"
@@ -45,9 +46,11 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 @implementation MainViewController
 
 -(void)viewDidAppear:(BOOL)animated {
+    
     [super viewDidAppear:animated];
     
-    
+    self.title = @"设备列表";
+    self.deviceDataSource = [NSMutableArray array];
     
     MainView* mainView = [MainView viewFromNIB];
     mainView.frame = CGRectMake(0, 0, CGRectGetWidth(self.mainView.frame), CGRectGetHeight(self.mainView.frame));
@@ -59,9 +62,6 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     // 添加手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOfTapInScrollView:)];
     [mainView.dynamicAdsScrollView addGestureRecognizer:tap];
-    
-    self.title = @"设备列表";
-    self.deviceDataSource = [NSMutableArray array];
     
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     NSString* url = [NSString stringWithFormat:@"%@/%zd",URL_DEVICE_LIST,g_user.userNo];
@@ -80,19 +80,23 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
              [mainView.deviceTableView reloadData];
          }
          failure:^(NSURLSessionDataTask *task, NSError *error) {
-             NSLog(@"%@",error);
+             [YLToast showWithText:@"获取设备列表失败"];
          }];
+    
     __block NSMutableArray* staticImages = [NSMutableArray array];
     NSString* url_stitic_ad = [NSString stringWithFormat:@"%@/%zd",URL_CITY_ADS,g_user.cityId];
     [session GET:url_stitic_ad parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
+             
              NSLog(@"%@",responseObject);
              NSArray* arr = (NSArray*)responseObject;
+             
              for (NSDictionary* dic in arr) {
                  
                  NSString* url_image1 = [dic objectForKey:@"PIC_URL1"];
                  NSString* url_image2 = [dic objectForKey:@"PIC_URL2"];
                  NSString* url_image3 = [dic objectForKey:@"PIC_URL3"];
+                 
                  NSString* url;
                  NSURL* nsurl;
                  
@@ -136,35 +140,65 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     NSString* url_dyl_ad = [NSString stringWithFormat:@"%@/%zd",URL_CITY_ADS,g_user.cityId];
     [session GET:url_dyl_ad parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
-             NSLog(@"%@",responseObject);
+
+             dispatch_group_t group = dispatch_group_create();
+             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
              
              NSArray* arr = (NSArray*)responseObject;
+             
              for (NSDictionary* dic in arr) {
+                 
                  NSString* root_url = [dic objectForKey:@"ADV_URL"];
                  NSString* url_image1 = [dic objectForKey:@"PIC_URL1"];
                  NSString* url_image2 = [dic objectForKey:@"PIC_URL2"];
                  NSString* url_image3 = [dic objectForKey:@"PIC_URL3"];
-                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                     NSString* url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image1];
-                     NSURL* nsurl = [NSURL URLWithString:[url substringToIndex:url.length]];
-                     NSData * data1 = [[NSData alloc] initWithContentsOfURL:nsurl];
-                     url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image2];
-                     nsurl = [NSURL URLWithString:[url substringToIndex:url.length]];
-                     NSData * data2 = [[NSData alloc]initWithContentsOfURL:nsurl];
-                     url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image3];
-                     nsurl = [NSURL URLWithString:[url substringToIndex:url.length]];
-                     NSData * data3 = [[NSData alloc]initWithContentsOfURL:nsurl];
-                     UIImage *image1 = [[UIImage alloc]initWithData:data1];
-                     UIImage *image2 = [[UIImage alloc]initWithData:data2];
-                     UIImage *image3 = [[UIImage alloc]initWithData:data3];
-                     [dynaticImages addObject:image1];
-                     [dynaticImages addObject:image2];
-                     [dynaticImages addObject:image3];
-                     dispatch_async(dispatch_get_main_queue(), ^{
-                         //在这里做UI操作(UI操作都要放在主线程中执行)
-                         [mainView setStaticAdsImages:staticImages withDynamicAdsImages:dynaticImages];
-                     });
+                 
+                 __block NSString* url;
+                 __block NSURL* nsurl;
+                 
+                 dispatch_group_async(group, queue, ^{
+                     if (![url_image1 isKindOfClass:[NSNull class]]) {
+                         url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image1];
+                         nsurl = [NSURL URLWithString:url];
+                         UIImageFromURL(nsurl,^( UIImage * image )
+                                        {
+                                            [dynaticImages addObject:image];
+                                        }, ^(void){
+                                            NSLog(@"%@",@"error!");
+                                        });
+                     }
                  });
+                 
+                 dispatch_group_async(group, queue, ^{
+                     if (![url_image2 isKindOfClass:[NSNull class]]) {
+                         url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image2];
+                         nsurl = [NSURL URLWithString:url];
+                         UIImageFromURL(nsurl,^( UIImage * image )
+                                        {
+                                            [dynaticImages addObject:image];
+                                        }, ^(void){
+                                            NSLog(@"%@",@"error!");
+                                        });
+                     }
+                 });
+                 
+                 dispatch_group_async(group, queue, ^{
+                     if (![url_image3 isKindOfClass:[NSNull class]]) {
+                         url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image3];
+                         nsurl = [NSURL URLWithString:url];
+                         UIImageFromURL(nsurl,^( UIImage * image )
+                                        {
+                                            [dynaticImages addObject:image];
+                                        }, ^(void){
+                                            NSLog(@"%@",@"error!");
+                                        });
+                     }
+                 });
+                 
+                 dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+                     [mainView setStaticAdsImages:staticImages withDynamicAdsImages:dynaticImages];
+                 });
+                 
              }
              
          }
