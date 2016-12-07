@@ -88,13 +88,20 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
              [YLToast showWithText:@"获取设备列表失败"];
          }];
     
-    __block NSMutableArray* staticImages = [NSMutableArray array];
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
     NSString* url_stitic_ad = [NSString stringWithFormat:@"%@/%zd",URL_CITY_ADS,g_user.cityId];
     [session GET:url_stitic_ad parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
              
+             [self.staticImages removeAllObjects];
              NSLog(@"静态广告：%@",responseObject);
              NSArray* arr = (NSArray*)responseObject;
+             __block NSString* url;
+             __block NSURL* nsurl;
+             __block NSData* data;
+             __block UIImage* image;
              
              for (NSDictionary* dic in arr) {
                  
@@ -102,56 +109,48 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                  NSString* url_image2 = [dic objectForKey:@"PIC_URL2"];
                  NSString* url_image3 = [dic objectForKey:@"PIC_URL3"];
                  
-                 NSString* url;
-                 NSURL* nsurl;
-                 
-                 if (![url_image1 isKindOfClass:[NSNull class]]) {
-                     url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image1];
-                     nsurl = [NSURL URLWithString:url];
-                     UIImageFromURL(nsurl,^( UIImage * image )
-                                    {
-                                        [self.staticImages addObject:image];
-                                    }, ^(void){
-                                        NSLog(@"%@",@"error!");
-                                    });
-                 }
-                 
-                 
-                 url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image2];
-                 nsurl = [NSURL URLWithString:url];
-                 UIImageFromURL(nsurl,^( UIImage * image )
-                                {
-                                    [staticImages addObject:image];
-                                }, ^(void){
-                                    NSLog(@"%@",@"error!");
-                                });
-                 
-                 url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image3];
-                 nsurl = [NSURL URLWithString:[url substringToIndex:url.length]];
-                 UIImageFromURL(nsurl,^( UIImage * image )
-                                {
-                                    [staticImages addObject:image];
-                                }, ^(void){
-                                    NSLog(@"%@",@"error!");
-                                });
-                 }
-             
-             self.staticImages = [staticImages copy];
+                 dispatch_group_async(group, queue, ^{
+                     if (![url_image1 isKindOfClass:[NSNull class]]) {
+                         url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image1];
+                         nsurl = [NSURL URLWithString:url];
+                         data = [[NSData alloc] initWithContentsOfURL:nsurl];
+                         image = [[UIImage alloc] initWithData:data];
+                         [self.staticImages addObject:image];
+                     }
+                     if (![url_image2 isKindOfClass:[NSNull class]]) {
+                         url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image2];
+                         nsurl = [NSURL URLWithString:url];
+                         data = [[NSData alloc] initWithContentsOfURL:nsurl];
+                         image = [[UIImage alloc] initWithData:data];
+                         [self.staticImages addObject:image];
+                     }
+                     if (![url_image3 isKindOfClass:[NSNull class]]) {
+                         url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image3];
+                         nsurl = [NSURL URLWithString:url];
+                         data = [[NSData alloc] initWithContentsOfURL:nsurl];
+                         image = [[UIImage alloc] initWithData:data];
+                         [self.staticImages addObject:image];
+                     }
+                 });
+             }
              
          }
          failure:^(NSURLSessionDataTask *task, NSError *error) {
              NSLog(@"%@",error);
          }];
     
-    __block NSMutableArray* dynaticImages = [NSMutableArray array];
     NSString* url_dyl_ad = [NSString stringWithFormat:@"%@/%zd",URL_CITY_ADS,g_user.cityId];
     [session GET:url_dyl_ad parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
 
-             dispatch_group_t group = dispatch_group_create();
-             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+             __block NSString* url;
+             __block NSURL* nsurl;
+             __block NSData* data;
+             __block UIImage* image;
              
              NSArray* arr = (NSArray*)responseObject;
+             
+             [self.dynaticImages removeAllObjects];
              
              for (NSDictionary* dic in arr) {
                  
@@ -160,49 +159,29 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                  NSString* url_image2 = [dic objectForKey:@"PIC_URL2"];
                  NSString* url_image3 = [dic objectForKey:@"PIC_URL3"];
                  
-                 __block NSString* url;
-                 __block NSURL* nsurl;
-                 
                  dispatch_group_async(group, queue, ^{
                      if (![url_image1 isKindOfClass:[NSNull class]]) {
                          url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image1];
                          nsurl = [NSURL URLWithString:url];
-                         UIImageFromURL(nsurl,^( UIImage * image )
-                                        {
-                                            [dynaticImages addObject:image];
-                                        }, ^(void){
-                                            NSLog(@"%@",@"error!");
-                                        });
+                         data = [[NSData alloc] initWithContentsOfURL:nsurl];
+                         image = [[UIImage alloc] initWithData:data];
+                         [self.dynaticImages addObject:image];
                      }
-                 });
-                 
-                 dispatch_group_async(group, queue, ^{
                      if (![url_image2 isKindOfClass:[NSNull class]]) {
                          url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image2];
                          nsurl = [NSURL URLWithString:url];
-                         UIImageFromURL(nsurl,^( UIImage * image )
-                                        {
-                                            [dynaticImages addObject:image];
-                                        }, ^(void){
-                                            NSLog(@"%@",@"error!");
-                                        });
+                         data = [[NSData alloc] initWithContentsOfURL:nsurl];
+                         image = [[UIImage alloc] initWithData:data];
+                         [self.dynaticImages addObject:image];
                      }
-                 });
-                 
-                 dispatch_group_async(group, queue, ^{
                      if (![url_image3 isKindOfClass:[NSNull class]]) {
                          url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image3];
                          nsurl = [NSURL URLWithString:url];
-                         UIImageFromURL(nsurl,^( UIImage * image )
-                                        {
-                                            [dynaticImages addObject:image];
-                                        }, ^(void){
-                                            NSLog(@"%@",@"error!");
-                                        });
+                         data = [[NSData alloc] initWithContentsOfURL:nsurl];
+                         image = [[UIImage alloc] initWithData:data];
+                         [self.dynaticImages addObject:image];
                      }
                  });
-                 
-                 self.dynaticImages = [dynaticImages copy];
              }
              
              dispatch_group_notify(group, dispatch_get_main_queue(), ^{
