@@ -38,6 +38,12 @@ static NSArray* g_city_arr = nil;
         g_user.cityId = -1;
     }
     
+    User* user = [self loadFromArchiver];
+    
+    if (user) {
+        [self checkuser:user.name withPass:user.pass];
+    }
+    
     // test
     
     self.nameTxt.text = @"fdfds";
@@ -48,10 +54,18 @@ static NSArray* g_city_arr = nil;
         CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
         // 通过定位获取的经纬度坐标，反编码获取地理信息标记并打印改标记下得城市名
         [geoCoder reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) {
-            if (g_user.cityId == -1) {
-                CLPlacemark *placemark = [placemarks lastObject];
-                NSString *cityName = placemark.locality;
-                g_user.cityId = [g_city_arr indexOfObject:cityName];
+            
+            if (error) {
+                [YLToast showWithText:@"定位失败"];
+                NSLog(@"%s,%@",__FILE__,error.description);
+            }
+            else {
+                if (g_user.cityId == -1) {
+                    CLPlacemark *placemark = [placemarks lastObject];
+                    NSString *cityName = placemark.locality;
+                    g_user.cityId = [g_city_arr indexOfObject:cityName];
+                    [self.location stopUpdatingLocation];
+                }
             }
         }];
     }];
@@ -107,6 +121,20 @@ static NSArray* g_city_arr = nil;
     [archiver encodeObject:user forKey:@"login_user"];
     [archiver finishEncoding];
     return [data writeToFile:fileName atomically:YES];
+}
+
+- (User*)loadFromArchiver {
+    NSString* fileName = [YLCommon docPath:@"user.archiver"];
+    NSData* data = [NSData dataWithContentsOfFile:fileName];
+    if ([data length] > 0) {
+        NSKeyedUnarchiver* unArchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        User* user = [unArchiver decodeObjectForKey:@"login_user"];
+        [unArchiver finishDecoding];
+        return user;
+    }
+    else {
+        return nil;
+    }
 }
 
 #pragma mark - Navigation

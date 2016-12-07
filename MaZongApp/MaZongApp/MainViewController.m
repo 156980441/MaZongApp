@@ -40,6 +40,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 
 @interface MainViewController ()
 @property (nonatomic, strong) DeviceModel *selectedDevice;
+@property (nonatomic, strong) NSMutableArray *staticImages;
+@property (nonatomic, strong) NSMutableArray *dynaticImages;
 
 @end
 
@@ -51,12 +53,15 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     
     self.title = @"设备列表";
     self.deviceDataSource = [NSMutableArray array];
+    self.staticImages = [NSMutableArray array];
+    self.dynaticImages = [NSMutableArray array];
     
     MainView* mainView = [MainView viewFromNIB];
     mainView.frame = CGRectMake(0, 0, CGRectGetWidth(self.mainView.frame), CGRectGetHeight(self.mainView.frame));
     mainView.deviceTableView.delegate = self;
     mainView.deviceTableView.dataSource = self;
     [mainView.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceCell_identifier];
+    mainView.staticAdsScrollView.contentSize = mainView.dynamicAdsScrollView.contentSize = CGSizeMake(mainView.frame.size.width, 60);
     [self.mainView addSubview:mainView];
     
     // 添加手势
@@ -88,7 +93,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [session GET:url_stitic_ad parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
              
-             NSLog(@"%@",responseObject);
+             NSLog(@"静态广告：%@",responseObject);
              NSArray* arr = (NSArray*)responseObject;
              
              for (NSDictionary* dic in arr) {
@@ -105,7 +110,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                      nsurl = [NSURL URLWithString:url];
                      UIImageFromURL(nsurl,^( UIImage * image )
                                     {
-                                        [staticImages addObject:image];
+                                        [self.staticImages addObject:image];
                                     }, ^(void){
                                         NSLog(@"%@",@"error!");
                                     });
@@ -130,6 +135,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                                     NSLog(@"%@",@"error!");
                                 });
                  }
+             
+             self.staticImages = [staticImages copy];
              
          }
          failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -195,12 +202,12 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                      }
                  });
                  
-                 dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-                     [mainView setStaticAdsImages:staticImages withDynamicAdsImages:dynaticImages];
-                 });
-                 
+                 self.dynaticImages = [dynaticImages copy];
              }
              
+             dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+                 [mainView setStaticAdsImages:self.staticImages withDynamicAdsImages:self.dynaticImages];
+             });
          }
          failure:^(NSURLSessionDataTask *task, NSError *error) {
              NSLog(@"%@",error);
