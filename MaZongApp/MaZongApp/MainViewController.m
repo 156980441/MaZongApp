@@ -261,6 +261,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                  dev.ph = [dic objectForKey:@"PH"];
                  dev.temperature = [dic objectForKey:@"TEMPERATURE"];
                  dev.tds = [dic objectForKey:@"TDS"];
+                 dev.isOff = ((NSString*)[dic objectForKey:@"ACTIVITY"]).integerValue;
                  [self.deviceDataSource addObject:dev];
              }
              [self.innerMainView.deviceTableView reloadData];

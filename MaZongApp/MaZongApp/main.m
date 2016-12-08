@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
+#ifndef __OPTIMIZE__
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#define NSLog(...) {;}
+#endif
+
 int main(int argc, char * argv[]) {
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));

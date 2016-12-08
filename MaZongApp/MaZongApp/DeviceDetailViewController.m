@@ -36,11 +36,11 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOfTapInScrollView:)];
     [self.innerMainView.dynamicAdsScrollView addGestureRecognizer:tap];
     
-    self.title = @"设备详情";
+    self.title = self.device.name;
     NSString* temperature = [NSString stringWithFormat:@"温度：%@",self.device.temperature];
     NSString* tds = [NSString stringWithFormat:@"TDS：%@",self.device.tds];
     NSString* ph = [NSString stringWithFormat:@"PH：%@",self.device.ph];
-    NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.device.temperature];
+    NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.device.isOff? @"开":@"关"];
     self.deviceDataSource = [NSMutableArray arrayWithObjects:temperature,tds,ph,isOff, nil];
     [NSThread detachNewThreadSelector:@selector(layoutScrollViews:) toTarget:self withObject:self];
 }
@@ -81,6 +81,10 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
 {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:deviceDetailCell_identifier];
     cell.textLabel.text = [self.deviceDataSource objectAtIndex:indexPath.row];
+    if (indexPath.row == 3) {
+        UISwitch* s = [[UISwitch alloc] initWithFrame:CGRectMake(CGRectGetWidth(cell.contentView.frame), 5, 40, CGRectGetHeight(cell.contentView.frame) - 10)];
+        [cell.contentView addSubview:s];
+    }
     return cell;
 }
 
