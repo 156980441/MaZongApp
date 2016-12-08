@@ -48,6 +48,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 
 @implementation MainViewController
 
+// storyboard 不调用 init 方法
+
 -(void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
@@ -62,7 +64,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
         self.dynaticImages = [NSMutableArray array];
     }
     
-    self.innerMainView = [MainView viewFromNIB];
+    self.innerMainView = [MainView viewFromNIB];// 有没有一个方法只在初始化的时候调用一次。而不要在每次都调用。
     self.innerMainView.frame = CGRectMake(0, 0, CGRectGetWidth(self.mainView.frame), CGRectGetHeight(self.mainView.frame));
     self.innerMainView.deviceTableView.delegate = self;
     self.innerMainView.deviceTableView.dataSource = self;
