@@ -33,7 +33,6 @@
 - (void)awakeFromNib {
     // 视图内容布局
     [super awakeFromNib];
-    self.staticAdsScrollView.contentSize = self.dynamicAdsScrollView.contentSize = CGSizeMake(self.frame.size.width, 60);
 }
 
 #pragma mark ----定时器自动轮播方法----

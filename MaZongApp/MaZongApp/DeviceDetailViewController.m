@@ -13,7 +13,7 @@
 static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
 
 @interface DeviceDetailViewController ()
-
+@property (nonatomic, strong) MainView *innerMainView;
 @end
 
 @implementation DeviceDetailViewController
@@ -23,24 +23,18 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
     [super viewDidAppear:animated];
     // Do any additional setup after loading the view.
     
-    MainView* mainView = [MainView viewFromNIB];
-    mainView.frame = CGRectMake(0, 0, CGRectGetWidth(self.mainView.frame), CGRectGetHeight(self.mainView.frame));
-    mainView.staticAdsScrollView.contentSize = mainView.dynamicAdsScrollView.contentSize = CGSizeMake(mainView.frame.size.width, 60);
+    self.innerMainView = [MainView viewFromNIB];
+    self.innerMainView.frame = CGRectMake(0, 0, CGRectGetWidth(self.mainView.frame), CGRectGetHeight(self.mainView.frame));
+    self.innerMainView.deviceTableView.delegate = self;
+    self.innerMainView.deviceTableView.dataSource = self;
+    [self.innerMainView.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceDetailCell_identifier];
+    [self.mainView addSubview:self.innerMainView];
     
-    [self.mainView addSubview:mainView];
     
-    mainView.deviceTableView.delegate = self;
-    mainView.deviceTableView.dataSource = self;
-    
-    [mainView.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceDetailCell_identifier];
-    [mainView setStaticAdsImages:self.s_images withDynamicAdsImages:self.d_images];
-    
-    NSLog(@"mainView:%f,%f,%f,%f",self.mainView.frame.origin.x,self.mainView.frame.origin.y,self.mainView.frame.size.width,self.mainView.frame.size.height);
-    NSLog(@"view:%f,%f,%f,%f",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.width,self.view.frame.size.height);
     
     // 添加手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOfTapInScrollView:)];
-    [mainView.dynamicAdsScrollView addGestureRecognizer:tap];
+    [self.innerMainView.dynamicAdsScrollView addGestureRecognizer:tap];
     
     self.title = @"设备详情";
     NSString* temperature = [NSString stringWithFormat:@"温度：%@",self.device.temperature];
@@ -48,6 +42,13 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
     NSString* ph = [NSString stringWithFormat:@"PH：%@",self.device.ph];
     NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.device.temperature];
     self.deviceDataSource = [NSMutableArray arrayWithObjects:temperature,tds,ph,isOff, nil];
+    [NSThread detachNewThreadSelector:@selector(layoutScrollViews:) toTarget:self withObject:self];
+}
+
+-(void)layoutScrollViews:(id)userInfo
+{
+    [NSThread sleepForTimeInterval:1];
+    [self.innerMainView setStaticAdsImages:self.s_images withDynamicAdsImages:self.d_images];
 }
 
 - (void)handleOfTapInScrollView:(UITapGestureRecognizer*)tap

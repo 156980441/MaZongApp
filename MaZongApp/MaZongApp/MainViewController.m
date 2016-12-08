@@ -51,7 +51,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 // storyboard 不调用 init 方法
 
 -(void)viewDidAppear:(BOOL)animated {
-    
+    NSLog(@"%s开始",__func__);
     [super viewDidAppear:animated];
     
     self.title = @"设备列表";
@@ -77,11 +77,20 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
         [self getAdsResource];
     }
     else {
-        [self.innerMainView setStaticAdsImages:self.staticImages withDynamicAdsImages:self.dynaticImages];
+        [NSThread detachNewThreadSelector:@selector(layoutScrollViews:) toTarget:self withObject:self];
     }
     // 添加手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOfTapInScrollView:)];
     [self.innerMainView.dynamicAdsScrollView addGestureRecognizer:tap];
+    NSLog(@"%s结束",__func__);
+}
+
+-(void)layoutScrollViews:(id)userInfo
+{
+     [NSThread sleepForTimeInterval:1];
+    NSLog(@"布局开始");
+    [self.innerMainView setStaticAdsImages:self.staticImages withDynamicAdsImages:self.dynaticImages];
+    NSLog(@"布局结束");
 }
 
 - (void)viewDidLoad {
@@ -133,7 +142,6 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [session GET:url_stitic_ad parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
              
-             NSLog(@"静态广告：%@",responseObject);
              NSArray* arr = (NSArray*)responseObject;
              
              dispatch_group_async(group, queue, ^{
@@ -142,6 +150,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                  __block NSURL* nsurl;
                  __block NSData* data;
                  __block UIImage* image;
+                 
+                 NSLog(@"静态广告加载开始");
                  
                  for (NSDictionary* dic in arr) {
                      
@@ -171,6 +181,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                          [self.staticImages addObject:image];
                      }
                  }
+                 
+                 NSLog(@"静态广告加载结束");
              });
              
          }
@@ -190,6 +202,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                  __block NSURL* nsurl;
                  __block NSData* data;
                  __block UIImage* image;
+                 
+                 NSLog(@"链接广告加载开始");
                  
                  for (NSDictionary* dic in arr) {
                      
@@ -220,9 +234,12 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                          [self.dynaticImages addObject:image];
                      }
                  }
+                 
+                 NSLog(@"链接广告加载结束");
              });
              
              dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+                 NSLog(@"所有广告加载完毕");
                  [self.innerMainView setStaticAdsImages:self.staticImages withDynamicAdsImages:self.dynaticImages];
              });
          }
