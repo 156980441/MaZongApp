@@ -13,6 +13,9 @@
 
 @interface DeviceDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UIView *mainView;
+
 @property (nonatomic, strong) DeviceModel *device;
 @property (nonatomic, strong) NSMutableArray* deviceDataSource;
+@property (nonatomic, strong) NSMutableArray* s_images;
+@property (nonatomic, strong) NSMutableArray* d_images;
 @end

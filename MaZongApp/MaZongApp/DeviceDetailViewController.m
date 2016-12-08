@@ -18,19 +18,23 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
 
 @implementation DeviceDetailViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+//这里使用 storyboard  
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     // Do any additional setup after loading the view.
     
     MainView* mainView = [MainView viewFromNIB];
-    mainView.frame = self.mainView.frame;
+    mainView.frame = CGRectMake(0, 0, CGRectGetWidth(self.mainView.frame), CGRectGetHeight(self.mainView.frame));
+    mainView.staticAdsScrollView.contentSize = mainView.dynamicAdsScrollView.contentSize = CGSizeMake(mainView.frame.size.width, 60);
+    
+    [self.mainView addSubview:mainView];
     
     mainView.deviceTableView.delegate = self;
     mainView.deviceTableView.dataSource = self;
     
     [mainView.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceDetailCell_identifier];
+    [mainView setStaticAdsImages:self.s_images withDynamicAdsImages:self.d_images];
     
-    [self.mainView addSubview:mainView];
     NSLog(@"mainView:%f,%f,%f,%f",self.mainView.frame.origin.x,self.mainView.frame.origin.y,self.mainView.frame.size.width,self.mainView.frame.size.height);
     NSLog(@"view:%f,%f,%f,%f",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.width,self.view.frame.size.height);
     
