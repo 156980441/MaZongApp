@@ -18,7 +18,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSURL *url =[NSURL URLWithString:@"https://www.bing.com"];
+    //test
+//    NSURL *url =[NSURL URLWithString:@"https://www.bing.com"];
+    NSURL* url = [NSURL URLWithString:self.url];
     NSURLRequest *request =[NSURLRequest requestWithURL:url];
     [self.adsWebView loadRequest:request];
     self.adsWebView.scalesPageToFit = YES;

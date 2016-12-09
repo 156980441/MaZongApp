@@ -7,6 +7,7 @@
 //
 
 #import "DeviceDetailViewController.h"
+#import "AdsViewController.h"
 #import "DeviceModel.h"
 #import "MainView.h"
 
@@ -53,6 +54,21 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
 
 - (void)handleOfTapInScrollView:(UITapGestureRecognizer*)tap
 {
+    CGPoint point = [tap locationInView:self.innerMainView.dynamicAdsScrollView];
+    CGFloat width = CGRectGetWidth(self.innerMainView.dynamicAdsScrollView.frame);
+    NSRange range1 = NSMakeRange(0, width);
+    NSRange range2 = NSMakeRange(width, width * 2);
+    NSRange range3 = NSMakeRange(width * 2, width * 3);
+    
+    if (NSLocationInRange(point.x, range1)) {
+        
+    }
+    if (NSLocationInRange(point.x, range2)) {
+        
+    }
+    if (NSLocationInRange(point.x, range3)) {
+        
+    }
     [self performSegueWithIdentifier:@"showAds" sender:nil];
 }
 
@@ -61,15 +77,23 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if (self.url != nil) {
+        UIViewController* vc = [segue destinationViewController];
+        if ([vc isKindOfClass:[AdsViewController class]]) {
+            AdsViewController* adsVc = (AdsViewController*)vc;
+            adsVc.url = self.url;
+        }
+    }
+    
 }
-*/
 
 #pragma - mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

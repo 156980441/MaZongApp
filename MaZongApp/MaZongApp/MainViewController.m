@@ -43,7 +43,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 @property (nonatomic, strong) NSMutableArray *staticImages;
 @property (nonatomic, strong) NSMutableArray *dynaticImages;
 @property (nonatomic, strong) MainView *innerMainView;
-
+@property (nonatomic, strong) NSString* url;
 @end
 
 @implementation MainViewController
@@ -123,6 +123,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
             deviceDetail.device = self.selectedDevice;
             deviceDetail.s_images = self.staticImages;
             deviceDetail.d_images = self.dynaticImages;
+            deviceDetail.url = self.url;
         }
         if ([vc isKindOfClass:[AddDeviceViewController class]]) {
             
@@ -138,8 +139,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
-    NSString* url_stitic_ad = [NSString stringWithFormat:@"%@/%zd",URL_CITY_ADS,g_user.cityId];
-    [session GET:url_stitic_ad parameters:nil
+    NSString* url_ads = [NSString stringWithFormat:@"%@/%zd",URL_CITY_ADS,g_user.cityId];
+    [session GET:url_ads parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
              
              NSArray* arr = (NSArray*)responseObject;
@@ -151,59 +152,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                  __block NSData* data;
                  __block UIImage* image;
                  
-                 NSLog(@"静态广告加载开始");
-                 
-                 for (NSDictionary* dic in arr) {
-                     
-                     NSString* url_image1 = [dic objectForKey:@"PIC_URL1"];
-                     NSString* url_image2 = [dic objectForKey:@"PIC_URL2"];
-                     NSString* url_image3 = [dic objectForKey:@"PIC_URL3"];
-                     
-                     if (![url_image1 isKindOfClass:[NSNull class]]) {
-                         url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image1];
-                         nsurl = [NSURL URLWithString:url];
-                         data = [[NSData alloc] initWithContentsOfURL:nsurl];
-                         image = [[UIImage alloc] initWithData:data];
-                         [self.staticImages addObject:image];
-                     }
-                     if (![url_image2 isKindOfClass:[NSNull class]]) {
-                         url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image2];
-                         nsurl = [NSURL URLWithString:url];
-                         data = [[NSData alloc] initWithContentsOfURL:nsurl];
-                         image = [[UIImage alloc] initWithData:data];
-                         [self.staticImages addObject:image];
-                     }
-                     if (![url_image3 isKindOfClass:[NSNull class]]) {
-                         url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image3];
-                         nsurl = [NSURL URLWithString:url];
-                         data = [[NSData alloc] initWithContentsOfURL:nsurl];
-                         image = [[UIImage alloc] initWithData:data];
-                         [self.staticImages addObject:image];
-                     }
-                 }
-                 
-                 NSLog(@"静态广告加载结束");
-             });
-             
-         }
-         failure:^(NSURLSessionDataTask *task, NSError *error) {
-             NSLog(@"%@",error);
-         }];
-    
-    NSString* url_dyl_ad = [NSString stringWithFormat:@"%@/%zd",URL_CITY_ADS,g_user.cityId];
-    [session GET:url_dyl_ad parameters:nil
-         success:^(NSURLSessionDataTask *task, id responseObject) {
-             
-             NSArray* arr = (NSArray*)responseObject;
-             
-             dispatch_group_async(group, queue, ^{
-                 
-                 __block NSString* url;
-                 __block NSURL* nsurl;
-                 __block NSData* data;
-                 __block UIImage* image;
-                 
-                 NSLog(@"链接广告加载开始");
+                 NSLog(@"广告加载开始");
                  
                  for (NSDictionary* dic in arr) {
                      
@@ -212,36 +161,47 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                      NSString* url_image2 = [dic objectForKey:@"PIC_URL2"];
                      NSString* url_image3 = [dic objectForKey:@"PIC_URL3"];
                      
+                     NSMutableArray* arr = nil;
+                     if (![root_url isEqualToString:@""]) {
+                         arr = self.dynaticImages;
+                         self.url = root_url;
+                     }
+                     else {
+                         arr = self.staticImages;
+                     }
+                     
                      if (![url_image1 isKindOfClass:[NSNull class]]) {
                          url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image1];
                          nsurl = [NSURL URLWithString:url];
                          data = [[NSData alloc] initWithContentsOfURL:nsurl];
                          image = [[UIImage alloc] initWithData:data];
-                         [self.dynaticImages addObject:image];
+                         [arr addObject:image];
                      }
                      if (![url_image2 isKindOfClass:[NSNull class]]) {
                          url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image2];
                          nsurl = [NSURL URLWithString:url];
                          data = [[NSData alloc] initWithContentsOfURL:nsurl];
                          image = [[UIImage alloc] initWithData:data];
-                         [self.dynaticImages addObject:image];
+                         [arr addObject:image];
                      }
                      if (![url_image3 isKindOfClass:[NSNull class]]) {
                          url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image3];
                          nsurl = [NSURL URLWithString:url];
                          data = [[NSData alloc] initWithContentsOfURL:nsurl];
                          image = [[UIImage alloc] initWithData:data];
-                         [self.dynaticImages addObject:image];
+                         [arr addObject:image];
                      }
                  }
                  
-                 NSLog(@"链接广告加载结束");
+                 NSLog(@"广告加载结束");
+                 
+                 dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+                     NSLog(@"所有广告加载完毕");
+                     [self.innerMainView setStaticAdsImages:self.staticImages withDynamicAdsImages:self.dynaticImages];
+                 });
+                 
              });
              
-             dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-                 NSLog(@"所有广告加载完毕");
-                 [self.innerMainView setStaticAdsImages:self.staticImages withDynamicAdsImages:self.dynaticImages];
-             });
          }
          failure:^(NSURLSessionDataTask *task, NSError *error) {
              NSLog(@"%@",error);

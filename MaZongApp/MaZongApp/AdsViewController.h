@@ -13,4 +13,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *exitBtn;
 - (IBAction)exitBtnPress:(id)sender;
 
+@property (strong, nonatomic) NSString* url;
+
 @end

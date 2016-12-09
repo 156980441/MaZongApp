@@ -18,4 +18,5 @@
 @property (nonatomic, strong) NSMutableArray* deviceDataSource;
 @property (nonatomic, strong) NSMutableArray* s_images;
 @property (nonatomic, strong) NSMutableArray* d_images;
+@property (nonatomic, strong) NSString* url;
 @end

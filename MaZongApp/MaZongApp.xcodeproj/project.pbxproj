@@ -240,7 +240,7 @@
 				TargetAttributes = {
 					19D9A0A01DB0846E00CE77B3 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = CE7XVR5S2V;
+						DevelopmentTeam = 3LSEEJ9FH2;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -472,14 +472,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = CE7XVR5S2V;
+				DEVELOPMENT_TEAM = 3LSEEJ9FH2;
 				INFOPLIST_FILE = MaZongApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fanyl.MaZongApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4cea3811-2d64-473a-9b51-f43a56cace44";
-				PROVISIONING_PROFILE_SPECIFIER = CE7XVR5S2V_wildcard_xc;
+				PROVISIONING_PROFILE = "8f15bda4-7fa9-41c0-a238-8ae337c64d65";
+				PROVISIONING_PROFILE_SPECIFIER = OBD_ALL;
 			};
 			name = Debug;
 		};
@@ -488,14 +488,14 @@
 			baseConfigurationReference = A868ECD3547EFE382B340B04 /* Pods-MaZongApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CE7XVR5S2V;
+				DEVELOPMENT_TEAM = 3LSEEJ9FH2;
 				INFOPLIST_FILE = MaZongApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fanyl.MaZongApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4cea3811-2d64-473a-9b51-f43a56cace44";
-				PROVISIONING_PROFILE_SPECIFIER = CE7XVR5S2V_wildcard_xc;
+				PROVISIONING_PROFILE = "8f15bda4-7fa9-41c0-a238-8ae337c64d65";
+				PROVISIONING_PROFILE_SPECIFIER = OBD_ALL;
 			};
 			name = Release;
 		};

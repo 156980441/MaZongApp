@@ -33,6 +33,7 @@
 - (void)awakeFromNib {
     // 视图内容布局
     [super awakeFromNib];
+    
 }
 
 #pragma mark ----定时器自动轮播方法----
@@ -57,13 +58,25 @@
         [self.dynamicAdsScrollView setContentOffset:(CGPointMake(x_dynamicAds + width, 0)) animated:YES];
     }
 }
+
+-(void)setStaticAdsImages:(NSArray *)staticImages
+{
+    self.staticImages = [NSArray arrayWithArray:staticImages];
+    [self layoutScrollView:self.staticAdsScrollView images:self.staticImages];
+}
+
+-(void)setDynamicAdsImages:(NSArray *)dynamicImages
+{
+    self.dynamicImages = [NSArray arrayWithArray:dynamicImages];
+    [self layoutScrollView:self.dynamicAdsScrollView images:self.dynamicImages];
+}
+
 -(void)setStaticAdsImages:(NSArray*)staticImages withDynamicAdsImages:(NSArray*)dynamicImages
 {
     self.staticImages = [NSArray arrayWithArray:staticImages];
     self.dynamicImages = [NSArray arrayWithArray:dynamicImages];
     [self layoutScrollView:self.staticAdsScrollView images:self.staticImages];
     [self layoutScrollView:self.dynamicAdsScrollView images:self.dynamicImages];
-    // 定时轮播
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(autoPlay) userInfo:nil repeats:YES];
 }
 -(void)layoutScrollView:(UIScrollView*)scrollView images:(NSArray*)images
@@ -77,7 +90,7 @@
         [scrollView addSubview:imageView];
     }
     scrollView.contentSize = CGSizeMake(width * images.count, height);//设置内容大小
-    scrollView.contentOffset = CGPointMake(width, 0);//设置内容偏移量
+    scrollView.contentOffset = CGPointMake(0, 0);//设置内容偏移量
     scrollView.pagingEnabled = YES;//打开整屏滑动
     scrollView.showsHorizontalScrollIndicator = NO;
 }
