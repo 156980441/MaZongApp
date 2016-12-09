@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+FOUNDATION_EXPORT NSString * getDocumentDirectory(void);
+FOUNDATION_EXPORT NSString * getLibraryDirectory(void);
+FOUNDATION_EXPORT NSString * getBundleDirectory(void);
+
+FOUNDATION_EXPORT NSString * date2Str(NSDate* date);
+FOUNDATION_EXPORT NSDate * str2Date(NSString* str, NSString* format);
+
 @interface YLCommon : NSObject
 
 // yyyy-MM-dd

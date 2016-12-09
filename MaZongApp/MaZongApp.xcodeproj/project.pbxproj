@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19077E361DFAAC7C001A8F8C /* YLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 19077E351DFAAC7C001A8F8C /* YLLog.m */; };
 		19C647AF1DC9E53700262F25 /* YLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647AE1DC9E53700262F25 /* YLToast.m */; };
 		19C647B21DC9E5AF00262F25 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647B11DC9E5AF00262F25 /* User.m */; };
 		19C647B61DC9E93800262F25 /* YLCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647B51DC9E93800262F25 /* YLCommon.m */; };
@@ -38,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19077E341DFAAC7C001A8F8C /* YLLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLog.h; sourceTree = "<group>"; };
+		19077E351DFAAC7C001A8F8C /* YLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLog.m; sourceTree = "<group>"; };
 		19C647AD1DC9E53700262F25 /* YLToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLToast.h; sourceTree = "<group>"; };
 		19C647AE1DC9E53700262F25 /* YLToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLToast.m; sourceTree = "<group>"; };
 		19C647B01DC9E5AF00262F25 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 		19C647AC1DC9E51B00262F25 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
+				19077E341DFAAC7C001A8F8C /* YLLog.h */,
+				19077E351DFAAC7C001A8F8C /* YLLog.m */,
 				D7400C691DF2CED000ADBCF7 /* YLLocationManager.h */,
 				D7400C6A1DF2CED000ADBCF7 /* YLLocationManager.m */,
 				19C647AD1DC9E53700262F25 /* YLToast.h */,
@@ -339,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19077E361DFAAC7C001A8F8C /* YLLog.m in Sources */,
 				19D9A0CC1DB0C49100CE77B3 /* DeviceDetailViewController.m in Sources */,
 				D7D2DE101DB7C89900729CD8 /* AdsViewController.m in Sources */,
 				19C647AF1DC9E53700262F25 /* YLToast.m in Sources */,

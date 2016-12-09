@@ -8,6 +8,41 @@
 
 #import "YLCommon.h"
 
+NSString * getDocumentDirectory(void)
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    return documentsDirectory;
+}
+
+NSString * getLibraryDirectory(void)
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    NSString *libraryDirectory = [paths objectAtIndex:0];
+    return libraryDirectory;
+}
+
+NSString * getBundleDirectory(void)
+{
+    return [[NSBundle mainBundle] resourcePath];
+}
+
+NSString * date2Str(NSDate* date)
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+    NSString *str = [dateFormatter stringFromDate:date];
+    return str;
+}
+
+NSDate * str2Date(NSString* str, NSString* format)
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:format];
+    NSString *destDateString = [dateFormatter stringFromDate:str];
+    return destDateString;
+}
+
 @implementation YLCommon
 +(NSString*)date2String:(NSDate*)date
 {

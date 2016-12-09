@@ -14,6 +14,7 @@
 #import "User.h"
 
 #import "YLToast.h"
+#import "YLLog.h"
 
 #import "stdafx_MaZongApp.h"
 #import "AFHTTPSessionManager.h"
@@ -74,6 +75,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [self getDeviceList];
     
     if (self.staticImages.count == 0 || self.dynaticImages.count == 0) {
+        [YLLog readyGetTime];
         [self getAdsResource];
     }
     else {
@@ -196,7 +198,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                  NSLog(@"广告加载结束");
                  
                  dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-                     NSLog(@"所有广告加载完毕");
+                     NSLog(@"所有广告加载完毕，耗时：%@ 秒",[YLLog costTime]);
                      [self.innerMainView setStaticAdsImages:self.staticImages withDynamicAdsImages:self.dynaticImages];
                  });
                  
