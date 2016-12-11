@@ -124,7 +124,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
             deviceDetail.url = self.url;
         }
         if ([vc isKindOfClass:[AddDeviceViewController class]]) {
-            
+            NSLog(@"来自 Add UI");
         }
     }
     

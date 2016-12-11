@@ -15,6 +15,7 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
 
 @interface DeviceDetailViewController ()
 @property (nonatomic, strong) MainView *innerMainView;
+@property (nonatomic, strong) NSIndexPath *indexPath;
 @end
 
 @implementation DeviceDetailViewController
@@ -103,9 +104,20 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
     cell.textLabel.text = [self.deviceDataSource objectAtIndex:indexPath.row];
     if (indexPath.row == 3) {
         UISwitch* s = [[UISwitch alloc] initWithFrame:CGRectMake(CGRectGetWidth(cell.contentView.frame), 5, 40, CGRectGetHeight(cell.contentView.frame) - 10)];
+        [s setOn:self.device.isOff animated:YES];
+        [s addTarget:self action:@selector(swithch:) forControlEvents:UIControlEventValueChanged];
         [cell.contentView addSubview:s];
     }
     return cell;
 }
 
+-(void)swithch:(id)mySwitch
+{
+    UISwitch* s = (UISwitch*)mySwitch;
+    [self.deviceDataSource removeLastObject];
+    self.device.isOff = s.on;
+    NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.device.isOff? @"开":@"关"];
+    [self.deviceDataSource addObject:isOff];
+    [self.innerMainView.deviceTableView reloadData];
+}
 @end
