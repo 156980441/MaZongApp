@@ -74,25 +74,21 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     
     [self getDeviceList];
     
+    // 添加手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOfTapInScrollView:)];
+    [self.innerMainView.dynamicAdsScrollView addGestureRecognizer:tap];
     if (self.staticImages.count == 0 || self.dynaticImages.count == 0) {
         [YLLog readyGetTime];
         [self getAdsResource];
     }
     else {
-        [NSThread detachNewThreadSelector:@selector(layoutScrollViews:) toTarget:self withObject:self];
+        dispatch_async(dispatch_get_main_queue(), ^(){
+            NSLog(@"布局开始");
+            [self.innerMainView setStaticAdsImages:self.staticImages withDynamicAdsImages:self.dynaticImages];
+            NSLog(@"布局结束");
+        });
     }
-    // 添加手势
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOfTapInScrollView:)];
-    [self.innerMainView.dynamicAdsScrollView addGestureRecognizer:tap];
     NSLog(@"%s结束",__func__);
-}
-
--(void)layoutScrollViews:(id)userInfo
-{
-     [NSThread sleepForTimeInterval:1];
-    NSLog(@"布局开始");
-    [self.innerMainView setStaticAdsImages:self.staticImages withDynamicAdsImages:self.dynaticImages];
-    NSLog(@"布局结束");
 }
 
 - (void)viewDidLoad {

@@ -43,13 +43,9 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
     NSString* ph = [NSString stringWithFormat:@"PH：%@",self.device.ph];
     NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.device.isOff? @"开":@"关"];
     self.deviceDataSource = [NSMutableArray arrayWithObjects:temperature,tds,ph,isOff, nil];
-    [NSThread detachNewThreadSelector:@selector(layoutScrollViews:) toTarget:self withObject:self];
-}
-
--(void)layoutScrollViews:(id)userInfo
-{
-    [NSThread sleepForTimeInterval:1];
-    [self.innerMainView setStaticAdsImages:self.s_images withDynamicAdsImages:self.d_images];
+    dispatch_async(dispatch_get_main_queue(), ^(){
+        [self.innerMainView setStaticAdsImages:self.s_images withDynamicAdsImages:self.d_images];
+    });
 }
 
 - (void)handleOfTapInScrollView:(UITapGestureRecognizer*)tap
