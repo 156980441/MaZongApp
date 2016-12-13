@@ -55,6 +55,10 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     NSLog(@"%s开始",__func__);
     [super viewDidAppear:animated];
     
+    self.navigationItem.hidesBackButton = YES;
+    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
     self.title = @"设备列表";
     self.deviceDataSource = [NSMutableArray array];
     
@@ -107,6 +111,24 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     // Dispose of any resources that can be recreated.
 }
 
+-(void)logout
+{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"用户注销" message:@"您确定要注销用户吗？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    void (^action)(UIAlertAction* action) = ^(UIAlertAction* action){
+        [self.navigationController popViewControllerAnimated:YES];
+    };
+    void (^cancel)(UIAlertAction* action) = ^(UIAlertAction* action){
+        [self dismissViewControllerAnimated:YES completion:nil];
+    };
+    
+    UIAlertAction* destructiveAction = [UIAlertAction actionWithTitle:@"注销" style:UIAlertActionStyleDestructive handler:action];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:cancel];
+    [alert addAction:destructiveAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
 
 #pragma mark - Navigation
 
