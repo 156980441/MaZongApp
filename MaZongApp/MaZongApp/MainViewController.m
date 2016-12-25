@@ -15,11 +15,13 @@
 
 #import "YLToast.h"
 #import "YLLog.h"
+#import "YLCommon.h"
 
 #import "stdafx_MaZongApp.h"
 #import "AFHTTPSessionManager.h"
 
 static NSString* deviceCell_identifier = @"deviceCell_identifier";
+static NSString* ads_loc_path = nil;
 
 
 void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^errorBlock)(void) )
@@ -67,6 +69,44 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     }
     if (!self.dynaticImages) {
         self.dynaticImages = [NSMutableArray array];
+    }
+    
+    NSFileManager* mgr = [NSFileManager defaultManager];
+    
+    if (!ads_loc_path) {
+        ads_loc_path = [NSString stringWithFormat:@"%@/ADS",getDocumentDirectory()];
+        
+        
+        
+        
+        
+    }
+    
+    NSString* dynPath = [NSString stringWithFormat:@"%@/dyn",ads_loc_path];
+    NSString* staticPath = [NSString stringWithFormat:@"%@/static",ads_loc_path];
+    
+    if (![mgr fileExistsAtPath:dynPath]) {
+        [mgr createDirectoryAtPath:dynPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    if (![mgr fileExistsAtPath:staticPath]) {
+        [mgr createDirectoryAtPath:staticPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    for (int i = 1; i < 4; i++) {
+        NSString* imagePath = [NSString stringWithFormat:@"%@/static/pic%d.jpeg",ads_loc_path,i];
+        if ([mgr fileExistsAtPath:imagePath]) {
+            UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+            [self.staticImages addObject:image];
+        }
+        
+    }
+    for (int i = 1; i < 4; i++) {
+        NSString* imagePath = [NSString stringWithFormat:@"%@/dyn/pic%d.jpeg",ads_loc_path,i];
+        if ([mgr fileExistsAtPath:imagePath]) {
+            UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+            [self.dynaticImages addObject:image];
+        }
     }
     
     self.innerMainView = [MainView viewFromNIB];// 有没有一个方法只在初始化的时候调用一次。而不要在每次都调用。
@@ -182,12 +222,15 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                      NSString* url_image3 = [dic objectForKey:@"PIC_URL3"];
                      
                      NSMutableArray* arr = nil;
+                     NSString* imagePath = nil;
                      if (![root_url isEqualToString:@""]) {
                          arr = self.dynaticImages;
                          self.url = root_url;
+                         imagePath = [NSString stringWithFormat:@"%@/dyn",ads_loc_path];
                      }
                      else {
                          arr = self.staticImages;
+                         imagePath = [NSString stringWithFormat:@"%@/static",ads_loc_path];
                      }
                      
                      if (![url_image1 isKindOfClass:[NSNull class]]) {
@@ -196,6 +239,11 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                          data = [[NSData alloc] initWithContentsOfURL:nsurl];
                          image = [[UIImage alloc] initWithData:data];
                          [arr addObject:image];
+                         
+                         NSString *path = [imagePath stringByAppendingString:@"/pic1.jpeg"];
+                         //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）
+                         [UIImageJPEGRepresentation(image,1) writeToFile:path atomically:YES];
+                         
                      }
                      if (![url_image2 isKindOfClass:[NSNull class]]) {
                          url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image2];
@@ -203,6 +251,10 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                          data = [[NSData alloc] initWithContentsOfURL:nsurl];
                          image = [[UIImage alloc] initWithData:data];
                          [arr addObject:image];
+                         
+                         NSString *path = [imagePath stringByAppendingString:@"/pic2.jpeg"];
+                         //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）
+                         [UIImageJPEGRepresentation(image,1) writeToFile:path atomically:YES];
                      }
                      if (![url_image3 isKindOfClass:[NSNull class]]) {
                          url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image3];
@@ -210,6 +262,10 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                          data = [[NSData alloc] initWithContentsOfURL:nsurl];
                          image = [[UIImage alloc] initWithData:data];
                          [arr addObject:image];
+                         
+                         NSString *path = [imagePath stringByAppendingString:@"/pic3.jpeg"];
+                         //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）
+                         [UIImageJPEGRepresentation(image,1) writeToFile:path atomically:YES];
                      }
                  }
                  
@@ -262,6 +318,48 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     else {
         [self performSegueWithIdentifier:@"add_device" sender:nil];
     }
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"设备删除" message:@"您确定要删除该设备吗？" preferredStyle:UIAlertControllerStyleAlert];
+    
+    DeviceModel* device = [self.deviceDataSource objectAtIndex:indexPath.row];
+    
+    void (^action)(UIAlertAction* action) = ^(UIAlertAction* action){
+        
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        
+        NSString* url_ads = [NSString stringWithFormat:@"%@/%zd/%@",URL_DELETE_DEVICE,g_user.userNo, device.deviceId];
+        [session GET:url_ads parameters:nil
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 [self.deviceDataSource removeObjectAtIndex:indexPath.row];
+                 // 刷新
+                 [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 NSLog(@"%@",error);
+             }];
+
+    };
+    void (^cancel)(UIAlertAction* action) = ^(UIAlertAction* action){
+        [self dismissViewControllerAnimated:YES completion:nil];
+    };
+    
+    UIAlertAction* destructiveAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:action];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:cancel];
+    [alert addAction:destructiveAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+}
+
+/**
+ *  修改Delete按钮文字为“删除”
+ */
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
 }
 #pragma - mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -112,5 +112,6 @@ static NSString* URL_ADD_DEVICE = @"http://139.224.223.73:8099/interface/addMach
 static NSString* URL_CITY_ADS = @"http://139.224.223.73:8099/interface/getAdvertiseListByCity";
 static NSString* URL_DEVICE_LIST = @"http://139.224.223.73:8099/interface/getMachineList";
 static NSString* URL_DEVICE_INFO = @"http://139.224.223.73:8099/:8000/interface/getMachineInfo?";
-
+static NSString* URL_DELETE_DEVICE = @"http://139.224.223.73:8099/interface/deleteMachineInfo";///USER_NO/MACHINE_ID Get
+static NSString* URL_CHANGE_DEVICE_STATE = @"http://139.224.223.73:8099/interface/setRelaySwitch";///{MACHINE_ID}/{status}
 #endif /* stdafx_MaZongApp_h */

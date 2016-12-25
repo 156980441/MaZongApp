@@ -11,6 +11,9 @@
 #import "DeviceModel.h"
 #import "MainView.h"
 
+#import "stdafx_MaZongApp.h"
+#import "AFHTTPSessionManager.h"
+
 static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
 
 @interface DeviceDetailViewController ()
@@ -119,5 +122,17 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
     NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.device.isOff? @"开":@"关"];
     [self.deviceDataSource addObject:isOff];
     [self.innerMainView.deviceTableView reloadData];
+    
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    
+    NSString* url_ads = [NSString stringWithFormat:@"%@/%zd/%d",URL_CHANGE_DEVICE_STATE,self.device.deviceId, self.device.isOff];
+    [session GET:url_ads parameters:nil
+         success:^(NSURLSessionDataTask *task, id responseObject) {
+             NSLog(@"%@",responseObject);
+         }
+         failure:^(NSURLSessionDataTask *task, NSError *error) {
+             NSLog(@"%@",error);
+         }];
+
 }
 @end
