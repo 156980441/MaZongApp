@@ -135,6 +135,8 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
         
         AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
         
+//        NSString* name_url = [NSString stringWithFormat:@"%@/%@/%@",URL_CHANGE_DEVICE_NAME,self.device.deviceId, @"修改名字"];
+//        NSString* name_url = [NSString stringWithFormat:@"%@/%@/%@",URL_CHANGE_DEVICE_NAME,self.device.deviceId, @"6666"];
         NSString* name_url = [NSString stringWithFormat:@"%@/%@/%@",URL_CHANGE_DEVICE_NAME,self.device.deviceId, nameTxtField.text];
         [session GET:name_url parameters:nil
              success:^(NSURLSessionDataTask *task, id responseObject) {

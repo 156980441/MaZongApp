@@ -16,6 +16,7 @@
 #import "YLToast.h"
 #import "YLLog.h"
 #import "YLCommon.h"
+#import "EGORefreshTableHeaderView.h"
 
 #import "stdafx_MaZongApp.h"
 #import "AFHTTPSessionManager.h"
@@ -41,12 +42,15 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                    });
 }
 
-@interface MainViewController ()
+@interface MainViewController () <EGORefreshTableHeaderDelegate>
 @property (nonatomic, strong) DeviceModel *selectedDevice;
 @property (nonatomic, strong) NSMutableArray *staticImages;
 @property (nonatomic, strong) NSMutableArray *dynaticImages;
 @property (nonatomic, strong) MainView *innerMainView;
 @property (nonatomic, strong) NSString* url;
+
+@property (nonatomic,strong) EGORefreshTableHeaderView* refreshHeaderView;
+@property (nonatomic) BOOL reloading;
 @end
 
 @implementation MainViewController
@@ -62,7 +66,10 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     self.navigationItem.rightBarButtonItem = rightItem;
     
     self.title = @"设备列表";
-    self.deviceDataSource = [NSMutableArray array];
+    
+    if (self.deviceDataSource == nil) {
+        self.deviceDataSource = [NSMutableArray array];
+    }
     
     if (!self.staticImages) {
         self.staticImages = [NSMutableArray array];
@@ -75,11 +82,6 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     
     if (!ads_loc_path) {
         ads_loc_path = [NSString stringWithFormat:@"%@/ADS",getDocumentDirectory()];
-        
-        
-        
-        
-        
     }
     
     NSString* dynPath = [NSString stringWithFormat:@"%@/dyn",ads_loc_path];
@@ -116,7 +118,14 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [self.innerMainView.deviceTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceCell_identifier];
     [self.mainView addSubview:self.innerMainView];
     
-    [self getDeviceList];
+    CGRect tableViewFrame = self.innerMainView.deviceTableView.frame;
+    self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - tableViewFrame.size.height, tableViewFrame.size.width, tableViewFrame.size.height)];
+    self.refreshHeaderView.delegate = self;
+    [self.innerMainView.deviceTableView addSubview:self.refreshHeaderView];
+    
+    if (self.deviceDataSource.count == 0) {
+        [self getDeviceList];
+    }
     
     // 添加手势
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOfTapInScrollView:)];
@@ -178,6 +187,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     // Pass the selected object to the new view controller.
     if (self.selectedDevice != nil) {
         UIViewController* vc = [segue destinationViewController];
+        UIViewController* last_vc = [segue sourceViewController];
         if ([vc isKindOfClass:[DeviceDetailViewController class]]) {
             DeviceDetailViewController* deviceDetail = (DeviceDetailViewController*)vc;
             deviceDetail.device = self.selectedDevice;
@@ -185,7 +195,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
             deviceDetail.d_images = self.dynaticImages;
             deviceDetail.url = self.url;
         }
-        if ([vc isKindOfClass:[AddDeviceViewController class]]) {
+        if ([last_vc isKindOfClass:[AddDeviceViewController class]]) {
             NSLog(@"来自 Add UI");
         }
     }
@@ -285,6 +295,8 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
 }
 -(void)getDeviceList
 {
+    [self.deviceDataSource removeAllObjects];
+    
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     NSString* url = [NSString stringWithFormat:@"%@/%zd",URL_DEVICE_LIST,g_user.userNo];
     [session GET:url parameters:nil
@@ -300,6 +312,7 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                  dev.isOff = ((NSString*)[dic objectForKey:@"ACTIVITY"]).integerValue;
                  [self.deviceDataSource addObject:dev];
              }
+             [self doneLoadingTableViewData];
              [self.innerMainView.deviceTableView reloadData];
          }
          failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -383,5 +396,58 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
         cell.textLabel.text = @"添加设备";
     }
     return cell;
+}
+- (void)reloadTableViewDataSource{
+    
+    //  should be calling your tableviews data source model to reload
+    //  put here just for demo
+    self.reloading = YES;
+    
+    [self getDeviceList];
+    
+}
+
+- (void)doneLoadingTableViewData{
+    
+    //  model should call this when its done loading
+    self.reloading = NO;
+    [self.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.innerMainView.deviceTableView];
+    
+}
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    [self.refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    
+    [self.refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+    
+}
+
+
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+    
+    [self reloadTableViewDataSource];
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+    
+    return self.reloading; // should return if data source model is reloading
+    
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+    
+    return [NSDate date]; // should return date data source was last changed
+    
 }
 @end

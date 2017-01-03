@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		19077E361DFAAC7C001A8F8C /* YLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 19077E351DFAAC7C001A8F8C /* YLLog.m */; };
+		19402F531E1BB096002594FB /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19402F521E1BB096002594FB /* EGORefreshTableHeaderView.m */; };
 		19C647AF1DC9E53700262F25 /* YLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647AE1DC9E53700262F25 /* YLToast.m */; };
 		19C647B21DC9E5AF00262F25 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647B11DC9E5AF00262F25 /* User.m */; };
 		19C647B61DC9E93800262F25 /* YLCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647B51DC9E93800262F25 /* YLCommon.m */; };
@@ -41,6 +42,8 @@
 /* Begin PBXFileReference section */
 		19077E341DFAAC7C001A8F8C /* YLLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLog.h; sourceTree = "<group>"; };
 		19077E351DFAAC7C001A8F8C /* YLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLog.m; sourceTree = "<group>"; };
+		19402F511E1BB096002594FB /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		19402F521E1BB096002594FB /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		19C647AD1DC9E53700262F25 /* YLToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLToast.h; sourceTree = "<group>"; };
 		19C647AE1DC9E53700262F25 /* YLToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLToast.m; sourceTree = "<group>"; };
 		19C647B01DC9E5AF00262F25 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -113,14 +116,16 @@
 		19C647AC1DC9E51B00262F25 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
-				19077E341DFAAC7C001A8F8C /* YLLog.h */,
-				19077E351DFAAC7C001A8F8C /* YLLog.m */,
-				D7400C691DF2CED000ADBCF7 /* YLLocationManager.h */,
-				D7400C6A1DF2CED000ADBCF7 /* YLLocationManager.m */,
-				19C647AD1DC9E53700262F25 /* YLToast.h */,
-				19C647AE1DC9E53700262F25 /* YLToast.m */,
+				19402F511E1BB096002594FB /* EGORefreshTableHeaderView.h */,
+				19402F521E1BB096002594FB /* EGORefreshTableHeaderView.m */,
 				19C647B41DC9E93800262F25 /* YLCommon.h */,
 				19C647B51DC9E93800262F25 /* YLCommon.m */,
+				D7400C691DF2CED000ADBCF7 /* YLLocationManager.h */,
+				D7400C6A1DF2CED000ADBCF7 /* YLLocationManager.m */,
+				19077E341DFAAC7C001A8F8C /* YLLog.h */,
+				19077E351DFAAC7C001A8F8C /* YLLog.m */,
+				19C647AD1DC9E53700262F25 /* YLToast.h */,
+				19C647AE1DC9E53700262F25 /* YLToast.m */,
 			);
 			name = vendors;
 			sourceTree = "<group>";
@@ -245,7 +250,7 @@
 				TargetAttributes = {
 					19D9A0A01DB0846E00CE77B3 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = CE7XVR5S2V;
+						DevelopmentTeam = 3LSEEJ9FH2;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -356,6 +361,7 @@
 				19D9A0A61DB0846E00CE77B3 /* main.m in Sources */,
 				19D9A0EA1DB0E74100CE77B3 /* MainView.m in Sources */,
 				19D9A0C01DB0877700CE77B3 /* MainViewController.m in Sources */,
+				19402F531E1BB096002594FB /* EGORefreshTableHeaderView.m in Sources */,
 				D7400C6B1DF2CED000ADBCF7 /* YLLocationManager.m in Sources */,
 				19D9A0C61DB0C11600CE77B3 /* DeviceModel.m in Sources */,
 				D710C9481DD784F3004CC2B6 /* AddDeviceViewController.m in Sources */,
@@ -478,14 +484,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = CE7XVR5S2V;
+				DEVELOPMENT_TEAM = 3LSEEJ9FH2;
 				INFOPLIST_FILE = MaZongApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fanyl.MaZongApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4cea3811-2d64-473a-9b51-f43a56cace44";
-				PROVISIONING_PROFILE_SPECIFIER = CE7XVR5S2V_wildcard_xc;
+				PROVISIONING_PROFILE = "8f15bda4-7fa9-41c0-a238-8ae337c64d65";
+				PROVISIONING_PROFILE_SPECIFIER = OBD_ALL;
 			};
 			name = Debug;
 		};
@@ -494,14 +500,14 @@
 			baseConfigurationReference = A868ECD3547EFE382B340B04 /* Pods-MaZongApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CE7XVR5S2V;
+				DEVELOPMENT_TEAM = 3LSEEJ9FH2;
 				INFOPLIST_FILE = MaZongApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fanyl.MaZongApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4cea3811-2d64-473a-9b51-f43a56cace44";
-				PROVISIONING_PROFILE_SPECIFIER = CE7XVR5S2V_wildcard_xc;
+				PROVISIONING_PROFILE = "8f15bda4-7fa9-41c0-a238-8ae337c64d65";
+				PROVISIONING_PROFILE_SPECIFIER = OBD_ALL;
 			};
 			name = Release;
 		};
