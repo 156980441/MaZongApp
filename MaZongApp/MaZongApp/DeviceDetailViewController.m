@@ -11,6 +11,8 @@
 #import "DeviceModel.h"
 #import "MainView.h"
 
+#import "YLToast.h"
+
 #import "stdafx_MaZongApp.h"
 #import "AFHTTPSessionManager.h"
 
@@ -27,6 +29,9 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     // Do any additional setup after loading the view.
+    
+    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(modify)];
+    self.navigationItem.rightBarButtonItem = rightItem;
     
     self.innerMainView = [MainView viewFromNIB];
     self.innerMainView.frame = CGRectMake(0, 0, CGRectGetWidth(self.mainView.frame), CGRectGetHeight(self.mainView.frame));
@@ -112,6 +117,40 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
         [cell.contentView addSubview:s];
     }
     return cell;
+}
+-(void)modify
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"编辑" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    //以下方法就可以实现在提示框中输入文本；
+    
+    //在AlertView中添加一个输入框
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+        textField.placeholder = @"输入设备的新名称";
+    }];
+    
+    //添加一个确定按钮 并获取AlertView中的第一个输入框 将其文本赋值给BUTTON的title
+    [alertController addAction:[UIAlertAction actionWithTitle:@"修改" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *nameTxtField = alertController.textFields.firstObject;
+        
+        AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+        
+        NSString* name_url = [NSString stringWithFormat:@"%@/%@/%@",URL_CHANGE_DEVICE_NAME,self.device.deviceId, nameTxtField.text];
+        [session GET:name_url parameters:nil
+             success:^(NSURLSessionDataTask *task, id responseObject) {
+                 [YLToast showWithText:@"修改成功"];
+             }
+             failure:^(NSURLSessionDataTask *task, NSError *error) {
+                 [YLToast showWithText:@"修改失败"];
+             }];
+        
+    }]];
+    
+    //添加一个取消按钮
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+    
+    //present出AlertView
+    [self presentViewController:alertController animated:true completion:nil];
 }
 
 -(void)swithch:(id)mySwitch
