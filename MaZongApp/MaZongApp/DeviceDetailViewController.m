@@ -166,7 +166,7 @@ static NSString* deviceDetailCell_identifier = @"deviceCell_identifier";
     
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
-    NSString* url_ads = [NSString stringWithFormat:@"%@/%zd/%d",URL_CHANGE_DEVICE_STATE,self.device.deviceId, self.device.isOff];
+    NSString* url_ads = [NSString stringWithFormat:@"%@/%@/%d",URL_CHANGE_DEVICE_STATE,self.device.deviceId, self.device.isOff];
     [session GET:url_ads parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
              NSLog(@"%@",responseObject);
