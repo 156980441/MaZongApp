@@ -14,6 +14,8 @@
 		19C647AF1DC9E53700262F25 /* YLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647AE1DC9E53700262F25 /* YLToast.m */; };
 		19C647B21DC9E5AF00262F25 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647B11DC9E5AF00262F25 /* User.m */; };
 		19C647B61DC9E93800262F25 /* YLCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647B51DC9E93800262F25 /* YLCommon.m */; };
+		19D4441D1EE53C9800445E13 /* ConfigWifiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D4441C1EE53C9800445E13 /* ConfigWifiViewController.m */; };
+		19D444201EE5530E00445E13 /* ConfigUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D4441F1EE5530E00445E13 /* ConfigUserViewController.m */; };
 		19D9A0A61DB0846E00CE77B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D9A0A51DB0846E00CE77B3 /* main.m */; };
 		19D9A0A91DB0846E00CE77B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D9A0A81DB0846E00CE77B3 /* AppDelegate.m */; };
 		19D9A0AF1DB0846E00CE77B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19D9A0AD1DB0846E00CE77B3 /* Main.storyboard */; };
@@ -56,6 +58,10 @@
 		19C647B31DC9E64300262F25 /* stdafx_MaZongApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdafx_MaZongApp.h; sourceTree = "<group>"; };
 		19C647B41DC9E93800262F25 /* YLCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLCommon.h; sourceTree = "<group>"; };
 		19C647B51DC9E93800262F25 /* YLCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLCommon.m; sourceTree = "<group>"; };
+		19D4441B1EE53C9800445E13 /* ConfigWifiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigWifiViewController.h; sourceTree = "<group>"; };
+		19D4441C1EE53C9800445E13 /* ConfigWifiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigWifiViewController.m; sourceTree = "<group>"; };
+		19D4441E1EE5530E00445E13 /* ConfigUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigUserViewController.h; sourceTree = "<group>"; };
+		19D4441F1EE5530E00445E13 /* ConfigUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigUserViewController.m; sourceTree = "<group>"; };
 		19D9A0A11DB0846E00CE77B3 /* MaZongApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaZongApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19D9A0A51DB0846E00CE77B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		19D9A0A71DB0846E00CE77B3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -185,6 +191,10 @@
 				19D9A0BC1DB084E800CE77B3 /* LoginViewViewController.m */,
 				19B44DE31EE501BC003177B5 /* ConfigTableViewController.h */,
 				19B44DE41EE501BC003177B5 /* ConfigTableViewController.m */,
+				19D4441B1EE53C9800445E13 /* ConfigWifiViewController.h */,
+				19D4441C1EE53C9800445E13 /* ConfigWifiViewController.m */,
+				19D4441E1EE5530E00445E13 /* ConfigUserViewController.h */,
+				19D4441F1EE5530E00445E13 /* ConfigUserViewController.m */,
 				19C647B31DC9E64300262F25 /* stdafx_MaZongApp.h */,
 				19D9A0AD1DB0846E00CE77B3 /* Main.storyboard */,
 				D710C9461DD784F3004CC2B6 /* AddDeviceViewController.h */,
@@ -370,6 +380,7 @@
 				19077E361DFAAC7C001A8F8C /* YLLog.m in Sources */,
 				19D9A0CC1DB0C49100CE77B3 /* DeviceDetailViewController.m in Sources */,
 				D7D2DE101DB7C89900729CD8 /* AdsViewController.m in Sources */,
+				19D444201EE5530E00445E13 /* ConfigUserViewController.m in Sources */,
 				19C647AF1DC9E53700262F25 /* YLToast.m in Sources */,
 				19D9A0C31DB08AEB00CE77B3 /* RegisterViewController.m in Sources */,
 				19D9A0BD1DB084E800CE77B3 /* LoginViewViewController.m in Sources */,
@@ -384,6 +395,7 @@
 				19D9A0C61DB0C11600CE77B3 /* DeviceModel.m in Sources */,
 				D710C9481DD784F3004CC2B6 /* AddDeviceViewController.m in Sources */,
 				19B44DE51EE501BC003177B5 /* ConfigTableViewController.m in Sources */,
+				19D4441D1EE53C9800445E13 /* ConfigWifiViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

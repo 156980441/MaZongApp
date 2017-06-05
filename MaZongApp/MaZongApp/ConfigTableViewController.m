@@ -8,13 +8,12 @@
 
 #import "ConfigTableViewController.h"
 
-#import <SystemConfiguration/CaptiveNetwork.h>
+
 
 static NSString* configTableViewCellIdentifier = @"ConfigTableViewCellIdentifier";
 
 @interface ConfigTableViewController ()
 @property (nonatomic, copy) NSArray* dataSource;
-@property (nonatomic, copy) NSString* wifiName;
 @end
 
 @implementation ConfigTableViewController
@@ -24,28 +23,13 @@ static NSString* configTableViewCellIdentifier = @"ConfigTableViewCellIdentifier
 {
     
     if (!_dataSource) {
-        NSString* wifi = [NSString stringWithFormat:@"Wifi 配置:%@",self.wifiName];
-        NSArray* arr = [NSArray arrayWithObjects:wifi,@"添加设备", nil];
+        NSArray* arr = [NSArray arrayWithObjects:@"Wifi 配置",@"添加设备",@"修改密码", nil];
         _dataSource = [arr copy];
     }
     return _dataSource;
 }
 
--(NSString*)wifiName
-{
-    if (!_wifiName) {
-        id info = nil;
-        NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
-        for (NSString *ifnam in ifs) {
-            info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
-            NSString *str = info[@"SSID"];
-            NSString *str2 = info[@"BSSID"];
-            NSString *str3 = [[ NSString alloc] initWithData:info[@"SSIDDATA"] encoding:NSUTF8StringEncoding];
-            _wifiName = [str copy];
-        }
-    }
-    return _wifiName;
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -66,8 +50,14 @@ static NSString* configTableViewCellIdentifier = @"ConfigTableViewCellIdentifier
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        [self performSegueWithIdentifier:@"wifi" sender:nil];
+    }
     if (indexPath.row == 1) {
         [self performSegueWithIdentifier:@"add_device" sender:nil];
+    }
+    if (indexPath.row == 2) {
+        [self performSegueWithIdentifier:@"user_config" sender:nil];
     }
 }
 
