@@ -41,12 +41,12 @@ static NSArray* g_city_arr = nil;
     User* user = [self loadFromArchiver];
     
     if (user) {
-        [self checkuser:user.name withPass:user.pass];
+        [self checkuser:user.username withPass:user.password];
     }
     
     // test
     
-    self.nameTxt.text = @"fdfds";
+    self.nameTxt.text = @"admin";
     self.passTxt.text = @"123456";
     
     self.location = [[YLLocationManager alloc] initWithGpsUpdate:^(CLLocation *loc) {
@@ -99,9 +99,7 @@ static NSArray* g_city_arr = nil;
     [manager POST:URL_USER_LOGIN parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary* jsonData = (NSDictionary*)responseObject;
         NSDictionary* admin_dic = [jsonData objectForKey:@"admin"];
-        g_user.name = [admin_dic objectForKey:@"username"];
-        g_user.pass = [admin_dic objectForKey:@"password"];
-        g_user.userNo = ((NSNumber*)[admin_dic objectForKey:@"userNo"]).integerValue;
+        [g_user initFromDictionary:admin_dic];
         [self saveToArchiver:g_user];
         [self performSegueWithIdentifier:@"main" sender:self];
         
