@@ -644,7 +644,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WLc-yk-GXP">
-                                <rect key="frame" x="64" y="332" width="265" height="30"/>
+                                <rect key="frame" x="64" y="372" width="265" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="确认">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -669,7 +669,7 @@
                             <constraint firstItem="aMZ-P4-FZn" firstAttribute="height" secondItem="UjD-ta-HcT" secondAttribute="height" id="QWM-uq-9Dz"/>
                             <constraint firstItem="DZe-Kb-MFZ" firstAttribute="leading" secondItem="NUU-Y4-ea2" secondAttribute="leading" id="RKZ-RI-NtE"/>
                             <constraint firstItem="p0N-wD-DWW" firstAttribute="centerY" secondItem="aMZ-P4-FZn" secondAttribute="centerY" id="T0o-Fq-BoD"/>
-                            <constraint firstItem="WLc-yk-GXP" firstAttribute="top" secondItem="aMZ-P4-FZn" secondAttribute="bottom" constant="40" id="TNh-ri-QYi"/>
+                            <constraint firstItem="WLc-yk-GXP" firstAttribute="top" secondItem="aMZ-P4-FZn" secondAttribute="bottom" constant="80" id="TNh-ri-QYi"/>
                             <constraint firstItem="UjD-ta-HcT" firstAttribute="top" secondItem="ZGw-ew-QfR" secondAttribute="bottom" constant="58" id="X9H-6R-8nI"/>
                             <constraint firstItem="aMZ-P4-FZn" firstAttribute="width" secondItem="UjD-ta-HcT" secondAttribute="width" id="eyc-2J-zBe"/>
                             <constraint firstItem="aMZ-P4-FZn" firstAttribute="top" secondItem="FTM-28-QPZ" secondAttribute="bottom" constant="40" id="iHx-RV-nYq"/>
