@@ -10,6 +10,7 @@
 		19077E361DFAAC7C001A8F8C /* YLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 19077E351DFAAC7C001A8F8C /* YLLog.m */; };
 		19402F531E1BB096002594FB /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19402F521E1BB096002594FB /* EGORefreshTableHeaderView.m */; };
 		19B44DE11EE4FD3E003177B5 /* longyu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19B44DE01EE4FD3E003177B5 /* longyu.jpg */; };
+		19B44DE51EE501BC003177B5 /* ConfigTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B44DE41EE501BC003177B5 /* ConfigTableViewController.m */; };
 		19C647AF1DC9E53700262F25 /* YLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647AE1DC9E53700262F25 /* YLToast.m */; };
 		19C647B21DC9E5AF00262F25 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647B11DC9E5AF00262F25 /* User.m */; };
 		19C647B61DC9E93800262F25 /* YLCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647B51DC9E93800262F25 /* YLCommon.m */; };
@@ -46,6 +47,8 @@
 		19402F511E1BB096002594FB /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		19402F521E1BB096002594FB /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		19B44DE01EE4FD3E003177B5 /* longyu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = longyu.jpg; sourceTree = "<group>"; };
+		19B44DE31EE501BC003177B5 /* ConfigTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigTableViewController.h; sourceTree = "<group>"; };
+		19B44DE41EE501BC003177B5 /* ConfigTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigTableViewController.m; sourceTree = "<group>"; };
 		19C647AD1DC9E53700262F25 /* YLToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLToast.h; sourceTree = "<group>"; };
 		19C647AE1DC9E53700262F25 /* YLToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLToast.m; sourceTree = "<group>"; };
 		19C647B01DC9E5AF00262F25 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				19D9A0B21DB0846E00CE77B3 /* LaunchScreen.storyboard */,
 				19D9A0BB1DB084E800CE77B3 /* LoginViewViewController.h */,
 				19D9A0BC1DB084E800CE77B3 /* LoginViewViewController.m */,
+				19B44DE31EE501BC003177B5 /* ConfigTableViewController.h */,
+				19B44DE41EE501BC003177B5 /* ConfigTableViewController.m */,
 				19C647B31DC9E64300262F25 /* stdafx_MaZongApp.h */,
 				19D9A0AD1DB0846E00CE77B3 /* Main.storyboard */,
 				D710C9461DD784F3004CC2B6 /* AddDeviceViewController.h */,
@@ -378,6 +383,7 @@
 				D7400C6B1DF2CED000ADBCF7 /* YLLocationManager.m in Sources */,
 				19D9A0C61DB0C11600CE77B3 /* DeviceModel.m in Sources */,
 				D710C9481DD784F3004CC2B6 /* AddDeviceViewController.m in Sources */,
+				19B44DE51EE501BC003177B5 /* ConfigTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

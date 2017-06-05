@@ -77,6 +77,7 @@ static NSArray* g_city_arr = nil;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)loginBtnPress:(id)sender {
     if ([self.passTxt.text isEqualToString:@""]|| [self.nameTxt.text isEqualToString:@""]) {
         [YLToast showWithText:@"账号或者密码为空"];
@@ -85,14 +86,13 @@ static NSArray* g_city_arr = nil;
         [self checkuser:self.nameTxt.text withPass:self.passTxt.text];
     }
 }
+
 -(void)checkuser:(NSString*)name withPass:(NSString*)pass
 {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    
     
     NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:name,@"USER_NAME",pass,@"PASSWORD", nil];
     
@@ -133,6 +133,13 @@ static NSArray* g_city_arr = nil;
     else {
         return nil;
     }
+}
+
+// 隐藏键盘
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.nameTxt resignFirstResponder];
+    [self.passTxt resignFirstResponder];
 }
 
 #pragma mark - Navigation

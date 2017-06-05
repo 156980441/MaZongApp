@@ -40,12 +40,12 @@
                         <outlet property="mainView" destination="Bvd-NI-qbE" id="DOs-ei-dyG"/>
                         <segue destination="taq-Re-5C4" kind="show" identifier="detail" id="7Fe-bG-cgc"/>
                         <segue destination="oWn-Lb-wBq" kind="presentation" identifier="showAds" id="Gqs-ho-JpL"/>
-                        <segue destination="728-ad-AIM" kind="show" identifier="add_device" id="srh-f9-nWv"/>
+                        <segue destination="4HM-JN-yLP" kind="show" identifier="config" id="7nF-gL-qXS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvA-pT-Iid" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="820" y="1171.6641679160421"/>
+            <point key="canvasLocation" x="770" y="1144"/>
         </scene>
         <!--Ads View Controller-->
         <scene sceneID="ctl-SE-Csg">
@@ -381,6 +381,37 @@
             </objects>
             <point key="canvasLocation" x="-359" y="1988"/>
         </scene>
+        <!--Config Table View Controller-->
+        <scene sceneID="COn-HZ-qXn">
+            <objects>
+                <tableViewController id="4HM-JN-yLP" customClass="ConfigTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zhC-Pf-JCf" customClass="Config">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jIU-Ty-4Ma">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jIU-Ty-4Ma" id="3Z3-KC-qcE">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4HM-JN-yLP" id="YGp-iQ-rtW"/>
+                            <outlet property="delegate" destination="4HM-JN-yLP" id="kmi-LR-2eK"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="728-ad-AIM" kind="show" identifier="add_device" id="ype-27-hxY"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rk8-Py-lPQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="771" y="454"/>
+        </scene>
         <!--Add Device View Controller-->
         <scene sceneID="xTI-mK-fN8">
             <objects>
@@ -466,7 +497,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OKc-cz-veR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1800.8" y="333.28335832083962"/>
+            <point key="canvasLocation" x="1690" y="412"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Jc-1b-cpZ">
@@ -488,9 +519,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="longyu.jpg" width="569" height="320"/>
+        <image name="longyu.jpg" width="590" height="320"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rFi-AE-I4R"/>
+        <segue reference="Gqs-ho-JpL"/>
     </inferredMetricsTieBreakers>
 </document>

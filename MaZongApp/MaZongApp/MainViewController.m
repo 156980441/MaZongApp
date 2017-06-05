@@ -12,6 +12,7 @@
 #import "AddDeviceViewController.h"
 #import "DeviceModel.h"
 #import "User.h"
+#import "ConfigTableViewController.h"
 
 #import "YLToast.h"
 #import "YLLog.h"
@@ -61,9 +62,11 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     NSLog(@"%s开始",__func__);
     [super viewDidAppear:animated];
     
-    self.navigationItem.hidesBackButton = YES;
-    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(config)];
     self.navigationItem.rightBarButtonItem = rightItem;
+    
+    UIBarButtonItem* leftItem = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    self.navigationItem.leftBarButtonItem = leftItem;
     
     self.title = @"设备列表";
     
@@ -160,6 +163,11 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     // Dispose of any resources that can be recreated.
 }
 
+-(void)config
+{
+    [self performSegueWithIdentifier:@"config" sender:nil];
+}
+
 -(void)logout
 {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"用户注销" message:@"您确定要注销用户吗？" preferredStyle:UIAlertControllerStyleAlert];
@@ -176,7 +184,6 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     [alert addAction:destructiveAction];
     [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES completion:nil];
-    
 }
 
 #pragma mark - Navigation
@@ -328,9 +335,6 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
         self.selectedDevice = [self.deviceDataSource objectAtIndex:indexPath.row];
         [self performSegueWithIdentifier:@"detail" sender:nil];
     }
-    else {
-        [self performSegueWithIdentifier:@"add_device" sender:nil];
-    }
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -391,9 +395,6 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     if (self.deviceDataSource.count > 0 && self.deviceDataSource.count != indexPath.row) {
         DeviceModel* device = [self.deviceDataSource objectAtIndex:indexPath.row];
         cell.textLabel.text = device.name;
-    }
-    else {
-        cell.textLabel.text = @"添加设备";
     }
     return cell;
 }
