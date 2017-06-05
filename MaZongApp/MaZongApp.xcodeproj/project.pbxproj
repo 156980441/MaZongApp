@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		19077E361DFAAC7C001A8F8C /* YLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 19077E351DFAAC7C001A8F8C /* YLLog.m */; };
 		19402F531E1BB096002594FB /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19402F521E1BB096002594FB /* EGORefreshTableHeaderView.m */; };
+		19B44DE11EE4FD3E003177B5 /* longyu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19B44DE01EE4FD3E003177B5 /* longyu.jpg */; };
 		19C647AF1DC9E53700262F25 /* YLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647AE1DC9E53700262F25 /* YLToast.m */; };
 		19C647B21DC9E5AF00262F25 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647B11DC9E5AF00262F25 /* User.m */; };
 		19C647B61DC9E93800262F25 /* YLCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C647B51DC9E93800262F25 /* YLCommon.m */; };
@@ -44,6 +45,7 @@
 		19077E351DFAAC7C001A8F8C /* YLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLog.m; sourceTree = "<group>"; };
 		19402F511E1BB096002594FB /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		19402F521E1BB096002594FB /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		19B44DE01EE4FD3E003177B5 /* longyu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = longyu.jpg; sourceTree = "<group>"; };
 		19C647AD1DC9E53700262F25 /* YLToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLToast.h; sourceTree = "<group>"; };
 		19C647AE1DC9E53700262F25 /* YLToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLToast.m; sourceTree = "<group>"; };
 		19C647B01DC9E5AF00262F25 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -113,6 +115,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		19B44DDF1EE4FD3E003177B5 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				19B44DE01EE4FD3E003177B5 /* longyu.jpg */,
+			);
+			name = res;
+			path = ../res;
+			sourceTree = "<group>";
+		};
 		19C647AC1DC9E51B00262F25 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +144,7 @@
 		19D9A0981DB0846E00CE77B3 = {
 			isa = PBXGroup;
 			children = (
+				19B44DDF1EE4FD3E003177B5 /* res */,
 				19D9A0A31DB0846E00CE77B3 /* MaZongApp */,
 				19D9A0A21DB0846E00CE77B3 /* Products */,
 				0E27F25AED8DDBF7AA2215FA /* Pods */,
@@ -285,6 +297,7 @@
 				19D9A0DE1DB0C98600CE77B3 /* IMG_008.JPG in Resources */,
 				19D9A0DB1DB0C98600CE77B3 /* IMG_005.JPG in Resources */,
 				19D9A0AF1DB0846E00CE77B3 /* Main.storyboard in Resources */,
+				19B44DE11EE4FD3E003177B5 /* longyu.jpg in Resources */,
 				19D9A0DF1DB0C98600CE77B3 /* IMG_009.JPG in Resources */,
 				19D9A0D81DB0C98600CE77B3 /* IMG_002.JPG in Resources */,
 				19D9A0E71DB0E72B00CE77B3 /* MainView.xib in Resources */,
