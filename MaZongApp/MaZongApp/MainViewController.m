@@ -21,6 +21,7 @@
 
 #import "stdafx_MaZongApp.h"
 #import "AFHTTPSessionManager.h"
+#import "MBProgressHUD.h"
 
 static NSString* deviceCell_identifier = @"deviceCell_identifier";
 static NSString* ads_loc_path = nil;
@@ -306,8 +307,15 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
     
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     NSString* url = [NSString stringWithFormat:@"%@/%zd",URL_DEVICE_LIST,g_user.userNo];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    // Set the label text.
+    hud.labelText = NSLocalizedString(@"获取设备列表中...", @"HUD loading title");
+    
     [session GET:url parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
+             
              NSArray* arr = (NSArray*)responseObject;
              for (NSDictionary* dic in arr) {
                  DeviceModel* dev = [[DeviceModel alloc] init];
@@ -319,11 +327,20 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                  dev.isOff = ((NSString*)[dic objectForKey:@"STATE"]).integerValue;
                  [self.deviceDataSource addObject:dev];
              }
-             [self doneLoadingTableViewData];
-             [self.innerMainView.deviceTableView reloadData];
+             
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [hud hide:YES];
+                 [self doneLoadingTableViewData];
+                 [self.innerMainView.deviceTableView reloadData];
+             });
+             
+             
          }
          failure:^(NSURLSessionDataTask *task, NSError *error) {
-             [YLToast showWithText:@"获取设备列表失败"];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [hud hide:YES];
+                 [YLToast showWithText:@"获取设备列表失败"];
+             });
          }];
 }
 

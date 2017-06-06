@@ -18,6 +18,7 @@
 #import "AFNetworkReachabilityManager.h"
 #import "AFHTTPSessionManager.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "MBProgressHUD.h"
 
 static NSArray* g_city_arr = nil;
 
@@ -96,17 +97,28 @@ static NSArray* g_city_arr = nil;
     
     NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:name,@"USER_NAME",pass,@"PASSWORD", nil];
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    // Set the label text.
+    hud.labelText = NSLocalizedString(@"登录中...", @"HUD loading title");
+    // You can also adjust other label properties if needed.
+    // hud.label.font = [UIFont italicSystemFontOfSize:16.f];
+    
     [manager POST:URL_USER_LOGIN parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary* jsonData = (NSDictionary*)responseObject;
         NSDictionary* admin_dic = [jsonData objectForKey:@"admin"];
         [g_user initFromDictionary:admin_dic];
         [self saveToArchiver:g_user];
-        [self performSegueWithIdentifier:@"main" sender:self];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hide:YES];
+            [self performSegueWithIdentifier:@"main" sender:self];
+        });
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-         [YLToast showWithText:@"网络连接失败，请检查网络配置"];
-        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hide:YES];
+            [YLToast showWithText:@"登录失败"];
+        });
     }];
     
     

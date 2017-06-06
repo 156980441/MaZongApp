@@ -172,6 +172,7 @@
 		19D9A0A31DB0846E00CE77B3 /* MaZongApp */ = {
 			isa = PBXGroup;
 			children = (
+				19FDF1351EE6A01000F9A656 /* model */,
 				19C647AC1DC9E51B00262F25 /* vendors */,
 				D7D2DE0E1DB7C89900729CD8 /* AdsViewController.h */,
 				D7D2DE0F1DB7C89900729CD8 /* AdsViewController.m */,
@@ -180,10 +181,6 @@
 				19D9A0B01DB0846E00CE77B3 /* Assets.xcassets */,
 				19D9A0CA1DB0C49100CE77B3 /* DeviceDetailViewController.h */,
 				19D9A0CB1DB0C49100CE77B3 /* DeviceDetailViewController.m */,
-				19D9A0C41DB0C11600CE77B3 /* DeviceModel.h */,
-				19D9A0C51DB0C11600CE77B3 /* DeviceModel.m */,
-				19C647B01DC9E5AF00262F25 /* User.h */,
-				19C647B11DC9E5AF00262F25 /* User.m */,
 				19D9A0CD1DB0C98600CE77B3 /* ImageSource */,
 				19D9A0B51DB0846E00CE77B3 /* Info.plist */,
 				19D9A0B21DB0846E00CE77B3 /* LaunchScreen.storyboard */,
@@ -233,6 +230,17 @@
 				19D9A0D61DB0C98600CE77B3 /* IMG_009.JPG */,
 			);
 			path = ImageSource;
+			sourceTree = "<group>";
+		};
+		19FDF1351EE6A01000F9A656 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				19D9A0C41DB0C11600CE77B3 /* DeviceModel.h */,
+				19D9A0C51DB0C11600CE77B3 /* DeviceModel.m */,
+				19C647B01DC9E5AF00262F25 /* User.h */,
+				19C647B11DC9E5AF00262F25 /* User.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 		F00D9011969555AC10F67CF5 /* Frameworks */ = {
