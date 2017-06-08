@@ -239,15 +239,15 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                      NSString* url_image2 = [dic objectForKey:@"PIC_URL2"];
                      NSString* url_image3 = [dic objectForKey:@"PIC_URL3"];
                      
-                     NSMutableArray* arr = nil;
+                     NSMutableArray* arr_temp = nil;
                      NSString* imagePath = nil;
                      if (![root_url isEqualToString:@""]) {
-                         arr = self.dynaticImages;
+                         arr_temp = self.dynaticImages;
                          self.url = root_url;
                          imagePath = [NSString stringWithFormat:@"%@/dyn",ads_loc_path];
                      }
                      else {
-                         arr = self.staticImages;
+                         arr_temp = self.staticImages;
                          imagePath = [NSString stringWithFormat:@"%@/static",ads_loc_path];
                      }
                      
@@ -255,35 +255,39 @@ void UIImageFromURL( NSURL * URL, void (^imageBlock)(UIImage * image), void (^er
                          url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image1];
                          nsurl = [NSURL URLWithString:url];
                          data = [[NSData alloc] initWithContentsOfURL:nsurl];
-                         image = [[UIImage alloc] initWithData:data];
-                         [arr addObject:image];
-                         
-                         NSString *path = [imagePath stringByAppendingString:@"/pic1.jpeg"];
-                         //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）
-                         [UIImageJPEGRepresentation(image,1) writeToFile:path atomically:YES];
-                         
+                         if (data) {
+                             image = [[UIImage alloc] initWithData:data];
+                             [arr_temp addObject:image];
+                             NSString *path = [imagePath stringByAppendingString:@"/pic1.jpeg"];
+                             //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）
+                             [UIImageJPEGRepresentation(image,1) writeToFile:path atomically:YES];
+                         }
                      }
                      if (![url_image2 isKindOfClass:[NSNull class]]) {
                          url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image2];
                          nsurl = [NSURL URLWithString:url];
                          data = [[NSData alloc] initWithContentsOfURL:nsurl];
-                         image = [[UIImage alloc] initWithData:data];
-                         [arr addObject:image];
-                         
-                         NSString *path = [imagePath stringByAppendingString:@"/pic2.jpeg"];
-                         //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）
-                         [UIImageJPEGRepresentation(image,1) writeToFile:path atomically:YES];
+                         if (data) {
+                             image = [[UIImage alloc] initWithData:data];
+                             [arr_temp addObject:image];
+                             
+                             NSString *path = [imagePath stringByAppendingString:@"/pic2.jpeg"];
+                             //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）
+                             [UIImageJPEGRepresentation(image,1) writeToFile:path atomically:YES];
+                         }
                      }
                      if (![url_image3 isKindOfClass:[NSNull class]]) {
                          url = [NSString stringWithFormat:@"%@%@",URL_ROOT,url_image3];
                          nsurl = [NSURL URLWithString:url];
                          data = [[NSData alloc] initWithContentsOfURL:nsurl];
-                         image = [[UIImage alloc] initWithData:data];
-                         [arr addObject:image];
-                         
-                         NSString *path = [imagePath stringByAppendingString:@"/pic3.jpeg"];
-                         //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）
-                         [UIImageJPEGRepresentation(image,1) writeToFile:path atomically:YES];
+                         if (data) {
+                             image = [[UIImage alloc] initWithData:data];
+                             [arr_temp addObject:image];
+                             
+                             NSString *path = [imagePath stringByAppendingString:@"/pic3.jpeg"];
+                             //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）
+                             [UIImageJPEGRepresentation(image,1) writeToFile:path atomically:YES];
+                         }
                      }
                  }
                  

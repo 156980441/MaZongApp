@@ -23,7 +23,7 @@ static NSString* configTableViewCellIdentifier = @"ConfigTableViewCellIdentifier
 {
     
     if (!_dataSource) {
-        NSArray* arr = [NSArray arrayWithObjects:@"Wifi 配置",@"添加设备",@"修改密码", nil];
+        NSArray* arr = [NSArray arrayWithObjects:@"Wifi 配置",@"添加设备",@"修改密码",@"关于", nil];
         _dataSource = [arr copy];
     }
     return _dataSource;
