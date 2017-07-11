@@ -247,12 +247,12 @@
 		D7FD59631F1552460043D4E5 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				D7FD59641F1552D50043D4E5 /* PYPhotoBrowser */,
 				D7FD59B41F1559C20043D4E5 /* SDWebImage */,
 				D7FD59AD1F1559810043D4E5 /* DACircularProgress */,
 				D7FD59A71F15590C0043D4E5 /* MBProgressHUD */,
 				D7FD59971F1554490043D4E5 /* UIColor+HexString.h */,
 				D7FD59981F1554490043D4E5 /* UIColor+HexString.m */,
-				D7FD59641F1552D50043D4E5 /* PYPhotoBrowser */,
 			);
 			name = lib;
 			sourceTree = "<group>";

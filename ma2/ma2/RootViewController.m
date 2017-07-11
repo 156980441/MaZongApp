@@ -184,6 +184,9 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (self.type == ViewControllerForumType) {
+        return self.momentFrames.count;
+    }
     return self.dataSource.count;
 }
 
