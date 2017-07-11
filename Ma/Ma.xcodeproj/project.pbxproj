@@ -7,19 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1902B5941F14D42800D5CD36 /* RootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5931F14D42800D5CD36 /* RootView.m */; };
 		8DC6F7A61F13EF0F001B5A8C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC6F7A51F13EF0F001B5A8C /* main.m */; };
 		8DC6F7A91F13EF0F001B5A8C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC6F7A81F13EF0F001B5A8C /* AppDelegate.m */; };
 		8DC6F7AF1F13EF0F001B5A8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DC6F7AD1F13EF0F001B5A8C /* Main.storyboard */; };
 		8DC6F7B11F13EF0F001B5A8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DC6F7B01F13EF0F001B5A8C /* Assets.xcassets */; };
 		8DC6F7B41F13EF0F001B5A8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DC6F7B21F13EF0F001B5A8C /* LaunchScreen.storyboard */; };
 		8DC6F7BE1F13F01F001B5A8C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC6F7BC1F13F01F001B5A8C /* MainViewController.m */; };
-		8DC6F7C71F13F3D6001B5A8C /* RootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC6F7C61F13F3D6001B5A8C /* RootView.m */; };
 		8DC6F7C91F13F7E6001B5A8C /* RootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC6F7C81F13F7E6001B5A8C /* RootView.xib */; };
 		8DC6F7CD1F13FB7B001B5A8C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC6F7CB1F13FB7B001B5A8C /* RootViewController.m */; };
 		8DC6F7CE1F13FB7B001B5A8C /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC6F7CC1F13FB7B001B5A8C /* RootViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1902B5921F14D42800D5CD36 /* RootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootView.h; sourceTree = "<group>"; };
+		1902B5931F14D42800D5CD36 /* RootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootView.m; sourceTree = "<group>"; };
 		8DC6F7A11F13EF0F001B5A8C /* Ma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ma.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC6F7A51F13EF0F001B5A8C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8DC6F7A71F13EF0F001B5A8C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -30,8 +32,6 @@
 		8DC6F7B51F13EF0F001B5A8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC6F7BB1F13F01F001B5A8C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		8DC6F7BC1F13F01F001B5A8C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		8DC6F7C51F13F3D6001B5A8C /* RootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootView.h; path = ../RootView.h; sourceTree = "<group>"; };
-		8DC6F7C61F13F3D6001B5A8C /* RootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootView.m; path = ../RootView.m; sourceTree = "<group>"; };
 		8DC6F7C81F13F7E6001B5A8C /* RootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootView.xib; sourceTree = "<group>"; };
 		8DC6F7CA1F13FB7B001B5A8C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		8DC6F7CB1F13FB7B001B5A8C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
@@ -68,8 +68,8 @@
 		8DC6F7A31F13EF0F001B5A8C /* Ma */ = {
 			isa = PBXGroup;
 			children = (
-				8DC6F7C51F13F3D6001B5A8C /* RootView.h */,
-				8DC6F7C61F13F3D6001B5A8C /* RootView.m */,
+				1902B5921F14D42800D5CD36 /* RootView.h */,
+				1902B5931F14D42800D5CD36 /* RootView.m */,
 				8DC6F7C81F13F7E6001B5A8C /* RootView.xib */,
 				8DC6F7A71F13EF0F001B5A8C /* AppDelegate.h */,
 				8DC6F7A81F13EF0F001B5A8C /* AppDelegate.m */,
@@ -126,7 +126,8 @@
 				TargetAttributes = {
 					8DC6F7A01F13EF0F001B5A8C = {
 						CreatedOnToolsVersion = 8.3.3;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = CE7XVR5S2V;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -168,11 +169,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DC6F7C71F13F3D6001B5A8C /* RootView.m in Sources */,
 				8DC6F7A91F13EF0F001B5A8C /* AppDelegate.m in Sources */,
 				8DC6F7BE1F13F01F001B5A8C /* MainViewController.m in Sources */,
 				8DC6F7A61F13EF0F001B5A8C /* main.m in Sources */,
 				8DC6F7CD1F13FB7B001B5A8C /* RootViewController.m in Sources */,
+				1902B5941F14D42800D5CD36 /* RootView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,10 +295,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CE7XVR5S2V;
 				INFOPLIST_FILE = Ma/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fanyl.Ma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a8755552-bbee-40da-a4a4-53e6faace46f";
+				PROVISIONING_PROFILE_SPECIFIER = allProjects;
 			};
 			name = Debug;
 		};
@@ -305,10 +310,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CE7XVR5S2V;
 				INFOPLIST_FILE = Ma/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fanyl.Ma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a8755552-bbee-40da-a4a4-53e6faace46f";
+				PROVISIONING_PROFILE_SPECIFIER = allProjects;
 			};
 			name = Release;
 		};
@@ -331,6 +340,7 @@
 				8DC6F7BA1F13EF0F001B5A8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

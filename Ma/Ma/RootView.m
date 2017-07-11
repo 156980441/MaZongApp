@@ -13,7 +13,7 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder {
     
     if (self = [super initWithCoder:aDecoder]) {
-        UIView *view = [[[NSBundle mainBundle] loadNibNamed:@"RootView" owner:self options:nil]objectAtIndex:0];
+        UIView *view = [[[NSBundle mainBundle] loadNibNamed:@"RootView" owner:self options:nil] objectAtIndex:0];
         [self addSubview:view];
     }
     return self;

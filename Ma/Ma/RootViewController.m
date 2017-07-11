@@ -17,6 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    CGFloat navBar = self.navigationController.navigationBar.frame.size.height;
+    CGFloat statusBar = [UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat tabBar = self.tabBarController.tabBar.bounds.size.height;
+    
+    self.view.frame = CGRectMake(0, navBar+statusBar, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - tabBar);
 }
 
 - (void)didReceiveMemoryWarning {
