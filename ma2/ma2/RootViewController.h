@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, ViewControllerType) {
+    ViewControllerDeviceType,
+    ViewControllerForumType,
+    ViewControllerMineType,
+    ViewControllerDetailType
+};
+
+@class DeviceModel;
+
 @interface RootViewController : UIViewController
 
+-(instancetype)initWithType:(ViewControllerType)type;
+
+@property (nonatomic,copy) NSArray* dataSource;
+
+@property (nonatomic, strong) DeviceModel *selectDevice;
 @end

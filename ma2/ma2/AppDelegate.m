@@ -7,9 +7,9 @@
 //
 
 #import "AppDelegate.h"
-
+#import "stdafx_MaZongApp.h"
 #import "RootViewController.h"
-
+#import "DeviceModel.h"
 @interface AppDelegate ()
 
 @end
@@ -20,18 +20,48 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    RootViewController* device = [[RootViewController alloc] init];
+#ifdef LOC_TEST
+    NSMutableArray* arr0 = [NSMutableArray array];
+    
+    for (int i = 0; i < 10; i++) {
+        DeviceModel* dev = [[DeviceModel alloc] init];
+        dev.name = @"Jim";
+        dev.deviceId = @"123";
+        dev.ph = @"3";
+        dev.temperature = @"23";
+        dev.tds = @"10";
+        dev.isOff = 1;
+        [arr0 addObject:dev];
+    }
+    
+    NSMutableArray* arr1 = [NSMutableArray array];
+    NSMutableArray* arr2 = [NSMutableArray array];
+    [arr2 addObject:@"添加设备"];
+    [arr2 addObject:@"Wifi 配置"];
+    [arr2 addObject:@"修改密码"];
+    [arr2 addObject:@"注销"];
+    [arr2 addObject:@"关于"];
+    
+#else
+#endif
+    RootViewController* device = [[RootViewController alloc] initWithType:ViewControllerDeviceType];
+    device.dataSource = arr0;
     device.view.backgroundColor = [UIColor redColor];
-    RootViewController* forum = [[RootViewController alloc] init];
+    RootViewController* forum = [[RootViewController alloc] initWithType:ViewControllerForumType];
     forum.view.backgroundColor = [UIColor yellowColor];
+    RootViewController* mine = [[RootViewController alloc] initWithType:ViewControllerMineType];
+    mine.dataSource = arr2;
+    mine.view.backgroundColor = [UIColor whiteColor];
     UINavigationController* nav0 = [[UINavigationController alloc] initWithRootViewController:device];
     UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:forum];
+    UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:mine];
     
     device.title = @"Device";
     forum.title = @"Forum";
+    mine.title = @"Mine";
     
     UITabBarController* tabBarVc = [[UITabBarController alloc] init];
-    tabBarVc.viewControllers = @[nav0,nav1];
+    tabBarVc.viewControllers = @[nav0,nav1,nav2];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = tabBarVc;
