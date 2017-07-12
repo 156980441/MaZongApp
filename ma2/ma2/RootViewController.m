@@ -63,7 +63,12 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:rootCell_identifier];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    if (self.type != ViewControllerForumType) {
+        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:rootCell_identifier];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    }
+    
     
     [self.view addSubview:self.upScrollView];
     [self.view addSubview:self.downScrollView];
@@ -101,7 +106,6 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
 
 - (NSMutableArray *)moments{
     if (!_moments) {
-        _moments = [NSMutableArray array];
         _moments = [ForumRecord moments];
     }
     return _moments;
@@ -114,6 +118,10 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
             ForumViewModel *momentFrame = [[ForumViewModel alloc] init];
             momentFrame.moment = moment;
             [self.momentFrames addObject:momentFrame];
+        }
+        
+        if (_dataSource == nil) {
+            self.dataSource = self.momentFrames;
         }
     }
     return _momentFrames;
@@ -192,8 +200,9 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:rootCell_identifier];
+    UITableViewCell* cell = nil;
     if (self.dataSource.count > 0) {
+        cell = [tableView dequeueReusableCellWithIdentifier:rootCell_identifier];
         if (self.type == ViewControllerDeviceType) {
             DeviceModel* device = [self.dataSource objectAtIndex:indexPath.row];
             cell.textLabel.text = device.name;
@@ -211,8 +220,9 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
             cell.textLabel.text = [self.dataSource objectAtIndex:indexPath.row];
         } else if (self.type == ViewControllerForumType)
         {
-            ForumTableViewCell *cell = [ForumTableViewCell momentsTableViewCellWithTableView:tableView];
-            cell.momentFrames = self.momentFrames[indexPath.section];
+            cell = [ForumTableViewCell momentsTableViewCellWithTableView:tableView];
+            ForumTableViewCell* forumCell = (ForumTableViewCell*)cell;
+            forumCell.momentFrames = self.momentFrames[indexPath.section];
         }
     }
     return cell;
@@ -223,7 +233,7 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
         ForumViewModel *momentFrame = self.momentFrames[indexPath.section];
         return momentFrame.cellHeight;
     }
-    return 70;
+    return 40;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

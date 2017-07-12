@@ -56,9 +56,9 @@
     UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:forum];
     UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:mine];
     
-    device.title = @"Device";
-    forum.title = @"Forum";
-    mine.title = @"Mine";
+    device.title = @"设备";
+    forum.title = @"论坛";
+    mine.title = @"我的";
     
     UITabBarController* tabBarVc = [[UITabBarController alloc] init];
     tabBarVc.viewControllers = @[nav0,nav1,nav2];

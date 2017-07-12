@@ -10,6 +10,7 @@
 #import "ForumBodyView.h"
 #import "ForumToolBarView.h"
 #import "ForumViewModel.h"
+#import "stdafx_MaZongApp.h"
 
 @interface ForumTableViewCell()
 
@@ -84,5 +85,11 @@
     self.bodyView.momentFrames = momentFrames;
     self.toolBarView.frame = momentFrames.momentsToolBarFrame;
     self.toolBarView.momentFrames = momentFrames;
+}
+//设置cell的frame
+-(void)setFrame:(CGRect)frame{
+    frame.origin.x += circleCellMargin;
+    frame.size.width -= circleCellMargin * 2;
+    [super setFrame:frame];
 }
 @end
