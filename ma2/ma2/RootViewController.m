@@ -16,8 +16,9 @@
 #import "ConfigWifiViewController.h"
 #import "ConfigUserViewController.h"
 #import "LoginViewViewController.h"
-
 #import "User.h"
+
+#import "AFHTTPSessionManager.h"
 
 static NSString* rootCell_identifier = @"rootCell_identifier";
 
@@ -184,7 +185,7 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     NSString* tds = [NSString stringWithFormat:@"TDS：%@",self.selectDevice.tds];
     NSString* ph = [NSString stringWithFormat:@"PH：%@",self.selectDevice.ph];
     NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.selectDevice.isOff? @"开":@"关"];
-    self.dataSource = [NSArray arrayWithObjects:temperature,tds,ph,isOff, nil];
+    self.dataSource = [NSMutableArray arrayWithObjects:temperature,tds,ph,isOff, nil];
     [self.tableView reloadData];
 #ifdef LOC_TEST
 #else
@@ -265,7 +266,7 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
             NSString* tds = [NSString stringWithFormat:@"TDS：%@",self.selectDevice.tds];
             NSString* ph = [NSString stringWithFormat:@"PH：%@",self.selectDevice.ph];
             NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.selectDevice.isOff? @"开":@"关"];
-            detail.dataSource = [NSArray arrayWithObjects:temperature,tds,ph,isOff, nil];
+            detail.dataSource = [NSMutableArray arrayWithObjects:temperature,tds,ph,isOff, nil];
             [self.navigationController pushViewController:detail animated:YES];
         } else if (self.type == ViewControllerMineType) {
             UIViewController* vc = nil;
@@ -278,8 +279,67 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
             if (2 == indexPath.row) {
                 vc = [[ConfigUserViewController alloc] init];
             }
+            if (3 == indexPath.row) {
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"用户注销" message:@"您确定要注销用户吗？" preferredStyle:UIAlertControllerStyleAlert];
+                
+                void (^action)(UIAlertAction* action) = ^(UIAlertAction* action){
+                    LoginViewViewController* login = [[LoginViewViewController alloc] init];
+                    [self presentViewController:login animated:YES completion:nil];
+                };
+                void (^cancel)(UIAlertAction* action) = ^(UIAlertAction* action){
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                };
+                
+                UIAlertAction* destructiveAction = [UIAlertAction actionWithTitle:@"注销" style:UIAlertActionStyleDestructive handler:action];
+                UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:cancel];
+                [alert addAction:destructiveAction];
+                [alert addAction:cancelAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
             [self.navigationController pushViewController:vc animated:YES];
         }
+    }
+}
+/**
+ *  修改Delete按钮文字为“删除”
+ */
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.type == ViewControllerDeviceType) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"设备删除" message:@"您确定要删除该设备吗？" preferredStyle:UIAlertControllerStyleAlert];
+        
+        DeviceModel* device = [self.dataSource objectAtIndex:indexPath.row];
+        
+        void (^action)(UIAlertAction* action) = ^(UIAlertAction* action){
+            
+            AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+            
+            NSString* url_ads = [NSString stringWithFormat:@"%@/%zd/%@",URL_DELETE_DEVICE,g_user.userNo, device.deviceId];
+            [session GET:url_ads parameters:nil
+                 success:^(NSURLSessionDataTask *task, id responseObject) {
+                     [self.dataSource removeObjectAtIndex:indexPath.row];
+                     // 刷新
+                     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                 }
+                 failure:^(NSURLSessionDataTask *task, NSError *error) {
+                     NSLog(@"%@",error);
+                 }];
+            
+        };
+        void (^cancel)(UIAlertAction* action) = ^(UIAlertAction* action){
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
+        
+        UIAlertAction* destructiveAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDestructive handler:action];
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:cancel];
+        [alert addAction:destructiveAction];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 /*

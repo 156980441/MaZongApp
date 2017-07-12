@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, ViewControllerType) {
 
 -(instancetype)initWithType:(ViewControllerType)type;
 
-@property (nonatomic,copy) NSArray* dataSource;
+@property (nonatomic,copy) NSMutableArray* dataSource;
 
 @property (nonatomic, strong) DeviceModel *selectDevice;
 @end
