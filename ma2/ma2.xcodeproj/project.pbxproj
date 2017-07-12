@@ -20,6 +20,8 @@
 		1902B5D11F15F76C00D5CD36 /* YLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5CB1F15F76C00D5CD36 /* YLLog.m */; };
 		1902B5D21F15F76C00D5CD36 /* YLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5CD1F15F76C00D5CD36 /* YLToast.m */; };
 		1941943F1F1625D000DE4748 /* ConfigUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941943E1F1625D000DE4748 /* ConfigUserViewController.m */; };
+		194194421F162A4000DE4748 /* LoginViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194194411F162A4000DE4748 /* LoginViewViewController.m */; };
+		194194441F16367B00DE4748 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 194194431F16367B00DE4748 /* logo.png */; };
 		D7FD59511F152CCF0043D4E5 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD594E1F152CCF0043D4E5 /* DeviceModel.m */; };
 		D7FD59521F152CCF0043D4E5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD59501F152CCF0043D4E5 /* User.m */; };
 		D7FD595F1F154FE30043D4E5 /* ForumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD595E1F154FE30043D4E5 /* ForumTableViewCell.m */; };
@@ -92,6 +94,9 @@
 		1902B5CD1F15F76C00D5CD36 /* YLToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLToast.m; sourceTree = "<group>"; };
 		1941943D1F1625D000DE4748 /* ConfigUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigUserViewController.h; sourceTree = "<group>"; };
 		1941943E1F1625D000DE4748 /* ConfigUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigUserViewController.m; sourceTree = "<group>"; };
+		194194401F162A4000DE4748 /* LoginViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewViewController.h; sourceTree = "<group>"; };
+		194194411F162A4000DE4748 /* LoginViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewViewController.m; sourceTree = "<group>"; };
+		194194431F16367B00DE4748 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		1E3932F51FE786CA070094C0 /* libPods-ma2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ma2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D62EAAF160C3B5273F55DBB /* Pods-ma2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ma2.release.xcconfig"; path = "Pods/Target Support Files/Pods-ma2/Pods-ma2.release.xcconfig"; sourceTree = "<group>"; };
 		D7FD594B1F152C460043D4E5 /* stdafx_MaZongApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdafx_MaZongApp.h; sourceTree = "<group>"; };
@@ -245,6 +250,8 @@
 		1902B5BC1F15F61000D5CD36 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				194194401F162A4000DE4748 /* LoginViewViewController.h */,
+				194194411F162A4000DE4748 /* LoginViewViewController.m */,
 				1902B5B91F14DA8300D5CD36 /* RootViewController.h */,
 				1902B5BA1F14DA8300D5CD36 /* RootViewController.m */,
 				1902B5BD1F15F6A500D5CD36 /* AddDeviceViewController.h */,
@@ -452,6 +459,7 @@
 		D7FD59EF1F155B3B0043D4E5 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				194194431F16367B00DE4748 /* logo.png */,
 				D7FD59F01F155B3B0043D4E5 /* longyu.jpg */,
 				D7FD59F11F155B3B0043D4E5 /* up1.jpg */,
 				D7FD59F21F155B3B0043D4E5 /* up2.jpg */,
@@ -535,6 +543,7 @@
 				D7FD59F51F155B3B0043D4E5 /* up1.jpg in Resources */,
 				D7FD59F91F155CED0043D4E5 /* Moments.plist in Resources */,
 				1902B5AF1F14D8E600D5CD36 /* Assets.xcassets in Resources */,
+				194194441F16367B00DE4748 /* logo.png in Resources */,
 				D7FD598F1F1552D50043D4E5 /* PYPhotosView.bundle in Resources */,
 				D7FD59F61F155B3B0043D4E5 /* up2.jpg in Resources */,
 				D7FD59F41F155B3B0043D4E5 /* longyu.jpg in Resources */,
@@ -635,6 +644,7 @@
 				D7FD59931F1552D50043D4E5 /* PYPhotoView.m in Sources */,
 				D7FD59921F1552D50043D4E5 /* PYPhotosView.m in Sources */,
 				D7FD59891F1552D50043D4E5 /* PYPhotosPreviewController.m in Sources */,
+				194194421F162A4000DE4748 /* LoginViewViewController.m in Sources */,
 				D7FD598A1F1552D50043D4E5 /* PYPhotosReaderController.m in Sources */,
 				1941943F1F1625D000DE4748 /* ConfigUserViewController.m in Sources */,
 				1902B5D11F15F76C00D5CD36 /* YLLog.m in Sources */,

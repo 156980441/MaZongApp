@@ -49,6 +49,7 @@
     self.cofigBtn.frame = CGRectMake(60, 320, 260, 30);
     [self.cofigBtn setTitle:@"配置" forState:UIControlStateNormal];
     self.cofigBtn.backgroundColor = [UIColor blueColor];
+    [self.cofigBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(60, 550, 260, 70)];
     
     [self.view addSubview:self.wifiLbl];

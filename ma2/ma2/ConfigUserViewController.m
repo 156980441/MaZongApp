@@ -32,6 +32,7 @@
     self.modfiyBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.modfiyBtn.frame = CGRectMake(60, 380, 260, 30);
     [self.modfiyBtn setTitle:@"修改" forState:UIControlStateNormal];
+    [self.modfiyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.modfiyBtn.backgroundColor = [UIColor blueColor];
     
     [self.view addSubview:self.oldLbl];

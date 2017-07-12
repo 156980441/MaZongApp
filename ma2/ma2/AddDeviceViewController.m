@@ -35,6 +35,7 @@
     self.addBtn.frame = CGRectMake(60, 320, 260, 30);
     [self.addBtn setTitle:@"添加" forState:UIControlStateNormal];
     self.addBtn.backgroundColor = [UIColor blueColor];
+    [self.addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [self.view addSubview:self.deviceIdLbl];
     [self.view addSubview:self.deviceNameLbl];
