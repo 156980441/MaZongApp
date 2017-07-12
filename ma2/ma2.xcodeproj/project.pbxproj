@@ -21,7 +21,7 @@
 		1902B5D21F15F76C00D5CD36 /* YLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5CD1F15F76C00D5CD36 /* YLToast.m */; };
 		1941943F1F1625D000DE4748 /* ConfigUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941943E1F1625D000DE4748 /* ConfigUserViewController.m */; };
 		194194421F162A4000DE4748 /* LoginViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194194411F162A4000DE4748 /* LoginViewViewController.m */; };
-		194194441F16367B00DE4748 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 194194431F16367B00DE4748 /* logo.png */; };
+		D753B41F1F16616700557A4D /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D753B41E1F16616700557A4D /* logo.jpg */; };
 		D7FD59511F152CCF0043D4E5 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD594E1F152CCF0043D4E5 /* DeviceModel.m */; };
 		D7FD59521F152CCF0043D4E5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD59501F152CCF0043D4E5 /* User.m */; };
 		D7FD595F1F154FE30043D4E5 /* ForumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD595E1F154FE30043D4E5 /* ForumTableViewCell.m */; };
@@ -96,9 +96,9 @@
 		1941943E1F1625D000DE4748 /* ConfigUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigUserViewController.m; sourceTree = "<group>"; };
 		194194401F162A4000DE4748 /* LoginViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewViewController.h; sourceTree = "<group>"; };
 		194194411F162A4000DE4748 /* LoginViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewViewController.m; sourceTree = "<group>"; };
-		194194431F16367B00DE4748 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		1E3932F51FE786CA070094C0 /* libPods-ma2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ma2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D62EAAF160C3B5273F55DBB /* Pods-ma2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ma2.release.xcconfig"; path = "Pods/Target Support Files/Pods-ma2/Pods-ma2.release.xcconfig"; sourceTree = "<group>"; };
+		D753B41E1F16616700557A4D /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
 		D7FD594B1F152C460043D4E5 /* stdafx_MaZongApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdafx_MaZongApp.h; sourceTree = "<group>"; };
 		D7FD594D1F152CCF0043D4E5 /* DeviceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceModel.h; sourceTree = "<group>"; };
 		D7FD594E1F152CCF0043D4E5 /* DeviceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceModel.m; sourceTree = "<group>"; };
@@ -459,7 +459,7 @@
 		D7FD59EF1F155B3B0043D4E5 /* res */ = {
 			isa = PBXGroup;
 			children = (
-				194194431F16367B00DE4748 /* logo.png */,
+				D753B41E1F16616700557A4D /* logo.jpg */,
 				D7FD59F01F155B3B0043D4E5 /* longyu.jpg */,
 				D7FD59F11F155B3B0043D4E5 /* up1.jpg */,
 				D7FD59F21F155B3B0043D4E5 /* up2.jpg */,
@@ -539,11 +539,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D753B41F1F16616700557A4D /* logo.jpg in Resources */,
 				D7FD59F71F155B3B0043D4E5 /* up3.jpg in Resources */,
 				D7FD59F51F155B3B0043D4E5 /* up1.jpg in Resources */,
 				D7FD59F91F155CED0043D4E5 /* Moments.plist in Resources */,
 				1902B5AF1F14D8E600D5CD36 /* Assets.xcassets in Resources */,
-				194194441F16367B00DE4748 /* logo.png in Resources */,
 				D7FD598F1F1552D50043D4E5 /* PYPhotosView.bundle in Resources */,
 				D7FD59F61F155B3B0043D4E5 /* up2.jpg in Resources */,
 				D7FD59F41F155B3B0043D4E5 /* longyu.jpg in Resources */,

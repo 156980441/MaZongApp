@@ -33,7 +33,7 @@ static NSArray* g_city_arr = nil;
     
     self.title = @"登录";
     self.view.backgroundColor = [UIColor whiteColor];
-    self.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
+    self.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.jpg"]];
     self.logo.frame = CGRectMake(127, 55, 120, 80);
     self.nameTxt = [[UITextField alloc] initWithFrame:CGRectMake(37, 174, 300, 30)];
     self.passTxt = [[UITextField alloc] initWithFrame:CGRectMake(37, 228, 300, 30)];
