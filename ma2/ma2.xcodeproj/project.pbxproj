@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0351A5C5AD032080B8171F2C /* libPods-ma2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E3932F51FE786CA070094C0 /* libPods-ma2.a */; };
 		1902B5A41F14D8E600D5CD36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5A31F14D8E600D5CD36 /* main.m */; };
 		1902B5A71F14D8E600D5CD36 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5A61F14D8E600D5CD36 /* AppDelegate.m */; };
 		1902B5AF1F14D8E600D5CD36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1902B5AE1F14D8E600D5CD36 /* Assets.xcassets */; };
@@ -40,8 +41,6 @@
 		D7FD59991F1554490043D4E5 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD59981F1554490043D4E5 /* UIColor+HexString.m */; };
 		D7FD599C1F1555230043D4E5 /* ForumViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD599B1F1555230043D4E5 /* ForumViewModel.m */; };
 		D7FD599F1F1555F10043D4E5 /* ForumRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD599E1F1555F10043D4E5 /* ForumRecord.m */; };
-		D7FD59AB1F15590C0043D4E5 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D7FD59A81F15590C0043D4E5 /* MBProgressHUD.bundle */; };
-		D7FD59AC1F15590C0043D4E5 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD59AA1F15590C0043D4E5 /* MBProgressHUD.m */; };
 		D7FD59B21F1559810043D4E5 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD59AF1F1559810043D4E5 /* DACircularProgressView.m */; };
 		D7FD59B31F1559810043D4E5 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD59B11F1559810043D4E5 /* DALabeledCircularProgressView.m */; };
 		D7FD59D61F1559C20043D4E5 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD59B61F1559C20043D4E5 /* MKAnnotationView+WebCache.m */; };
@@ -90,6 +89,8 @@
 		1902B5CB1F15F76C00D5CD36 /* YLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLog.m; sourceTree = "<group>"; };
 		1902B5CC1F15F76C00D5CD36 /* YLToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLToast.h; sourceTree = "<group>"; };
 		1902B5CD1F15F76C00D5CD36 /* YLToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLToast.m; sourceTree = "<group>"; };
+		1E3932F51FE786CA070094C0 /* libPods-ma2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ma2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D62EAAF160C3B5273F55DBB /* Pods-ma2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ma2.release.xcconfig"; path = "Pods/Target Support Files/Pods-ma2/Pods-ma2.release.xcconfig"; sourceTree = "<group>"; };
 		D7FD594B1F152C460043D4E5 /* stdafx_MaZongApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdafx_MaZongApp.h; sourceTree = "<group>"; };
 		D7FD594D1F152CCF0043D4E5 /* DeviceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceModel.h; sourceTree = "<group>"; };
 		D7FD594E1F152CCF0043D4E5 /* DeviceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceModel.m; sourceTree = "<group>"; };
@@ -135,9 +136,6 @@
 		D7FD599B1F1555230043D4E5 /* ForumViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumViewModel.m; sourceTree = "<group>"; };
 		D7FD599D1F1555F10043D4E5 /* ForumRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForumRecord.h; sourceTree = "<group>"; };
 		D7FD599E1F1555F10043D4E5 /* ForumRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForumRecord.m; sourceTree = "<group>"; };
-		D7FD59A81F15590C0043D4E5 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
-		D7FD59A91F15590C0043D4E5 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		D7FD59AA1F15590C0043D4E5 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		D7FD59AE1F1559810043D4E5 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
 		D7FD59AF1F1559810043D4E5 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		D7FD59B01F1559810043D4E5 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
@@ -180,6 +178,7 @@
 		D7FD59F21F155B3B0043D4E5 /* up2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = up2.jpg; sourceTree = "<group>"; };
 		D7FD59F31F155B3B0043D4E5 /* up3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = up3.jpg; sourceTree = "<group>"; };
 		D7FD59F81F155CED0043D4E5 /* Moments.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Moments.plist; sourceTree = "<group>"; };
+		E9D5E0F7D42DD34B455D74B5 /* Pods-ma2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ma2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ma2/Pods-ma2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0351A5C5AD032080B8171F2C /* libPods-ma2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +199,8 @@
 				D7FD59EF1F155B3B0043D4E5 /* res */,
 				1902B5A11F14D8E600D5CD36 /* ma2 */,
 				1902B5A01F14D8E600D5CD36 /* Products */,
+				5B33B49B82DAE8CF1D192664 /* Pods */,
+				F05E69B96E6355943A52209D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -267,6 +269,15 @@
 			name = util;
 			sourceTree = "<group>";
 		};
+		5B33B49B82DAE8CF1D192664 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9D5E0F7D42DD34B455D74B5 /* Pods-ma2.debug.xcconfig */,
+				7D62EAAF160C3B5273F55DBB /* Pods-ma2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D7FD594C1F152CC10043D4E5 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,7 +312,6 @@
 				D7FD59641F1552D50043D4E5 /* PYPhotoBrowser */,
 				D7FD59B41F1559C20043D4E5 /* SDWebImage */,
 				D7FD59AD1F1559810043D4E5 /* DACircularProgress */,
-				D7FD59A71F15590C0043D4E5 /* MBProgressHUD */,
 				D7FD59971F1554490043D4E5 /* UIColor+HexString.h */,
 				D7FD59981F1554490043D4E5 /* UIColor+HexString.m */,
 			);
@@ -383,16 +393,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		D7FD59A71F15590C0043D4E5 /* MBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				D7FD59A81F15590C0043D4E5 /* MBProgressHUD.bundle */,
-				D7FD59A91F15590C0043D4E5 /* MBProgressHUD.h */,
-				D7FD59AA1F15590C0043D4E5 /* MBProgressHUD.m */,
-			);
-			path = MBProgressHUD;
-			sourceTree = "<group>";
-		};
 		D7FD59AD1F1559810043D4E5 /* DACircularProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,6 +456,14 @@
 			path = ../res;
 			sourceTree = "<group>";
 		};
+		F05E69B96E6355943A52209D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E3932F51FE786CA070094C0 /* libPods-ma2.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -463,9 +471,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1902B5B61F14D8E600D5CD36 /* Build configuration list for PBXNativeTarget "ma2" */;
 			buildPhases = (
+				B2705CEA5DC8013EC217FED1 /* [CP] Check Pods Manifest.lock */,
 				1902B59B1F14D8E600D5CD36 /* Sources */,
 				1902B59C1F14D8E600D5CD36 /* Frameworks */,
 				1902B59D1F14D8E600D5CD36 /* Resources */,
+				610F27359AC2D3B29033125A /* [CP] Embed Pods Frameworks */,
+				B8BBC04CF5DEA44DFF9B810A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -521,12 +532,62 @@
 				1902B5AF1F14D8E600D5CD36 /* Assets.xcassets in Resources */,
 				D7FD598F1F1552D50043D4E5 /* PYPhotosView.bundle in Resources */,
 				D7FD59F61F155B3B0043D4E5 /* up2.jpg in Resources */,
-				D7FD59AB1F15590C0043D4E5 /* MBProgressHUD.bundle in Resources */,
 				D7FD59F41F155B3B0043D4E5 /* longyu.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		610F27359AC2D3B29033125A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ma2/Pods-ma2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2705CEA5DC8013EC217FED1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ma2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B8BBC04CF5DEA44DFF9B810A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ma2/Pods-ma2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1902B59B1F14D8E600D5CD36 /* Sources */ = {
@@ -556,7 +617,6 @@
 				D7FD59961F1553BB0043D4E5 /* ForumToolBarView.m in Sources */,
 				D7FD59DF1F1559C20043D4E5 /* UIButton+WebCache.m in Sources */,
 				D7FD59E01F1559C20043D4E5 /* UIImage+GIF.m in Sources */,
-				D7FD59AC1F15590C0043D4E5 /* MBProgressHUD.m in Sources */,
 				1902B5A41F14D8E600D5CD36 /* main.m in Sources */,
 				D7FD59901F1552D50043D4E5 /* PYPhotoBrowseView.m in Sources */,
 				D7FD59861F1552D50043D4E5 /* MBProgressHUD+PY.m in Sources */,
@@ -679,6 +739,7 @@
 		};
 		1902B5B71F14D8E600D5CD36 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9D5E0F7D42DD34B455D74B5 /* Pods-ma2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -695,6 +756,7 @@
 		};
 		1902B5B81F14D8E600D5CD36 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D62EAAF160C3B5273F55DBB /* Pods-ma2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
