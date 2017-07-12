@@ -19,6 +19,7 @@
 		1902B5D01F15F76C00D5CD36 /* YLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5C91F15F76C00D5CD36 /* YLLocationManager.m */; };
 		1902B5D11F15F76C00D5CD36 /* YLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5CB1F15F76C00D5CD36 /* YLLog.m */; };
 		1902B5D21F15F76C00D5CD36 /* YLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5CD1F15F76C00D5CD36 /* YLToast.m */; };
+		1941943F1F1625D000DE4748 /* ConfigUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941943E1F1625D000DE4748 /* ConfigUserViewController.m */; };
 		D7FD59511F152CCF0043D4E5 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD594E1F152CCF0043D4E5 /* DeviceModel.m */; };
 		D7FD59521F152CCF0043D4E5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD59501F152CCF0043D4E5 /* User.m */; };
 		D7FD595F1F154FE30043D4E5 /* ForumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD595E1F154FE30043D4E5 /* ForumTableViewCell.m */; };
@@ -89,6 +90,8 @@
 		1902B5CB1F15F76C00D5CD36 /* YLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLog.m; sourceTree = "<group>"; };
 		1902B5CC1F15F76C00D5CD36 /* YLToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLToast.h; sourceTree = "<group>"; };
 		1902B5CD1F15F76C00D5CD36 /* YLToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLToast.m; sourceTree = "<group>"; };
+		1941943D1F1625D000DE4748 /* ConfigUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigUserViewController.h; sourceTree = "<group>"; };
+		1941943E1F1625D000DE4748 /* ConfigUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigUserViewController.m; sourceTree = "<group>"; };
 		1E3932F51FE786CA070094C0 /* libPods-ma2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ma2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D62EAAF160C3B5273F55DBB /* Pods-ma2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ma2.release.xcconfig"; path = "Pods/Target Support Files/Pods-ma2/Pods-ma2.release.xcconfig"; sourceTree = "<group>"; };
 		D7FD594B1F152C460043D4E5 /* stdafx_MaZongApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdafx_MaZongApp.h; sourceTree = "<group>"; };
@@ -248,6 +251,8 @@
 				1902B5BE1F15F6A500D5CD36 /* AddDeviceViewController.m */,
 				1902B5C01F15F71000D5CD36 /* ConfigWifiViewController.h */,
 				1902B5C11F15F71000D5CD36 /* ConfigWifiViewController.m */,
+				1941943D1F1625D000DE4748 /* ConfigUserViewController.h */,
+				1941943E1F1625D000DE4748 /* ConfigUserViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -631,6 +636,7 @@
 				D7FD59921F1552D50043D4E5 /* PYPhotosView.m in Sources */,
 				D7FD59891F1552D50043D4E5 /* PYPhotosPreviewController.m in Sources */,
 				D7FD598A1F1552D50043D4E5 /* PYPhotosReaderController.m in Sources */,
+				1941943F1F1625D000DE4748 /* ConfigUserViewController.m in Sources */,
 				1902B5D11F15F76C00D5CD36 /* YLLog.m in Sources */,
 				D7FD59E41F1559C20043D4E5 /* UIImageView+WebCache.m in Sources */,
 				D7FD59DB1F1559C20043D4E5 /* SDWebImageDownloader.m in Sources */,

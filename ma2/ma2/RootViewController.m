@@ -12,6 +12,9 @@
 #import "ForumRecord.h"
 #import "ForumViewModel.h"
 #import "ForumTableViewCell.h"
+#import "AddDeviceViewController.h"
+#import "ConfigWifiViewController.h"
+#import "ConfigUserViewController.h"
 
 static NSString* rootCell_identifier = @"rootCell_identifier";
 
@@ -256,6 +259,18 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
             NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.selectDevice.isOff? @"开":@"关"];
             detail.dataSource = [NSArray arrayWithObjects:temperature,tds,ph,isOff, nil];
             [self.navigationController pushViewController:detail animated:YES];
+        } else if (self.type == ViewControllerMineType) {
+            UIViewController* vc = nil;
+            if (0 == indexPath.row) {
+                vc = [[AddDeviceViewController alloc] init];
+            }
+            if (1 == indexPath.row) {
+                vc = [[ConfigWifiViewController alloc] init];
+            }
+            if (2 == indexPath.row) {
+                vc = [[ConfigUserViewController alloc] init];
+            }
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
 }

@@ -23,8 +23,33 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"添加设备";
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.deviceNameLbl = [[UILabel alloc] initWithFrame:CGRectMake(60, 150, 90, 30)];
+    self.deviceIdLbl = [[UILabel alloc] initWithFrame:CGRectMake(60, 230, 90, 30)];
+    self.deviceNameTxtField = [[UITextField alloc] initWithFrame:CGRectMake(160, 150, 160, 30)];
+    self.deviceIdTxtField = [[UITextField alloc] initWithFrame:CGRectMake(160, 230, 160, 30)];
+    self.deviceNameTxtField.borderStyle = self.deviceIdTxtField.borderStyle = UITextBorderStyleLine;
+    self.addBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.addBtn.frame = CGRectMake(60, 320, 260, 30);
+    [self.addBtn setTitle:@"添加" forState:UIControlStateNormal];
+    self.addBtn.backgroundColor = [UIColor blueColor];
+    
+    [self.view addSubview:self.deviceIdLbl];
+    [self.view addSubview:self.deviceNameLbl];
+    [self.view addSubview:self.deviceIdTxtField];
+    [self.view addSubview:self.deviceNameTxtField];
+    [self.view addSubview:self.addBtn];
+    
+    self.deviceNameLbl.text = @"设备名称";
+    self.deviceIdLbl.text = @"设备 ID";
+
+#ifdef LOC_TEST
     self.deviceIdTxtField.text = @"111";
     self.deviceNameTxtField.text = @"有二三四五六";
+#else
+#endif
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,6 +81,12 @@
     }];
 }
 
+// 隐藏键盘
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.deviceNameTxtField resignFirstResponder];
+    [self.deviceIdTxtField resignFirstResponder];
+}
 /*
 #pragma mark - Navigation
 

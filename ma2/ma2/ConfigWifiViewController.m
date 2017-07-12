@@ -38,12 +38,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     self.wifiLbl = [[UILabel alloc] initWithFrame:CGRectMake(60, 150, 90, 30)];
     self.passLbl = [[UILabel alloc] initWithFrame:CGRectMake(60, 230, 90, 30)];
     self.wifiTextField = [[UITextField alloc] initWithFrame:CGRectMake(160, 150, 160, 30)];
     self.passTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(160, 230, 160, 30)];
+    self.wifiTextField.borderStyle = self.passTextFiled.borderStyle = UITextBorderStyleBezel;
     self.cofigBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.cofigBtn.frame = CGRectMake(60, 300, 260, 30);
+    self.cofigBtn.frame = CGRectMake(60, 320, 260, 30);
+    [self.cofigBtn setTitle:@"配置" forState:UIControlStateNormal];
+    self.cofigBtn.backgroundColor = [UIColor blueColor];
     self.noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(60, 550, 260, 70)];
     
     [self.view addSubview:self.wifiLbl];
@@ -56,6 +61,7 @@
     self.wifiLbl.text = @"Wi-Fi 名称";
     self.passLbl.text = @"Wi-Fi 密码";
     self.wifiTextField.text = self.wifiName;
+    self.noteTextView.text = @"注意：为确保成功配置，请确保设备和您的移动设备处于同一个 Wi-Fi网络下";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,11 +74,6 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [self.wifiTextField resignFirstResponder];
     [self.passTextFiled resignFirstResponder];
-}
-
-- (IBAction)configWifiBtn:(id)sender
-{
-    [YLToast showWithText:@"配置成功"];
 }
 /*
 #pragma mark - Navigation
