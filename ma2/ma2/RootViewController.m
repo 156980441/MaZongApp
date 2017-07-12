@@ -15,6 +15,9 @@
 #import "AddDeviceViewController.h"
 #import "ConfigWifiViewController.h"
 #import "ConfigUserViewController.h"
+#import "LoginViewViewController.h"
+
+#import "User.h"
 
 static NSString* rootCell_identifier = @"rootCell_identifier";
 
@@ -60,7 +63,7 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     self.upScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
     self.downScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -84,6 +87,11 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (self.type == ViewControllerDeviceType && !g_user.password) {
+        LoginViewViewController* loginVc = [[LoginViewViewController alloc] init];
+        [self presentViewController:loginVc animated:YES completion:nil];
+    }
     
     CGFloat statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     CGFloat navHeight = self.navigationController.navigationBar.frame.size.height;

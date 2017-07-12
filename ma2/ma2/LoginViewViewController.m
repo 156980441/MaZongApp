@@ -32,11 +32,38 @@ static NSArray* g_city_arr = nil;
     // Do any additional setup after loading the view.
     
     self.title = @"登录";
-    
-    self.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
     self.logo.frame = CGRectMake(127, 55, 120, 80);
     self.nameTxt = [[UITextField alloc] initWithFrame:CGRectMake(37, 174, 300, 30)];
-    self.passTxt = [[UITextField alloc] initWithFrame:CGRectMake(37, 174, 300, 30)];
+    self.passTxt = [[UITextField alloc] initWithFrame:CGRectMake(37, 228, 300, 30)];
+    self.loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.loginBtn.frame = CGRectMake(37, 300, 300, 30);
+    self.registBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.registBtn.frame = CGRectMake(90, 350, 100, 30);
+    self.fogretBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.fogretBtn.frame = CGRectMake(210, 350, 100, 30);
+    
+    [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+    [self.registBtn setTitle:@"注册新用户" forState:UIControlStateNormal];
+    [self.fogretBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
+    self.loginBtn.tintColor = [UIColor whiteColor];
+    
+    self.registBtn.tintColor = self.fogretBtn.tintColor = [UIColor blueColor];
+    self.loginBtn.backgroundColor = [UIColor blueColor];
+    self.passTxt.borderStyle = self.nameTxt.borderStyle = UITextBorderStyleLine;
+    
+    self.nameTxt.placeholder = @"请输入用户名";
+    self.passTxt.placeholder = @"请输入密码";
+    
+    [self.view addSubview:self.logo];
+    [self.view addSubview:self.nameTxt];
+    [self.view addSubview:self.passTxt];
+    [self.view addSubview:self.loginBtn];
+    [self.view addSubview:self.registBtn];
+    [self.view addSubview:self.fogretBtn];
+    
+    [self.loginBtn addTarget:self action:@selector(loginBtnPress:) forControlEvents:UIControlEventTouchDown];
     
     g_city_arr = @[@"北京市"];
     if (!g_user) {
@@ -84,13 +111,20 @@ static NSArray* g_city_arr = nil;
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)loginBtnPress:(id)sender {
+- (void)loginBtnPress:(id)sender {
+    
+#ifdef LOC_TEST
+    g_user.password = @"123456";
+    [self dismissViewControllerAnimated:YES completion:NO];
+#else
+    
     if ([self.passTxt.text isEqualToString:@""]|| [self.nameTxt.text isEqualToString:@""]) {
         [YLToast showWithText:@"账号或者密码为空"];
     }
     else {
         [self checkuser:self.nameTxt.text withPass:self.passTxt.text];
     }
+#endif
 }
 
 -(void)checkuser:(NSString*)name withPass:(NSString*)pass
