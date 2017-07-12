@@ -63,10 +63,12 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     if (self.type != ViewControllerForumType) {
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:rootCell_identifier];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    } else {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.dataSource = self.momentFrames;
     }
     
     
@@ -106,22 +108,20 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
 
 - (NSMutableArray *)moments{
     if (!_moments) {
+        NSLog(@"%s",__func__);
         _moments = [ForumRecord moments];
     }
     return _moments;
 }
 - (NSMutableArray *)momentFrames{
     if (!_momentFrames) {
+        NSLog(@"%s",__func__);
         _momentFrames = [NSMutableArray array];
         //数据模型 => ViewModel(包含cell子控件的Frame)
         for (ForumRecord *moment in self.moments) {
             ForumViewModel *momentFrame = [[ForumViewModel alloc] init];
             momentFrame.moment = moment;
             [self.momentFrames addObject:momentFrame];
-        }
-        
-        if (_dataSource == nil) {
-            self.dataSource = self.momentFrames;
         }
     }
     return _momentFrames;
@@ -192,14 +192,13 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.type == ViewControllerForumType) {
-        return self.momentFrames.count;
-    }
+    NSLog(@"%s",__func__);
     return self.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%s",__func__);
     UITableViewCell* cell = nil;
     if (self.dataSource.count > 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:rootCell_identifier];
@@ -222,22 +221,28 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
         {
             cell = [ForumTableViewCell momentsTableViewCellWithTableView:tableView];
             ForumTableViewCell* forumCell = (ForumTableViewCell*)cell;
-            forumCell.momentFrames = self.momentFrames[indexPath.section];
+            forumCell.momentFrames = self.momentFrames[indexPath.row];
         }
     }
     return cell;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%s",__func__);
     if (self.type == ViewControllerForumType) {
         //取数据
-        ForumViewModel *momentFrame = self.momentFrames[indexPath.section];
+        ForumViewModel *momentFrame = self.momentFrames[indexPath.row];
         return momentFrame.cellHeight;
     }
-    return 40;
+    else
+    {
+        return 40;
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%s",__func__);
     // indexPath.row 是从 0 开始的
     if (self.dataSource.count > 0) {
         if (self.type == ViewControllerDeviceType) {
