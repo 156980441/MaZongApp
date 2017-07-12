@@ -296,6 +296,16 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
                 [alert addAction:cancelAction];
                 [self presentViewController:alert animated:YES completion:nil];
             }
+            if (4 == indexPath.row) {
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"关于" message:@"版本 1.0" preferredStyle:UIAlertControllerStyleAlert];
+                
+                void (^cancel)(UIAlertAction* action) = ^(UIAlertAction* action){
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                };
+                UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleCancel handler:cancel];
+                [alert addAction:cancelAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
