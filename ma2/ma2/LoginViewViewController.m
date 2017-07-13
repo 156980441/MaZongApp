@@ -66,6 +66,15 @@ static NSArray* g_city_arr = nil;
     [self.view addSubview:self.registBtn];
     [self.view addSubview:self.fogretBtn];
     
+    self.logo.translatesAutoresizingMaskIntoConstraints = self.nameTxt.translatesAutoresizingMaskIntoConstraints = self.passTxt.translatesAutoresizingMaskIntoConstraints = self.loginBtn.translatesAutoresizingMaskIntoConstraints = self.registBtn.translatesAutoresizingMaskIntoConstraints = self.fogretBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSLayoutConstraint *contraint1 = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:55];
+    NSLayoutConstraint *contraint2 = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:127];
+    //子view的下边缘离父view的下边缘40个像素
+    NSLayoutConstraint *contraint3 = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-40.0];
+    //子view的右边缘离父view的右边缘40个像素
+    NSLayoutConstraint *contraint4 = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-40.0];
+    
     [self.loginBtn addTarget:self action:@selector(loginBtnPress:) forControlEvents:UIControlEventTouchDown];
     [self.registBtn addTarget:self action:@selector(registBtnPress:) forControlEvents:UIControlEventTouchDown];
     
