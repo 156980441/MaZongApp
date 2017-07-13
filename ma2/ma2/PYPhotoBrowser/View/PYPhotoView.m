@@ -6,6 +6,7 @@
 
 #import "PYPhotoView.h"
 #import "UIImageView+WebCache.h"
+#import "UIView+WebCache.h"
 #import "PYPhoto.h"
 #import "PYPhotosView.h"
 #import "PYConst.h"
@@ -525,7 +526,10 @@ static CGSize originalSize;
     }
     
     NSURL *url = [NSURL URLWithString:urlStr];
-    [self sd_setImageWithURL:url placeholderImage:placeholdeerImage options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+    [self sd_setImageWithURL:url
+            placeholderImage:placeholdeerImage
+                     options:0
+                    progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
         if (self.isBig) {
             // 获取图片链接
             NSString *imageUrl = [[self sd_imageURL] absoluteString];

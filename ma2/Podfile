@@ -8,5 +8,6 @@ target 'ma2' do
   # Pods for ma2
 pod ‘AFNetworking’,'~>2.6.3'
 pod ‘MBProgressHUD’
+pod ‘SDWebImage’
 
 end
