@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewViewController.h"
+#import "RegisterViewController.h"
 #import "User.h"
 
 #import "YLToast.h"
@@ -33,6 +34,8 @@ static NSArray* g_city_arr = nil;
     
     self.title = @"登录";
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.hidden = YES;
+    
     self.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.jpg"]];
     self.logo.frame = CGRectMake(127, 55, 147, 144);
     self.nameTxt = [[UITextField alloc] initWithFrame:CGRectMake(60, 244, 300, 30)];
@@ -64,6 +67,7 @@ static NSArray* g_city_arr = nil;
     [self.view addSubview:self.fogretBtn];
     
     [self.loginBtn addTarget:self action:@selector(loginBtnPress:) forControlEvents:UIControlEventTouchDown];
+    [self.registBtn addTarget:self action:@selector(registBtnPress:) forControlEvents:UIControlEventTouchDown];
     
     g_city_arr = @[@"北京市"];
     if (!g_user) {
@@ -110,7 +114,10 @@ static NSArray* g_city_arr = nil;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)registBtnPress:(id)sender {
+    RegisterViewController* registerVc = [[RegisterViewController alloc] init];
+    [self.navigationController pushViewController:registerVc animated:YES];
+}
 - (void)loginBtnPress:(id)sender {
     
 #ifdef LOC_TEST

@@ -21,6 +21,7 @@
 		1902B5D21F15F76C00D5CD36 /* YLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5CD1F15F76C00D5CD36 /* YLToast.m */; };
 		1941943F1F1625D000DE4748 /* ConfigUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941943E1F1625D000DE4748 /* ConfigUserViewController.m */; };
 		194194421F162A4000DE4748 /* LoginViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194194411F162A4000DE4748 /* LoginViewViewController.m */; };
+		1941944E1F17141100DE4748 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941944D1F17141100DE4748 /* RegisterViewController.m */; };
 		D753B41F1F16616700557A4D /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D753B41E1F16616700557A4D /* logo.jpg */; };
 		D7FD59511F152CCF0043D4E5 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD594E1F152CCF0043D4E5 /* DeviceModel.m */; };
 		D7FD59521F152CCF0043D4E5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD59501F152CCF0043D4E5 /* User.m */; };
@@ -96,6 +97,8 @@
 		1941943E1F1625D000DE4748 /* ConfigUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigUserViewController.m; sourceTree = "<group>"; };
 		194194401F162A4000DE4748 /* LoginViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewViewController.h; sourceTree = "<group>"; };
 		194194411F162A4000DE4748 /* LoginViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewViewController.m; sourceTree = "<group>"; };
+		1941944C1F17141100DE4748 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		1941944D1F17141100DE4748 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		1E3932F51FE786CA070094C0 /* libPods-ma2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ma2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D62EAAF160C3B5273F55DBB /* Pods-ma2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ma2.release.xcconfig"; path = "Pods/Target Support Files/Pods-ma2/Pods-ma2.release.xcconfig"; sourceTree = "<group>"; };
 		D753B41E1F16616700557A4D /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
@@ -250,16 +253,18 @@
 		1902B5BC1F15F61000D5CD36 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				194194401F162A4000DE4748 /* LoginViewViewController.h */,
-				194194411F162A4000DE4748 /* LoginViewViewController.m */,
-				1902B5B91F14DA8300D5CD36 /* RootViewController.h */,
-				1902B5BA1F14DA8300D5CD36 /* RootViewController.m */,
 				1902B5BD1F15F6A500D5CD36 /* AddDeviceViewController.h */,
 				1902B5BE1F15F6A500D5CD36 /* AddDeviceViewController.m */,
-				1902B5C01F15F71000D5CD36 /* ConfigWifiViewController.h */,
-				1902B5C11F15F71000D5CD36 /* ConfigWifiViewController.m */,
 				1941943D1F1625D000DE4748 /* ConfigUserViewController.h */,
 				1941943E1F1625D000DE4748 /* ConfigUserViewController.m */,
+				1902B5C01F15F71000D5CD36 /* ConfigWifiViewController.h */,
+				1902B5C11F15F71000D5CD36 /* ConfigWifiViewController.m */,
+				194194401F162A4000DE4748 /* LoginViewViewController.h */,
+				194194411F162A4000DE4748 /* LoginViewViewController.m */,
+				1941944C1F17141100DE4748 /* RegisterViewController.h */,
+				1941944D1F17141100DE4748 /* RegisterViewController.m */,
+				1902B5B91F14DA8300D5CD36 /* RootViewController.h */,
+				1902B5BA1F14DA8300D5CD36 /* RootViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -643,6 +648,7 @@
 				D7FD59E21F1559C20043D4E5 /* UIImage+WebP.m in Sources */,
 				D7FD59931F1552D50043D4E5 /* PYPhotoView.m in Sources */,
 				D7FD59921F1552D50043D4E5 /* PYPhotosView.m in Sources */,
+				1941944E1F17141100DE4748 /* RegisterViewController.m in Sources */,
 				D7FD59891F1552D50043D4E5 /* PYPhotosPreviewController.m in Sources */,
 				194194421F162A4000DE4748 /* LoginViewViewController.m in Sources */,
 				D7FD598A1F1552D50043D4E5 /* PYPhotosReaderController.m in Sources */,

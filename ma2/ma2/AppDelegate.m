@@ -25,8 +25,8 @@
     
     for (int i = 0; i < 10; i++) {
         DeviceModel* dev = [[DeviceModel alloc] init];
-        dev.name = @"Jim";
-        dev.deviceId = @"123";
+        dev.name = [NSString stringWithFormat:@"Jim %d",i];
+        dev.deviceId = [NSString stringWithFormat:@"100-200-0%d",i];;
         dev.ph = @"3";
         dev.temperature = @"23";
         dev.tds = @"10";
@@ -46,12 +46,9 @@
 #endif
     RootViewController* device = [[RootViewController alloc] initWithType:ViewControllerDeviceType];
     device.dataSource = arr0;
-    device.view.backgroundColor = [UIColor redColor];
     RootViewController* forum = [[RootViewController alloc] initWithType:ViewControllerForumType];
-    forum.view.backgroundColor = [UIColor yellowColor];
     RootViewController* mine = [[RootViewController alloc] initWithType:ViewControllerMineType];
     mine.dataSource = arr2;
-    mine.view.backgroundColor = [UIColor whiteColor];
     UINavigationController* nav0 = [[UINavigationController alloc] initWithRootViewController:device];
     UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:forum];
     UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:mine];

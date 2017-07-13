@@ -91,7 +91,8 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     
     if (self.type == ViewControllerDeviceType && !g_user.password) {
         LoginViewViewController* loginVc = [[LoginViewViewController alloc] init];
-        [self presentViewController:loginVc animated:YES completion:nil];
+        UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:loginVc];
+        [self presentViewController:nav animated:YES completion:nil];
     }
     
     CGFloat statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
@@ -297,7 +298,7 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
                 [self presentViewController:alert animated:YES completion:nil];
             }
             if (4 == indexPath.row) {
-                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"关于" message:@"版本 1.0" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil message:@"版本 1.0" preferredStyle:UIAlertControllerStyleAlert];
                 
                 void (^cancel)(UIAlertAction* action) = ^(UIAlertAction* action){
                     [self dismissViewControllerAnimated:YES completion:nil];
