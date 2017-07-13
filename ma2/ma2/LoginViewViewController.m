@@ -37,9 +37,8 @@ static NSArray* g_city_arr = nil;
     self.navigationController.navigationBar.hidden = YES;
     
     self.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.jpg"]];
-    self.logo.frame = CGRectMake(127, 55, 147, 144);
-    self.nameTxt = [[UITextField alloc] initWithFrame:CGRectMake(60, 244, 300, 30)];
-    self.passTxt = [[UITextField alloc] initWithFrame:CGRectMake(60, 298, 300, 30)];
+    self.nameTxt = [[UITextField alloc] init];
+    self.passTxt = [[UITextField alloc] init];
     self.loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.loginBtn.frame = CGRectMake(60, 370, 300, 30);
     self.registBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -66,14 +65,35 @@ static NSArray* g_city_arr = nil;
     [self.view addSubview:self.registBtn];
     [self.view addSubview:self.fogretBtn];
     
-    self.logo.translatesAutoresizingMaskIntoConstraints = self.nameTxt.translatesAutoresizingMaskIntoConstraints = self.passTxt.translatesAutoresizingMaskIntoConstraints = self.loginBtn.translatesAutoresizingMaskIntoConstraints = self.registBtn.translatesAutoresizingMaskIntoConstraints = self.fogretBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    self.logo.translatesAutoresizingMaskIntoConstraints = NO;
+    self.nameTxt.translatesAutoresizingMaskIntoConstraints = NO;
+    self.passTxt.translatesAutoresizingMaskIntoConstraints = NO;
+    self.loginBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    self.registBtn.translatesAutoresizingMaskIntoConstraints = self.fogretBtn.translatesAutoresizingMaskIntoConstraints = YES;
     
-    NSLayoutConstraint *contraint1 = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:55];
-    NSLayoutConstraint *contraint2 = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:127];
-    //子view的下边缘离父view的下边缘40个像素
-    NSLayoutConstraint *contraint3 = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-40.0];
-    //子view的右边缘离父view的右边缘40个像素
-    NSLayoutConstraint *contraint4 = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-40.0];
+    NSLayoutConstraint *top_logo = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:55];
+    NSLayoutConstraint *x_logo = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *w_logo = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:147];
+    NSLayoutConstraint *h_logo = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:144];
+    
+    NSLayoutConstraint *top_name = [NSLayoutConstraint constraintWithItem:self.nameTxt attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.logo attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40.0];
+    NSLayoutConstraint *left_name = [NSLayoutConstraint constraintWithItem:self.nameTxt attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:60.0];
+    NSLayoutConstraint *right_name = [NSLayoutConstraint constraintWithItem:self.nameTxt attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-60];
+    NSLayoutConstraint *h_name = [NSLayoutConstraint constraintWithItem:self.nameTxt attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0];
+    
+    NSLayoutConstraint *top_pass = [NSLayoutConstraint constraintWithItem:self.passTxt attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.nameTxt attribute:NSLayoutAttributeBottom multiplier:1.0 constant:20];
+    NSLayoutConstraint *left_pass = [NSLayoutConstraint constraintWithItem:self.passTxt attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:60.0];
+    NSLayoutConstraint *right_pass = [NSLayoutConstraint constraintWithItem:self.passTxt attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-60];
+    NSLayoutConstraint *h_pass = [NSLayoutConstraint constraintWithItem:self.passTxt attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0];
+    
+    NSLayoutConstraint *login_top = [NSLayoutConstraint constraintWithItem:self.loginBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.passTxt attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *login_left = [NSLayoutConstraint constraintWithItem:self.loginBtn attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:60.0];
+    NSLayoutConstraint *login_right = [NSLayoutConstraint constraintWithItem:self.loginBtn attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-60];
+    NSLayoutConstraint *login_h = [NSLayoutConstraint constraintWithItem:self.loginBtn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0];
+    
+    //把约束添加到父视图上
+    NSArray *array = [NSArray arrayWithObjects:top_logo, x_logo, w_logo, h_logo, top_name,left_name,right_name,h_name,top_pass,left_pass,right_pass,h_pass,login_top,login_left,login_right,login_h, nil];
+    [self.view addConstraints:array];
     
     [self.loginBtn addTarget:self action:@selector(loginBtnPress:) forControlEvents:UIControlEventTouchDown];
     [self.registBtn addTarget:self action:@selector(registBtnPress:) forControlEvents:UIControlEventTouchDown];
