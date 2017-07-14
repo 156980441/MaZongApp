@@ -40,11 +40,8 @@ static NSArray* g_city_arr = nil;
     self.nameTxt = [[UITextField alloc] init];
     self.passTxt = [[UITextField alloc] init];
     self.loginBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.loginBtn.frame = CGRectMake(60, 370, 300, 30);
     self.registBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.registBtn.frame = CGRectMake(100, 420, 100, 30);
     self.fogretBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.fogretBtn.frame = CGRectMake(230, 420, 100, 30);
     
     [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     [self.registBtn setTitle:@"注册新用户" forState:UIControlStateNormal];
@@ -65,11 +62,12 @@ static NSArray* g_city_arr = nil;
     [self.view addSubview:self.registBtn];
     [self.view addSubview:self.fogretBtn];
     
-    self.logo.translatesAutoresizingMaskIntoConstraints = NO;
-    self.nameTxt.translatesAutoresizingMaskIntoConstraints = NO;
-    self.passTxt.translatesAutoresizingMaskIntoConstraints = NO;
-    self.loginBtn.translatesAutoresizingMaskIntoConstraints = NO;
-    self.registBtn.translatesAutoresizingMaskIntoConstraints = self.fogretBtn.translatesAutoresizingMaskIntoConstraints = YES;
+    self.logo.translatesAutoresizingMaskIntoConstraints =
+    self.nameTxt.translatesAutoresizingMaskIntoConstraints =
+    self.passTxt.translatesAutoresizingMaskIntoConstraints =
+    self.loginBtn.translatesAutoresizingMaskIntoConstraints =
+    self.registBtn.translatesAutoresizingMaskIntoConstraints =
+    self.fogretBtn.translatesAutoresizingMaskIntoConstraints = NO;
     
     NSLayoutConstraint *top_logo = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:55];
     NSLayoutConstraint *x_logo = [NSLayoutConstraint constraintWithItem:self.logo attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
@@ -91,8 +89,26 @@ static NSArray* g_city_arr = nil;
     NSLayoutConstraint *login_right = [NSLayoutConstraint constraintWithItem:self.loginBtn attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-60];
     NSLayoutConstraint *login_h = [NSLayoutConstraint constraintWithItem:self.loginBtn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30.0];
     
+    NSLayoutConstraint *regist_h = [NSLayoutConstraint constraintWithItem:self.registBtn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30];
+    NSLayoutConstraint *regist_w = [NSLayoutConstraint constraintWithItem:self.registBtn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:100];
+    NSLayoutConstraint *regist_left = [NSLayoutConstraint constraintWithItem:self.registBtn attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:-70.0];
+    NSLayoutConstraint *regist_top = [NSLayoutConstraint constraintWithItem:self.registBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.loginBtn attribute:NSLayoutAttributeBottom multiplier:1.0 constant:50.0];
+    
+    NSLayoutConstraint *forget_h = [NSLayoutConstraint constraintWithItem:self.fogretBtn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30];
+    NSLayoutConstraint *forget_w = [NSLayoutConstraint constraintWithItem:self.fogretBtn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:100];
+    NSLayoutConstraint *forget_left = [NSLayoutConstraint constraintWithItem:self.fogretBtn attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:70.0];
+    NSLayoutConstraint *forget_top = [NSLayoutConstraint constraintWithItem:self.fogretBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.loginBtn attribute:NSLayoutAttributeBottom multiplier:1.0 constant:50.0];
+    
+    
     //把约束添加到父视图上
-    NSArray *array = [NSArray arrayWithObjects:top_logo, x_logo, w_logo, h_logo, top_name,left_name,right_name,h_name,top_pass,left_pass,right_pass,h_pass,login_top,login_left,login_right,login_h, nil];
+    NSArray *array = [NSArray arrayWithObjects:
+                      top_logo, x_logo, w_logo, h_logo,
+                      top_name,left_name,right_name,h_name,
+                      top_pass,left_pass,right_pass,h_pass,
+                      login_top,login_left,login_right,login_h,
+                      regist_top,regist_left,regist_h,regist_w,
+                      forget_top,forget_left,forget_h,forget_w,
+                      nil];
     [self.view addConstraints:array];
     
     [self.loginBtn addTarget:self action:@selector(loginBtnPress:) forControlEvents:UIControlEventTouchDown];
