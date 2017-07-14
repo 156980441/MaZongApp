@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AddDeviceViewController : UIViewController
-@property (strong, nonatomic) UILabel *deviceNameLbl;
-@property (strong, nonatomic) UILabel *deviceIdLbl;
 @property (strong, nonatomic) UITextField *deviceNameTxtField;
 @property (strong, nonatomic) UITextField *deviceIdTxtField;
 @property (strong, nonatomic) UIButton* addBtn;
-
 @end

@@ -11,8 +11,6 @@
 @interface ConfigWifiViewController : UIViewController
 @property (strong, nonatomic) UITextField *wifiTextField;
 @property (strong, nonatomic) UITextField *passTextFiled;
-@property (strong, nonatomic) UILabel *wifiLbl;
-@property (strong, nonatomic) UILabel *passLbl;
 @property (strong, nonatomic) UITextView *noteTextView;
 @property (strong, nonatomic) UIButton *cofigBtn;
 

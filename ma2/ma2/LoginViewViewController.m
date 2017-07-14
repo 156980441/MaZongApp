@@ -32,9 +32,7 @@ static NSArray* g_city_arr = nil;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"登录";
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.hidden = YES;
     
     self.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.jpg"]];
     self.nameTxt = [[UITextField alloc] init];
@@ -154,6 +152,13 @@ static NSArray* g_city_arr = nil;
     }];
     
     [self.location startUpdatingLocation];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = YES; // 隐藏 Navbar
 }
 
 - (void)didReceiveMemoryWarning {

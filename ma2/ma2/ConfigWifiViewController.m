@@ -40,29 +40,65 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.wifiLbl = [[UILabel alloc] initWithFrame:CGRectMake(60, 150, 90, 30)];
-    self.passLbl = [[UILabel alloc] initWithFrame:CGRectMake(60, 230, 90, 30)];
-    self.wifiTextField = [[UITextField alloc] initWithFrame:CGRectMake(160, 150, 160, 30)];
-    self.passTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(160, 230, 160, 30)];
-    self.wifiTextField.borderStyle = self.passTextFiled.borderStyle = UITextBorderStyleBezel;
+    self.wifiTextField = [[UITextField alloc] init];
+    self.passTextFiled = [[UITextField alloc] init];
     self.cofigBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.cofigBtn.frame = CGRectMake(60, 320, 260, 30);
-    [self.cofigBtn setTitle:@"配置" forState:UIControlStateNormal];
-    self.cofigBtn.backgroundColor = [UIColor blueColor];
-    [self.cofigBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(60, 550, 260, 70)];
     
-    [self.view addSubview:self.wifiLbl];
-    [self.view addSubview:self.passLbl];
     [self.view addSubview:self.passTextFiled];
     [self.view addSubview:self.wifiTextField];
     [self.view addSubview:self.cofigBtn];
     [self.view addSubview:self.noteTextView];
+
+    self.wifiTextField.translatesAutoresizingMaskIntoConstraints =
+    self.passTextFiled.translatesAutoresizingMaskIntoConstraints =
+    self.noteTextView.translatesAutoresizingMaskIntoConstraints =
+    self.cofigBtn.translatesAutoresizingMaskIntoConstraints = NO;
     
-    self.wifiLbl.text = @"Wi-Fi 名称";
-    self.passLbl.text = @"Wi-Fi 密码";
+    CGFloat statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat navHeight = self.navigationController.navigationBar.frame.size.height;
+    
+    NSLayoutConstraint *name_top = [NSLayoutConstraint constraintWithItem:self.wifiTextField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:statusHeight + navHeight + 80];
+    NSLayoutConstraint *name_left = [NSLayoutConstraint constraintWithItem:self.wifiTextField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:60.0];
+    NSLayoutConstraint *name_right = [NSLayoutConstraint constraintWithItem:self.wifiTextField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-60];
+    NSLayoutConstraint *name_hight = [NSLayoutConstraint constraintWithItem:self.wifiTextField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30];
+    
+    NSLayoutConstraint *pass_top = [NSLayoutConstraint constraintWithItem:self.passTextFiled attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.wifiTextField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *pass_left = [NSLayoutConstraint constraintWithItem:self.passTextFiled attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.wifiTextField attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *pass_right = [NSLayoutConstraint constraintWithItem:self.passTextFiled attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.wifiTextField attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *pass_hight = [NSLayoutConstraint constraintWithItem:self.passTextFiled attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.wifiTextField attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *bt_top = [NSLayoutConstraint constraintWithItem:self.cofigBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.passTextFiled attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *bt_left = [NSLayoutConstraint constraintWithItem:self.cofigBtn attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.passTextFiled attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *bt_right = [NSLayoutConstraint constraintWithItem:self.cofigBtn attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.passTextFiled attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *bt_hight = [NSLayoutConstraint constraintWithItem:self.cofigBtn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.passTextFiled attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *text_height = [NSLayoutConstraint constraintWithItem:self.noteTextView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:60];
+    NSLayoutConstraint *text_left = [NSLayoutConstraint constraintWithItem:self.noteTextView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.passTextFiled attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *text_right = [NSLayoutConstraint constraintWithItem:self.noteTextView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.passTextFiled attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *text_bottom = [NSLayoutConstraint constraintWithItem:self.noteTextView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-80];
+    
+    NSArray *array = [NSArray arrayWithObjects:
+                      name_top, name_left, name_right, name_hight,
+                      pass_top,pass_left,pass_right,pass_hight,
+                      bt_top,bt_left,bt_right,bt_hight,
+                      text_left,text_right,text_bottom,text_height,
+                      nil];
+    [self.view addConstraints:array];
+    
+    self.wifiTextField.placeholder = @"请输入 Wi-Fi 名称";
+    self.passTextFiled.placeholder = @"请输入 Wi-Fi 密码";
+    
+    self.wifiTextField.borderStyle = self.passTextFiled.borderStyle = UITextBorderStyleBezel;
+    
+    [self.cofigBtn setTitle:@"配置" forState:UIControlStateNormal];
+    self.cofigBtn.backgroundColor = [UIColor blueColor];
+    self.cofigBtn.tintColor = [UIColor whiteColor];
     self.wifiTextField.text = self.wifiName;
     self.noteTextView.text = @"注意：为确保成功配置，请确保设备和您的移动设备处于同一个 Wi-Fi网络下";
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -26,25 +26,49 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.deviceNameLbl = [[UILabel alloc] initWithFrame:CGRectMake(60, 150, 90, 30)];
-    self.deviceIdLbl = [[UILabel alloc] initWithFrame:CGRectMake(60, 230, 90, 30)];
-    self.deviceNameTxtField = [[UITextField alloc] initWithFrame:CGRectMake(160, 150, 160, 30)];
-    self.deviceIdTxtField = [[UITextField alloc] initWithFrame:CGRectMake(160, 230, 160, 30)];
+    self.deviceNameTxtField = [[UITextField alloc] init];
+    self.deviceIdTxtField = [[UITextField alloc] init];
     self.deviceNameTxtField.borderStyle = self.deviceIdTxtField.borderStyle = UITextBorderStyleLine;
     self.addBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.addBtn.frame = CGRectMake(60, 320, 260, 30);
     [self.addBtn setTitle:@"添加" forState:UIControlStateNormal];
     self.addBtn.backgroundColor = [UIColor blueColor];
     [self.addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    [self.view addSubview:self.deviceIdLbl];
-    [self.view addSubview:self.deviceNameLbl];
     [self.view addSubview:self.deviceIdTxtField];
     [self.view addSubview:self.deviceNameTxtField];
     [self.view addSubview:self.addBtn];
     
-    self.deviceNameLbl.text = @"设备名称";
-    self.deviceIdLbl.text = @"设备 ID";
+    self.deviceNameTxtField.translatesAutoresizingMaskIntoConstraints =
+    self.deviceIdTxtField.translatesAutoresizingMaskIntoConstraints =
+    self.addBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    CGFloat statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat navHeight = self.navigationController.navigationBar.frame.size.height;
+    
+    NSLayoutConstraint *name_top = [NSLayoutConstraint constraintWithItem:self.deviceNameTxtField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:statusHeight + navHeight + 80];
+    NSLayoutConstraint *name_left = [NSLayoutConstraint constraintWithItem:self.deviceNameTxtField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:60.0];
+    NSLayoutConstraint *name_right = [NSLayoutConstraint constraintWithItem:self.deviceNameTxtField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-60];
+    NSLayoutConstraint *name_hight = [NSLayoutConstraint constraintWithItem:self.deviceNameTxtField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30];
+    
+    NSLayoutConstraint *id_top = [NSLayoutConstraint constraintWithItem:self.deviceIdTxtField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.deviceNameTxtField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *id_left = [NSLayoutConstraint constraintWithItem:self.deviceIdTxtField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.deviceNameTxtField attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *id_right = [NSLayoutConstraint constraintWithItem:self.deviceIdTxtField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.deviceNameTxtField attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *id_hight = [NSLayoutConstraint constraintWithItem:self.deviceIdTxtField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.deviceNameTxtField attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *bt_top = [NSLayoutConstraint constraintWithItem:self.addBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.deviceIdTxtField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *bt_left = [NSLayoutConstraint constraintWithItem:self.addBtn attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.deviceIdTxtField attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *bt_right = [NSLayoutConstraint constraintWithItem:self.addBtn attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.deviceIdTxtField attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *bt_hight = [NSLayoutConstraint constraintWithItem:self.addBtn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.deviceIdTxtField attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSArray *array = [NSArray arrayWithObjects:
+                      name_top, name_left, name_right, name_hight,
+                      id_top,id_left,id_right,id_hight,
+                      bt_top,bt_left,bt_right,bt_hight,
+                      nil];
+    [self.view addConstraints:array];
+    
+    self.deviceNameTxtField.placeholder = @"请输入设备名称";
+    self.deviceIdTxtField.placeholder = @"请输入设备 ID";
 
 #ifdef LOC_TEST
     self.deviceIdTxtField.text = @"111";

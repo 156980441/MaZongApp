@@ -22,30 +22,60 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.oldLbl = [[UILabel alloc] initWithFrame:CGRectMake(60, 150, 90, 30)];
-    self.currentLbl = [[UILabel alloc] initWithFrame:CGRectMake(60, 230, 90, 30)];
-    self.confirmLbl = [[UILabel alloc] initWithFrame:CGRectMake(60, 310, 90, 30)];
-    self.oldTextField = [[UITextField alloc] initWithFrame:CGRectMake(160, 150, 160, 30)];
-    self.currentTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(160, 230, 160, 30)];
-    self.confirmTextFiled = [[UITextField alloc] initWithFrame:CGRectMake(160, 310, 160, 30)];
-    self.oldTextField.borderStyle = self.currentTextFiled.borderStyle = self.confirmTextFiled.borderStyle = UITextBorderStyleLine;
+    self.oldTextField = [[UITextField alloc] init];
+    self.currentTextFiled = [[UITextField alloc] init];
+    self.confirmTextFiled = [[UITextField alloc] init];
     self.modfiyBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.modfiyBtn.frame = CGRectMake(60, 380, 260, 30);
+
+    self.oldTextField.borderStyle = self.currentTextFiled.borderStyle = self.confirmTextFiled.borderStyle = UITextBorderStyleLine;
     [self.modfiyBtn setTitle:@"修改" forState:UIControlStateNormal];
-    [self.modfiyBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.modfiyBtn.backgroundColor = [UIColor blueColor];
+    self.modfiyBtn.tintColor = [UIColor whiteColor];
     
-    [self.view addSubview:self.oldLbl];
-    [self.view addSubview:self.currentLbl];
-    [self.view addSubview:self.confirmLbl];
     [self.view addSubview:self.oldTextField];
     [self.view addSubview:self.currentTextFiled];
     [self.view addSubview:self.confirmTextFiled];
     [self.view addSubview:self.modfiyBtn];
     
-    self.oldLbl.text = @"旧密码";
-    self.currentLbl.text = @"新密码";
-    self.confirmLbl.text = @"确认密码";
+    self.oldTextField.translatesAutoresizingMaskIntoConstraints =
+    self.currentTextFiled.translatesAutoresizingMaskIntoConstraints =
+    self.confirmTextFiled.translatesAutoresizingMaskIntoConstraints =
+    self.modfiyBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    CGFloat statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat navHeight = self.navigationController.navigationBar.frame.size.height;
+    
+    NSLayoutConstraint *name_top = [NSLayoutConstraint constraintWithItem:self.oldTextField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:statusHeight + navHeight + 80];
+    NSLayoutConstraint *name_left = [NSLayoutConstraint constraintWithItem:self.oldTextField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:60.0];
+    NSLayoutConstraint *name_right = [NSLayoutConstraint constraintWithItem:self.oldTextField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-60];
+    NSLayoutConstraint *name_hight = [NSLayoutConstraint constraintWithItem:self.oldTextField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30];
+    
+    NSLayoutConstraint *pass_top = [NSLayoutConstraint constraintWithItem:self.currentTextFiled attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.oldTextField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *pass_left = [NSLayoutConstraint constraintWithItem:self.currentTextFiled attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.oldTextField attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *pass_right = [NSLayoutConstraint constraintWithItem:self.currentTextFiled attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.oldTextField attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *pass_hight = [NSLayoutConstraint constraintWithItem:self.currentTextFiled attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.oldTextField attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *firm_top = [NSLayoutConstraint constraintWithItem:self.confirmTextFiled attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.currentTextFiled attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *firm_left = [NSLayoutConstraint constraintWithItem:self.confirmTextFiled attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.currentTextFiled attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *firm_right = [NSLayoutConstraint constraintWithItem:self.confirmTextFiled attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.currentTextFiled attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *firm_hight = [NSLayoutConstraint constraintWithItem:self.confirmTextFiled attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.currentTextFiled attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *bt_top = [NSLayoutConstraint constraintWithItem:self.modfiyBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.confirmTextFiled attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *bt_left = [NSLayoutConstraint constraintWithItem:self.modfiyBtn attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.confirmTextFiled attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *bt_right = [NSLayoutConstraint constraintWithItem:self.modfiyBtn attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.confirmTextFiled attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *bt_hight = [NSLayoutConstraint constraintWithItem:self.modfiyBtn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.confirmTextFiled attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSArray *array = [NSArray arrayWithObjects:
+                      name_top, name_left, name_right, name_hight,
+                      pass_top,pass_left,pass_right,pass_hight,
+                      firm_top,firm_left,firm_right,firm_hight,
+                      bt_top,bt_left,bt_right,bt_hight,
+                      nil];
+    [self.view addConstraints:array];
+    
+    self.oldTextField.placeholder = @"请输入原始密码";
+    self.currentTextFiled.placeholder = @"请输入新密码";
+    self.confirmTextFiled.placeholder = @"请确认新密码";
     
 #ifdef LOC_TEST
     self.deviceIdTxtField.text = @"111";
