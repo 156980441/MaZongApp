@@ -113,6 +113,7 @@ static NSArray* g_city_arr = nil;
     
     [self.loginBtn addTarget:self action:@selector(loginBtnPress:) forControlEvents:UIControlEventTouchDown];
     [self.registBtn addTarget:self action:@selector(registBtnPress:) forControlEvents:UIControlEventTouchDown];
+    [self.fogretBtn addTarget:self action:@selector(forgetBtnPress:) forControlEvents:UIControlEventTouchDown];
     
     g_city_arr = @[@"北京市"];
     if (!g_user) {
@@ -160,11 +161,15 @@ static NSArray* g_city_arr = nil;
     // Dispose of any resources that can be recreated.
 }
 - (void)registBtnPress:(id)sender {
+    NSLog(@"%s",__func__);
     RegisterViewController* registerVc = [[RegisterViewController alloc] init];
     [self.navigationController pushViewController:registerVc animated:YES];
 }
+- (void)forgetBtnPress:(id)sender {
+    NSLog(@"%s",__func__);
+}
 - (void)loginBtnPress:(id)sender {
-    
+    NSLog(@"%s",__func__);
 #ifdef LOC_TEST
     g_user.password = @"123456";
     [self dismissViewControllerAnimated:YES completion:NO];

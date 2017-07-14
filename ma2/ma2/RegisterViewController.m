@@ -26,11 +26,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.hidden = NO;
     
-    self.nameTxtField = [[UITextField alloc] initWithFrame:CGRectMake(37, 90, 300, 30)];
-    self.passTxtFiled = [[UITextField alloc] initWithFrame:CGRectMake(37, 150, 300, 30)];
-    self.confirmPassTxtFiled = [[UITextField alloc] initWithFrame:CGRectMake(37, 210, 300, 30)];
-    self.deviceIDTxtField = [[UITextField alloc] initWithFrame:CGRectMake(37, 270, 300, 30)];
-    self.validTxtField = [[UITextField alloc] initWithFrame:CGRectMake(37, 330, 300, 30)];
+    self.nameTxtField = [[UITextField alloc] init];
+    self.passTxtFiled = [[UITextField alloc] init];
+    self.confirmPassTxtFiled = [[UITextField alloc] init];
+    self.deviceIDTxtField = [[UITextField alloc] init];
+    self.validTxtField = [[UITextField alloc] init];
     self.confirmBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.confirmBtn.frame = CGRectMake(37, 400, 300, 30);
     
@@ -51,6 +51,58 @@
     [self.view addSubview:self.deviceIDTxtField];
     [self.view addSubview:self.validTxtField];
     [self.view addSubview:self.confirmBtn];
+    
+    self.nameTxtField.translatesAutoresizingMaskIntoConstraints =
+    self.passTxtFiled.translatesAutoresizingMaskIntoConstraints =
+    self.confirmPassTxtFiled.translatesAutoresizingMaskIntoConstraints =
+    self.deviceIDTxtField.translatesAutoresizingMaskIntoConstraints =
+    self.deviceIDTxtField.translatesAutoresizingMaskIntoConstraints =
+    self.validTxtField.translatesAutoresizingMaskIntoConstraints =
+    self.confirmBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    CGFloat statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    CGFloat navHeight = self.navigationController.navigationBar.frame.size.height;
+    
+    NSLayoutConstraint *name_top = [NSLayoutConstraint constraintWithItem:self.nameTxtField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:statusHeight + navHeight + 30];
+    NSLayoutConstraint *name_left = [NSLayoutConstraint constraintWithItem:self.nameTxtField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:60.0];
+    NSLayoutConstraint *name_right = [NSLayoutConstraint constraintWithItem:self.nameTxtField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-60];
+    NSLayoutConstraint *name_hight = [NSLayoutConstraint constraintWithItem:self.nameTxtField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30];
+    
+    NSLayoutConstraint *pass_top = [NSLayoutConstraint constraintWithItem:self.passTxtFiled attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *pass_left = [NSLayoutConstraint constraintWithItem:self.passTxtFiled attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *pass_right = [NSLayoutConstraint constraintWithItem:self.passTxtFiled attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *pass_hight = [NSLayoutConstraint constraintWithItem:self.passTxtFiled attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.nameTxtField attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *firm_top = [NSLayoutConstraint constraintWithItem:self.confirmPassTxtFiled attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.passTxtFiled attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *firm_left = [NSLayoutConstraint constraintWithItem:self.confirmPassTxtFiled attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *firm_right = [NSLayoutConstraint constraintWithItem:self.confirmPassTxtFiled attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *firm_hight = [NSLayoutConstraint constraintWithItem:self.confirmPassTxtFiled attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.nameTxtField attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *id_top = [NSLayoutConstraint constraintWithItem:self.deviceIDTxtField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.confirmPassTxtFiled attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *id_left = [NSLayoutConstraint constraintWithItem:self.deviceIDTxtField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *id_right = [NSLayoutConstraint constraintWithItem:self.deviceIDTxtField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *id_hight = [NSLayoutConstraint constraintWithItem:self.deviceIDTxtField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.nameTxtField attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *vali_top = [NSLayoutConstraint constraintWithItem:self.validTxtField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.deviceIDTxtField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *vali_left = [NSLayoutConstraint constraintWithItem:self.validTxtField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *vali_right = [NSLayoutConstraint constraintWithItem:self.validTxtField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *vali_hight = [NSLayoutConstraint constraintWithItem:self.validTxtField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.nameTxtField attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *bt_top = [NSLayoutConstraint constraintWithItem:self.confirmBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.validTxtField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *bt_left = [NSLayoutConstraint constraintWithItem:self.confirmBtn attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *bt_right = [NSLayoutConstraint constraintWithItem:self.confirmBtn attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *bt_hight = [NSLayoutConstraint constraintWithItem:self.confirmBtn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.nameTxtField attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSArray *array = [NSArray arrayWithObjects:
+                      name_top, name_left, name_right, name_hight,
+                      pass_top,pass_left,pass_right,pass_hight,
+                      firm_top,firm_left,firm_right,firm_hight,
+                      id_top,id_left,id_right,id_hight,
+                      vali_top,vali_left,vali_right,vali_hight,
+                      bt_top,bt_left,bt_right,bt_hight,
+                      nil];
+    [self.view addConstraints:array];
+    
     
     [self.confirmBtn addTarget:self action:@selector(confirmBtnPress:) forControlEvents:UIControlEventTouchDown];
     
