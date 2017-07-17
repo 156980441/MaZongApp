@@ -267,7 +267,9 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
                 [self presentViewController:alert animated:YES completion:nil];
             }
             if (4 == indexPath.row) {
-                UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil message:@"版本 1.0" preferredStyle:UIAlertControllerStyleAlert];
+                NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+                NSString *currentVersion = infoDic[@"CFBundleShortVersionString"];//currentVersion为当前工程项目版本号
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"版本 %@",currentVersion] preferredStyle:UIAlertControllerStyleAlert];
                 
                 void (^cancel)(UIAlertAction* action) = ^(UIAlertAction* action){
                     [self dismissViewControllerAnimated:YES completion:nil];
