@@ -50,6 +50,10 @@ static NSArray* g_city_arr = nil;
     self.loginBtn.backgroundColor = [UIColor blueColor];
     self.passTxt.borderStyle = self.nameTxt.borderStyle = UITextBorderStyleLine;
     
+    self.nameTxt.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_user"]];
+    self.passTxt.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_pass"]];
+    self.nameTxt.leftViewMode = UITextFieldViewModeAlways;
+    self.passTxt.leftViewMode = UITextFieldViewModeAlways;
     self.nameTxt.placeholder = @"请输入用户名";
     self.passTxt.placeholder = @"请输入密码";
     
