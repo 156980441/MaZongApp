@@ -67,13 +67,16 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     // Do any additional setup after loading the view.
 
     // 三方库 SDCycleScrollView bug，如果不先添加一个， self.upScrollView 不显示
-    SDCycleScrollView *cycleScrollView22 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero shouldInfiniteLoop:YES imageNamesGroup:self.staticAds];
-    cycleScrollView22.delegate = self;
-    cycleScrollView22.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
-    [self.view addSubview:cycleScrollView22];
+//    SDCycleScrollView *cycleScrollView22 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero shouldInfiniteLoop:YES imageNamesGroup:self.staticAds];
+//    cycleScrollView22.delegate = self;
+//    cycleScrollView22.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
+//    [self.view addSubview:cycleScrollView22];
+//    self.upScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero shouldInfiniteLoop:YES imageNamesGroup:self.staticAds];
+//    self.upScrollView.delegate = self;
     
-    self.upScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero shouldInfiniteLoop:YES imageNamesGroup:self.staticAds];
-    self.upScrollView.delegate = self;
+    // 三方库 SDCycleScrollView 使用此方法初始化就没有问题，不愧是推荐的方法。
+    self.upScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:nil];
+    self.upScrollView.localizationImageNamesGroup = self.staticAds;
     
     self.downScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero shouldInfiniteLoop:YES imageNamesGroup:self.dynamicAds];
     self.downScrollView.delegate = self;

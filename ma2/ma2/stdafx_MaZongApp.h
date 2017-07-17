@@ -103,7 +103,19 @@ static NSString* HOST = @"http://120.24.234.67/DongGuan";
 static int const OPEN_OVERPENDINGTRANSITION = 10;
 static int const OUT_OVERPENDINGTRANSITION = 20;
 
-/////////////////////////////////////////
+///////////////////////////////////////// 龙鱼 /////////////////////////////////////////
+
+/** 常量数 */
+static CGFloat const YLMargin = 10;
+
+/** 导航栏高度 */
+static CGFloat const YLNaviH = 44;
+
+/** 底部tab高度 */
+static CGFloat const YLBottomTabH = 44;
+
+/** 顶部Nav高度+指示器 */
+static CGFloat const YLTopNavH = 64;
 
 // macro
 
