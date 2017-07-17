@@ -44,10 +44,11 @@ static NSArray* g_city_arr = nil;
     [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     [self.registBtn setTitle:@"注册新用户" forState:UIControlStateNormal];
     [self.fogretBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
-    self.loginBtn.tintColor = [UIColor whiteColor];
     
+    self.loginBtn.layer.cornerRadius = 5;
+    [self.loginBtn setBackgroundColor:[UIColor colorWithRed:83/255.0 green:149/255.0 blue:232/255.0 alpha:1]];
+    self.loginBtn.tintColor = [UIColor whiteColor];
     self.registBtn.tintColor = self.fogretBtn.tintColor = [UIColor blueColor];
-    self.loginBtn.backgroundColor = [UIColor blueColor];
     self.passTxt.borderStyle = self.nameTxt.borderStyle = UITextBorderStyleLine;
     
     self.nameTxt.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_user"]];
