@@ -9,5 +9,6 @@ target 'ma2' do
 pod ‘AFNetworking’,'~>2.6.3'
 pod ‘MBProgressHUD’
 pod ‘SDWebImage’
+pod 'SDCycleScrollView'
 
 end

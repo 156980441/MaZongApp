@@ -19,12 +19,13 @@
 #import "User.h"
 
 #import "AFHTTPSessionManager.h"
+#import "SDCycleScrollView.h"
 
 static NSString* rootCell_identifier = @"rootCell_identifier";
 
-@interface RootViewController () <UITableViewDataSource,UITableViewDelegate>
-@property (nonatomic, strong) UIScrollView* upScrollView;
-@property (nonatomic, strong) UIScrollView* downScrollView;
+@interface RootViewController () <UITableViewDataSource,UITableViewDelegate,SDCycleScrollViewDelegate>
+@property (nonatomic, strong) SDCycleScrollView* upScrollView;
+@property (nonatomic, strong) SDCycleScrollView* downScrollView;
 @property (nonatomic, strong) UITableView* tableView;
 
 @property (nonatomic, strong) NSMutableArray* staticAds;
@@ -65,8 +66,18 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    self.upScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-    self.downScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    // 三方库 SDCycleScrollView bug，如果不先添加一个， self.upScrollView 不显示
+    SDCycleScrollView *cycleScrollView22 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero shouldInfiniteLoop:YES imageNamesGroup:self.staticAds];
+    cycleScrollView22.delegate = self;
+    cycleScrollView22.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
+    [self.view addSubview:cycleScrollView22];
+    
+    self.upScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero shouldInfiniteLoop:YES imageNamesGroup:self.staticAds];
+    self.upScrollView.delegate = self;
+    
+    self.downScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero shouldInfiniteLoop:YES imageNamesGroup:self.dynamicAds];
+    self.downScrollView.delegate = self;
+    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -103,15 +114,8 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     CGFloat scrollViewHeight = 70;
     
     self.upScrollView.frame = CGRectMake(0, statusHeight + navHeight, width, scrollViewHeight);
-    self.upScrollView.backgroundColor = [UIColor blueColor];
     self.downScrollView.frame = CGRectMake(0, height - barHeight - scrollViewHeight, width, scrollViewHeight);
-    self.downScrollView.backgroundColor = [UIColor grayColor];
     self.tableView.frame = CGRectMake(0, statusHeight + navHeight + CGRectGetHeight(self.upScrollView.frame), width, height - scrollViewHeight * 2 - statusHeight - navHeight - barHeight);
-    
-    [self layoutScrollView:self.upScrollView images:self.staticAds];
-    [self layoutScrollView:self.downScrollView images:self.dynamicAds];
-    
-    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(autoPlay) userInfo:nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,44 +142,6 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
         }
     }
     return _momentFrames;
-}
-#pragma mark ----定时器自动轮播方法----
-- (void)autoPlay {
-    
-    CGFloat width = CGRectGetWidth(self.upScrollView.frame);
-    
-    //更改scrollView   countOffSet
-    //如果偏移量 >= contentSize.width 要先把偏移量置为（0， 0） 再加上一个width
-    CGFloat x_staticAds = self.upScrollView.contentOffset.x;//获取偏移量
-    CGFloat x_dynamicAds = self.downScrollView.contentOffset.x;//获取偏移量
-    if (x_staticAds + width >= self.upScrollView.contentSize.width) {//判断增加后的偏移量是否超过范围
-        [self.upScrollView setContentOffset:(CGPointMake(0, 0)) animated:NO];//先把偏移量置为（0，0）
-        [self.upScrollView setContentOffset:(CGPointMake(width, 0)) animated:YES];//再偏移width宽度
-    }else {
-        [self.upScrollView setContentOffset:(CGPointMake(x_staticAds + width, 0)) animated:YES];
-    }
-    if (x_dynamicAds + width >= self.downScrollView.contentSize.width) {//判断增加后的偏移量是否超过范围
-        [self.downScrollView setContentOffset:(CGPointMake(0, 0)) animated:NO];//先把偏移量置为（0，0）
-        [self.downScrollView setContentOffset:(CGPointMake(width, 0)) animated:YES];//再偏移width宽度
-    }else {
-        [self.downScrollView setContentOffset:(CGPointMake(x_dynamicAds + width, 0)) animated:YES];
-    }
-}
-
--(void)layoutScrollView:(UIScrollView*)scrollView images:(NSArray*)images
-{
-    CGFloat width = CGRectGetWidth(scrollView.frame);
-    CGFloat height = CGRectGetHeight(scrollView.frame);
-    for (int i = 0; i < images.count; i ++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:(CGRectMake(width * i, 0, width, height))];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        imageView.image = [images objectAtIndex:i];
-        [scrollView addSubview:imageView];
-    }
-    scrollView.contentSize = CGSizeMake(width * images.count, height);//设置内容大小
-    scrollView.contentOffset = CGPointMake(0, 0);//设置内容偏移量
-    scrollView.pagingEnabled = YES;//打开整屏滑动
-    scrollView.showsHorizontalScrollIndicator = NO;
 }
 
 -(void)swithch:(id)mySwitch
@@ -316,7 +282,10 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
  */
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return @"删除";
+    if (self.type == ViewControllerDeviceType)
+        return @"删除";
+    else
+        return nil;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -353,6 +322,14 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
         [self presentViewController:alert animated:YES completion:nil];
     }
 }
+
+#pragma mark - SDCycleScrollViewDelegate
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    NSLog(@"---点击了第%ld张图片", (long)index);
+}
+
 /*
 #pragma mark - Navigation
 
