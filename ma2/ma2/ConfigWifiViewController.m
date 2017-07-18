@@ -43,7 +43,7 @@
     self.wifiTextField = [[UITextField alloc] init];
     self.passTextFiled = [[UITextField alloc] init];
     self.cofigBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(60, 550, 260, 70)];
+    self.noteTextView = [[UITextView alloc] init];
     
     [self.view addSubview:self.passTextFiled];
     [self.view addSubview:self.wifiTextField];
@@ -89,11 +89,12 @@
     self.wifiTextField.placeholder = @"请输入 Wi-Fi 名称";
     self.passTextFiled.placeholder = @"请输入 Wi-Fi 密码";
     
-    self.wifiTextField.borderStyle = self.passTextFiled.borderStyle = UITextBorderStyleBezel;
+    self.wifiTextField.borderStyle = self.passTextFiled.borderStyle = UITextBorderStyleRoundedRect;
     
     [self.cofigBtn setTitle:@"配置" forState:UIControlStateNormal];
-    self.cofigBtn.backgroundColor = [UIColor blueColor];
+    self.cofigBtn.layer.cornerRadius = 5;
     self.cofigBtn.tintColor = [UIColor whiteColor];
+    [self.cofigBtn setBackgroundColor:[UIColor colorWithRed:83/255.0 green:149/255.0 blue:232/255.0 alpha:1]];
     self.wifiTextField.text = self.wifiName;
     self.noteTextView.text = @"注意：为确保成功配置，请确保设备和您的移动设备处于同一个 Wi-Fi网络下";
     

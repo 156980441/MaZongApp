@@ -27,10 +27,11 @@
     self.confirmTextFiled = [[UITextField alloc] init];
     self.modfiyBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 
-    self.oldTextField.borderStyle = self.currentTextFiled.borderStyle = self.confirmTextFiled.borderStyle = UITextBorderStyleLine;
+    self.oldTextField.borderStyle = self.currentTextFiled.borderStyle = self.confirmTextFiled.borderStyle = UITextBorderStyleRoundedRect;
     [self.modfiyBtn setTitle:@"修改" forState:UIControlStateNormal];
-    self.modfiyBtn.backgroundColor = [UIColor blueColor];
+    self.modfiyBtn.layer.cornerRadius = 5;
     self.modfiyBtn.tintColor = [UIColor whiteColor];
+    [self.modfiyBtn setBackgroundColor:[UIColor colorWithRed:83/255.0 green:149/255.0 blue:232/255.0 alpha:1]];
     
     [self.view addSubview:self.oldTextField];
     [self.view addSubview:self.currentTextFiled];

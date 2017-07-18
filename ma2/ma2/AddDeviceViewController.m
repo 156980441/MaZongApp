@@ -28,11 +28,12 @@
     
     self.deviceNameTxtField = [[UITextField alloc] init];
     self.deviceIdTxtField = [[UITextField alloc] init];
-    self.deviceNameTxtField.borderStyle = self.deviceIdTxtField.borderStyle = UITextBorderStyleLine;
+    self.deviceNameTxtField.borderStyle = self.deviceIdTxtField.borderStyle = UITextBorderStyleRoundedRect;
     self.addBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.addBtn setTitle:@"添加" forState:UIControlStateNormal];
-    self.addBtn.backgroundColor = [UIColor blueColor];
-    [self.addBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.addBtn.layer.cornerRadius = 5;
+    self.addBtn.tintColor = [UIColor whiteColor];
+    [self.addBtn setBackgroundColor:[UIColor colorWithRed:83/255.0 green:149/255.0 blue:232/255.0 alpha:1]];
     
     [self.view addSubview:self.deviceIdTxtField];
     [self.view addSubview:self.deviceNameTxtField];

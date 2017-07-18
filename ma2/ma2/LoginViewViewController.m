@@ -49,7 +49,6 @@ static NSArray* g_city_arr = nil;
     [self.loginBtn setBackgroundColor:[UIColor colorWithRed:83/255.0 green:149/255.0 blue:232/255.0 alpha:1]];
     self.loginBtn.tintColor = [UIColor whiteColor];
     self.registBtn.tintColor = self.fogretBtn.tintColor = [UIColor blueColor];
-    self.passTxt.borderStyle = self.nameTxt.borderStyle = UITextBorderStyleLine;
     
     self.nameTxt.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_user"]];
     self.passTxt.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_pass"]];
@@ -57,6 +56,7 @@ static NSArray* g_city_arr = nil;
     self.passTxt.leftViewMode = UITextFieldViewModeAlways;
     self.nameTxt.placeholder = @"请输入用户名";
     self.passTxt.placeholder = @"请输入密码";
+    self.passTxt.borderStyle = self.nameTxt.borderStyle = UITextBorderStyleRoundedRect;
     
     [self.view addSubview:self.logo];
     [self.view addSubview:self.nameTxt];

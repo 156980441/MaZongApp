@@ -32,12 +32,13 @@
     self.deviceIDTxtField = [[UITextField alloc] init];
     self.validTxtField = [[UITextField alloc] init];
     self.confirmBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.confirmBtn.frame = CGRectMake(37, 400, 300, 30);
     
-    self.confirmBtn.backgroundColor = [UIColor blueColor];
-    self.confirmBtn.tintColor = [UIColor whiteColor];
     [self.confirmBtn setTitle:@"注册" forState:UIControlStateNormal];
-    self.nameTxtField.borderStyle = self.passTxtFiled.borderStyle = self.deviceIDTxtField.borderStyle = self.confirmPassTxtFiled.borderStyle = self.validTxtField.borderStyle = UITextBorderStyleLine;
+    self.confirmBtn.layer.cornerRadius = 5;
+    self.confirmBtn.tintColor = [UIColor whiteColor];
+    [self.confirmBtn setBackgroundColor:[UIColor colorWithRed:83/255.0 green:149/255.0 blue:232/255.0 alpha:1]];
+    
+    self.nameTxtField.borderStyle = self.passTxtFiled.borderStyle = self.deviceIDTxtField.borderStyle = self.confirmPassTxtFiled.borderStyle = self.validTxtField.borderStyle = UITextBorderStyleRoundedRect;
     
     self.nameTxtField.placeholder = @"请输入用户名";
     self.passTxtFiled.placeholder = @"请输入密码";
