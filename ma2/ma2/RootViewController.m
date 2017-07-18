@@ -147,7 +147,7 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     return _momentFrames;
 }
 
--(void)swithch:(id)mySwitch
+-(void)switchPress:(id)mySwitch
 {
     UISwitch* s = (UISwitch*)mySwitch;
     self.selectDevice.isOff = s.on;
@@ -191,10 +191,11 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
         {
             cell.textLabel.text = [self.dataSource objectAtIndex:indexPath.row];
             if (indexPath.row == 3) {
-                UISwitch* s = [[UISwitch alloc] initWithFrame:CGRectMake(CGRectGetWidth(cell.contentView.frame), 5, 40, CGRectGetHeight(cell.contentView.frame) - 10)];
-                [s setOn:self.selectDevice.isOff animated:YES];
-                [s addTarget:self action:@selector(swithch:) forControlEvents:UIControlEventValueChanged];
-                [cell.contentView addSubview:s];
+                UISwitch* s = [[UISwitch alloc] initWithFrame:CGRectZero];
+                cell.accessoryView = s;
+                [s setOn:self.selectDevice.isOff animated:NO];
+                [s addTarget:self action:@selector(switchPress:) forControlEvents:UIControlEventValueChanged];
+                
             }
         } else if (self.type == ViewControllerMineType)
         {
