@@ -119,7 +119,7 @@ static CGFloat const YLTopNavH = 64;
 
 // macro
 
-#define LOC_TEST
+//#define LOC_TEST // 测试本地数据不走服务器
 
 /**
  *  屏幕宽高
@@ -172,15 +172,15 @@ static CGFloat const YLTopNavH = 64;
 #define circleCellToolBarTintColor [UIColor colorWithHexString:@"#ffffff"]              //工具条图标、字体颜色
 #define circleCellToolBarTittleFont [UIFont systemFontOfSize:14]                        //工具条btn字号
 
-static NSString* URL_ROOT = @"http://139.224.223.73:8099";
-static NSString* URL_USER_LOGIN = @"http://139.224.223.73:8099/interface/login";
-static NSString* URL_USER_REGISTER = @"http://139.224.223.73:8099/interface/addUserInfo";
-static NSString* URL_ADD_DEVICE = @"http://139.224.223.73:8099/interface/addMachineInfo";
-static NSString* URL_CITY_ADS = @"http://139.224.223.73:8099/interface/getAdvertiseListByCity";
-static NSString* URL_DEVICE_LIST = @"http://139.224.223.73:8099/interface/getMachineList";
-static NSString* URL_DEVICE_INFO = @"http://139.224.223.73:8099/:8000/interface/getMachineInfo?";
-static NSString* URL_DELETE_DEVICE = @"http://139.224.223.73:8099/interface/deleteMachineInfo";///USER_NO/MACHINE_ID Get
-static NSString* URL_CHANGE_DEVICE_STATE = @"http://139.224.223.73:8099/interface/setRelaySwitch";///{MACHINE_ID}/{status}
-static NSString* URL_CHANGE_DEVICE_NAME = @"http://139.224.223.73:8099/interface/setMechineName";//{MACHINE_ID}/{MACHINE_NAME} get
+static NSString* URL_ROOT = @"http://47.94.138.223:80";
+static NSString* URL_USER_LOGIN = @"http://47.94.138.223:80/interface/login";
+static NSString* URL_USER_REGISTER = @"http://47.94.138.223:80/interface/addUserInfo";
+static NSString* URL_ADD_DEVICE = @"http://47.94.138.223:80/interface/addMachineInfo";
+static NSString* URL_CITY_ADS = @"http://47.94.138.223:80/interface/getAdvertiseListByCity";
+static NSString* URL_DEVICE_LIST = @"http://47.94.138.223:80/interface/getMachineList";
+static NSString* URL_DEVICE_INFO = @"http://47.94.138.223:80/:8000/interface/getMachineInfo?";
+static NSString* URL_DELETE_DEVICE = @"http://47.94.138.223:80/interface/deleteMachineInfo";///USER_NO/MACHINE_ID Get
+static NSString* URL_CHANGE_DEVICE_STATE = @"http://47.94.138.223:80/interface/setRelaySwitch";///{MACHINE_ID}/{status}
+static NSString* URL_CHANGE_DEVICE_NAME = @"http://47.94.138.223:80/interface/setMechineName";//{MACHINE_ID}/{MACHINE_NAME} get
 
 #endif /* stdafx_MaZongApp_h */

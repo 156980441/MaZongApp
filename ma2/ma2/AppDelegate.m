@@ -19,6 +19,26 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    RootViewController* device = [[RootViewController alloc] initWithType:ViewControllerDeviceType];
+    
+    RootViewController* forum = [[RootViewController alloc] initWithType:ViewControllerForumType];
+    RootViewController* mine = [[RootViewController alloc] initWithType:ViewControllerMineType];
+    
+    UINavigationController* nav0 = [[UINavigationController alloc] initWithRootViewController:device];
+    UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:forum];
+    UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:mine];
+    
+    device.title = @"设备";
+    forum.title = @"论坛";
+    mine.title = @"我的";
+    
+    UITabBarController* tabBarVc = [[UITabBarController alloc] init];
+    tabBarVc.viewControllers = @[nav0,nav1,nav2];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = tabBarVc;
+    [self.window makeKeyAndVisible];
     
 #ifdef LOC_TEST
     NSMutableArray* arr0 = [NSMutableArray array];
@@ -42,28 +62,11 @@
     [arr2 addObject:@"注销"];
     [arr2 addObject:@"关于"];
     
-#else
-#endif
-    RootViewController* device = [[RootViewController alloc] initWithType:ViewControllerDeviceType];
     device.dataSource = arr0;
-    RootViewController* forum = [[RootViewController alloc] initWithType:ViewControllerForumType];
-    RootViewController* mine = [[RootViewController alloc] initWithType:ViewControllerMineType];
     mine.dataSource = arr2;
-    UINavigationController* nav0 = [[UINavigationController alloc] initWithRootViewController:device];
-    UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:forum];
-    UINavigationController* nav2 = [[UINavigationController alloc] initWithRootViewController:mine];
+#else
     
-    device.title = @"设备";
-    forum.title = @"论坛";
-    mine.title = @"我的";
-    
-    UITabBarController* tabBarVc = [[UITabBarController alloc] init];
-    tabBarVc.viewControllers = @[nav0,nav1,nav2];
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = tabBarVc;
-    [self.window makeKeyAndVisible];
-    
+#endif
     return YES;
 }
 

@@ -212,24 +212,36 @@ static NSArray* g_city_arr = nil;
     
     [manager POST:URL_USER_LOGIN parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary* jsonData = (NSDictionary*)responseObject;
-        NSDictionary* admin_dic = [jsonData objectForKey:@"admin"];
-        [g_user initFromDictionary:admin_dic];
-        [self saveToArchiver:g_user];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hide:YES];
-            [self performSegueWithIdentifier:@"main" sender:self];
-        });
+        NSString* statusCode = [jsonData objectForKey:@"statusCode"];
+        if (statusCode.integerValue == 300)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+                [YLToast showWithText:@"该用户不存在"];
+            });
+        }
+        else if (statusCode.integerValue == 200)
+        {
+            NSDictionary* admin_dic = [jsonData objectForKey:@"admin"];
+            [g_user initFromDictionary:admin_dic];
+            [self saveToArchiver:g_user];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+                [self performSegueWithIdentifier:@"main" sender:self];
+            });
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"login failure %@",error.localizedDescription);
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            [hud hide:YES];
+            [hud hideAnimated:YES];
             [YLToast showWithText:@"登录失败"];
         });
     }];
-    
-    
-    
 }
+
 - (BOOL)saveToArchiver:(User*)user {
     NSString* fileName = [YLCommon docPath:@"user.archiver"];
     NSMutableData* data = [NSMutableData data];
