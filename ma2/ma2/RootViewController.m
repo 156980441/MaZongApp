@@ -112,7 +112,6 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     }
     
     if (self.type == ViewControllerDeviceType) {
-        if (self.dataSource == nil) {
             if (g_user) {
                 NSMutableArray* arr_dataSource = [NSMutableArray array];
                 AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
@@ -153,7 +152,6 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
                          });
                      }];
             }
-        }
     }
     
     CGFloat statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
@@ -194,27 +192,68 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     return _momentFrames;
 }
 
+- (NSArray*) deviceDetailDataSource
+{
+    NSString* str1;
+    NSString* str2;
+    NSString* str3;
+    NSString* str4 = [NSString stringWithFormat:@"远程开关：%@",self.selectDevice.isOff ? @"关":@"开"];
+    if ([self.selectDevice.temperature isEqual:[NSNull null]]) {
+        str1 = @"温度：未采集";
+    }
+    else
+    {
+        str1 = [NSString stringWithFormat:@"温度：%@",self.selectDevice.temperature];
+    }
+    if ([self.selectDevice.tds isEqual:[NSNull null]]) {
+        str2 = @"TDS：未采集";
+    }
+    else
+    {
+        str2 = [NSString stringWithFormat:@"TDS：%@",self.selectDevice.tds];
+    }
+    if ([self.selectDevice.ph isEqual:[NSNull null]]) {
+        str3 = @"PH：未采集";
+    }
+    else
+    {
+        str3 = [NSString stringWithFormat:@"PH：%@",self.selectDevice.ph];
+    }
+    return [NSArray arrayWithObjects:str1,str2,str3,str4, nil];
+}
+
 -(void)switchPress:(id)mySwitch
 {
     UISwitch* s = (UISwitch*)mySwitch;
-    self.selectDevice.isOff = s.on;
-    NSString* temperature = [NSString stringWithFormat:@"温度：%@",self.selectDevice.temperature];
-    NSString* tds = [NSString stringWithFormat:@"TDS：%@",self.selectDevice.tds];
-    NSString* ph = [NSString stringWithFormat:@"PH：%@",self.selectDevice.ph];
-    NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.selectDevice.isOff? @"关":@"开"];
-    self.dataSource = [NSMutableArray arrayWithObjects:temperature,tds,ph,isOff, nil];
-    [self.tableView reloadData];
+    NSLog(@"------ %d",s.on);
+    
 #ifdef LOC_TEST
 #else
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-    
-    NSString* url_ads = [NSString stringWithFormat:@"%@/%@/%d",URL_CHANGE_DEVICE_STATE,self.selectDevice.deviceId, self.selectDevice.isOff];
+    NSString* url_ads = [NSString stringWithFormat:@"%@/%@/%d",URL_CHANGE_DEVICE_STATE,self.selectDevice.deviceId, !self.selectDevice.isOff];
     [session GET:url_ads parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
-             NSLog(@"%@",responseObject);
+             NSDictionary* jsonDic = (NSDictionary*)responseObject;
+             NSInteger code = ((NSString*)[jsonDic objectForKey:@"code"]).integerValue;
+             if (code == 200) {
+                 self.selectDevice.isOff = !self.selectDevice.isOff;
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     [s setOn:!self.selectDevice.isOff animated:YES];
+                     self.dataSource = [self deviceDetailDataSource];
+                     [self.tableView reloadData];
+                 });
+             }
+             else
+             {
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     [s setOn:!self.selectDevice.isOff animated:YES];
+                     [YLToast showWithText:@"请求失败"];
+                 });
+                 
+             }
          }
          failure:^(NSURLSessionDataTask *task, NSError *error) {
-             NSLog(@"%@",error);
+             [YLToast showWithText:@"网络请求失败"];
          }];
 #endif
 }

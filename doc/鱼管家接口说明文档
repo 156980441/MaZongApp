@@ -2,6 +2,7 @@
 HTTP/1.1
 Host
 http://47.94.138.223:80
+
 用户登录 
 Request
 URL:http://47.94.138.223:80/interface/login
@@ -38,3 +39,25 @@ Response
 	"STATE": null,
 	"UPDATE_DATE": "2017-09-14 16:50"
 }]
+
+设备开关
+Request
+URL:http://47.94.138.223:80/interface/setRelaySwitch/#deviceID#/#state#
+Method:GET
+Headers:Content-Type:application/json
+Response
+{
+	"code": "300"
+}
+
+用户添加设备
+Request
+URL:http://47.94.138.223:80/interface/addMachineInfo
+Method:POST
+Headers:Content-Type:application/json
+Body:{"MACHINE_TITLE":"070-2","USER_NO":"1","MACHINE_ID":"222"}
+Response
+{
+	"statusCode": "200",
+	"message": "OK"
+}

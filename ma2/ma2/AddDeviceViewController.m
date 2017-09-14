@@ -98,12 +98,10 @@
         NSInteger statusCode = ((NSNumber*)[dic objectForKey:@"statusCode"]).integerValue;
         
         if (statusCode == 300) {
-            
+            [YLToast showWithText:@"添加设备失败"];
         } else if (statusCode == 200) {
-            
+            [YLToast showWithText:@"添加设备成功"];
         }
-        
-        [YLToast showWithText:detail];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [YLToast showWithText:@"网络请求失败"];

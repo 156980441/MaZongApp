@@ -1,7 +1,8 @@
 登录：
 
-Info
 URL	http://47.94.138.223:80/interface/login
+Status	Complete
+Response Code	200 OK
 Protocol	HTTP/1.1
 SSL	-
 Method	POST
@@ -9,53 +10,157 @@ Kept Alive	No
 Content-Type	application/json;charset=UTF-8
 Client Address	/10.10.129.213
 Remote Address	47.94.138.223/47.94.138.223
+Connection	
+Connection	#393129156
 
 Timing	
-Request Start Time	17-9-14 16:36:36
-Request End Time	17-9-14 16:36:36
-Response Start Time	17-9-14 16:36:36
-Response End Time	17-9-14 16:36:36
-Duration	46 ms
+Request Start Time	17-9-14 20:37:50
+Request End Time	17-9-14 20:37:50
+Response Start Time	17-9-14 20:37:50
+Response End Time	17-9-14 20:37:50
+Duration	36 ms
 DNS	0 ms
-Connect	5 ms
+Connect	4 ms
 SSL Handshake	-
-Request	2 ms
+Request	1 ms
 Response	1 ms
-Latency	38 ms
-Speed	13.08 KB/s
+Latency	28 ms
+Speed	16.71 KB/s
 Response Speed	601.56 KB/s
 
 Size	
 Request	307 bytes
+Header	266 bytes
+Query String	-
+Cookies	-
+Body	41 bytes
+Uncompressed Body	-
+Compression	-
 Response	309 bytes
+Header	157 bytes
+Cookies	-
+Body	152 bytes
+Uncompressed Body	-
+Compression	-
 Total	616 bytes
 
 获取用户设备列表
 
-Info
 URL	http://47.94.138.223:80/interface/getMachineList/1
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+SSL	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json;charset=UTF-8
+Client Address	/10.10.129.213
+Remote Address	47.94.138.223/47.94.138.223
+Connection	
+Connection	#1098334837
+Timing	
+Request Start Time	17-9-14 20:37:51
+Request End Time	17-9-14 20:37:51
+Response Start Time	17-9-14 20:37:51
+Response End Time	17-9-14 20:37:51
+Duration	31 ms
+DNS	0 ms
+Connect	4 ms
+SSL Handshake	-
+Request	1 ms
+Response	1 ms
+Latency	24 ms
+Speed	16.60 KB/s
+Response Speed	514.65 KB/s
+Size	
+Request	224 bytes
+Header	224 bytes
+Query String	-
+Cookies	-
+Body	-
+Uncompressed Body	-
+Compression	-
+Response	303 bytes
+Header	157 bytes
+Cookies	-
+Body	146 bytes
+Uncompressed Body	-
+Compression	-
+Total	527 bytes
+
+设备开关
+
+Info
+URL	http://47.94.138.223:80/interface/setRelaySwitch/111/1
 Protocol	HTTP/1.1
 Method	GET
 Kept Alive	No
 Content-Type	application/json;charset=UTF-8
 Client Address	/10.10.129.213
 Remote Address	47.94.138.223/47.94.138.223
+Connection	
+Connection	#1343246976
 
 Timing	
-Request Start Time	17-9-14 17:47:38
-Request End Time	17-9-14 17:47:38
-Response Start Time	17-9-14 17:47:38
-Response End Time	17-9-14 17:47:38
-Duration	41 ms
+Request Start Time	17-9-14 18:18:51
+Request End Time	17-9-14 18:18:51
+Response Start Time	17-9-14 18:18:51
+Response End Time	17-9-14 18:18:51
+Duration	21 ms
 DNS	0 ms
-Connect	9 ms
+Connect	6 ms
 SSL Handshake	-
 Request	2 ms
 Response	1 ms
-Latency	28 ms
-Speed	12.55 KB/s
-Response Speed	514.65 KB/s
+Latency	12 ms
+Speed	18.93 KB/s
+Response Speed	397.46 KB/s
+
 Size	
-Request	224 bytes
-Response	303 bytes
-Total	527 bytes
+Request	228 bytes
+Response	179 bytes
+Total	407 bytes
+
+添加设备
+
+URL	http://47.94.138.223:80/interface/addMachineInfo
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+SSL	-
+Method	POST
+Kept Alive	No
+Content-Type	application/json;charset=UTF-8
+Client Address	/10.10.129.213
+Remote Address	47.94.138.223/47.94.138.223
+Connection	
+Connection	#1061802555
+Timing	
+Request Start Time	17-9-14 20:38:56
+Request End Time	17-9-14 20:38:56
+Response Start Time	17-9-14 20:38:56
+Response End Time	17-9-14 20:38:56
+Duration	117 ms
+DNS	0 ms
+Connect	4 ms
+SSL Handshake	-
+Request	2 ms
+Response	1 ms
+Latency	107 ms
+Speed	4.46 KB/s
+Response Speed	521.48 KB/s
+Size	
+Request	333 bytes
+Header	275 bytes
+Query String	-
+Cookies	-
+Body	58 bytes
+Uncompressed Body	-
+Compression	-
+Response	201 bytes
+Header	157 bytes
+Cookies	-
+Body	44 bytes
+Uncompressed Body	-
+Compression	-
+Total	534 bytes
