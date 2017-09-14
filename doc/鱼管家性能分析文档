@@ -1,0 +1,61 @@
+登录：
+
+Info
+URL	http://47.94.138.223:80/interface/login
+Protocol	HTTP/1.1
+SSL	-
+Method	POST
+Kept Alive	No
+Content-Type	application/json;charset=UTF-8
+Client Address	/10.10.129.213
+Remote Address	47.94.138.223/47.94.138.223
+
+Timing	
+Request Start Time	17-9-14 16:36:36
+Request End Time	17-9-14 16:36:36
+Response Start Time	17-9-14 16:36:36
+Response End Time	17-9-14 16:36:36
+Duration	46 ms
+DNS	0 ms
+Connect	5 ms
+SSL Handshake	-
+Request	2 ms
+Response	1 ms
+Latency	38 ms
+Speed	13.08 KB/s
+Response Speed	601.56 KB/s
+
+Size	
+Request	307 bytes
+Response	309 bytes
+Total	616 bytes
+
+获取用户设备列表
+
+Info
+URL	http://47.94.138.223:80/interface/getMachineList/1
+Protocol	HTTP/1.1
+Method	GET
+Kept Alive	No
+Content-Type	application/json;charset=UTF-8
+Client Address	/10.10.129.213
+Remote Address	47.94.138.223/47.94.138.223
+
+Timing	
+Request Start Time	17-9-14 17:47:38
+Request End Time	17-9-14 17:47:38
+Response Start Time	17-9-14 17:47:38
+Response End Time	17-9-14 17:47:38
+Duration	41 ms
+DNS	0 ms
+Connect	9 ms
+SSL Handshake	-
+Request	2 ms
+Response	1 ms
+Latency	28 ms
+Speed	12.55 KB/s
+Response Speed	514.65 KB/s
+Size	
+Request	224 bytes
+Response	303 bytes
+Total	527 bytes

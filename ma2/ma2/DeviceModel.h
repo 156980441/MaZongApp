@@ -14,5 +14,5 @@
 @property (nonatomic, strong) NSString *temperature;
 @property (nonatomic, strong) NSString *tds;
 @property (nonatomic, strong) NSString *ph;
-@property (nonatomic, assign) BOOL isOff;
+@property (nonatomic, assign) BOOL isOff;// 设备是否打开，默认关闭 1
 @end

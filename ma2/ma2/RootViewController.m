@@ -20,6 +20,8 @@
 
 #import "AFHTTPSessionManager.h"
 #import "SDCycleScrollView.h"
+#import "MBProgressHUD.h"
+#import "YLToast.h"
 
 static NSString* rootCell_identifier = @"rootCell_identifier";
 
@@ -103,10 +105,55 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
 {
     [super viewWillAppear:animated];
     
-    if (self.type == ViewControllerDeviceType && !g_user.password) {
+    if (!g_user.password) {
         LoginViewViewController* loginVc = [[LoginViewViewController alloc] init];
         UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:loginVc];
         [self presentViewController:nav animated:YES completion:nil];
+    }
+    
+    if (self.type == ViewControllerDeviceType) {
+        if (self.dataSource == nil) {
+            if (g_user) {
+                NSMutableArray* arr_dataSource = [NSMutableArray array];
+                AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+                NSString* url = [NSString stringWithFormat:@"%@/%zd",URL_DEVICE_LIST,g_user.userNo];
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                hud.label.text = NSLocalizedString(@"获取设备列表中...", @"HUD loading title");
+                [session GET:url parameters:nil
+                     success:^(NSURLSessionDataTask *task, id responseObject) {
+                         
+                         NSArray* arr = (NSArray*)responseObject;
+                         for (NSDictionary* dic in arr) {
+                             DeviceModel* dev = [[DeviceModel alloc] init];
+                             dev.name = [dic objectForKey:@"TITLE"];
+                             dev.deviceId = [dic objectForKey:@"ID"];
+                             dev.ph = [dic objectForKey:@"PH"];
+                             dev.temperature = [dic objectForKey:@"TEMPERATURE"];
+                             dev.tds = [dic objectForKey:@"TDS"];
+                             if ([[dic objectForKey:@"STATE"] isEqual:[NSNull null]]) {
+                                 dev.isOff = 1;
+                             }
+                             else
+                             {
+                                 dev.isOff = ((NSString*)[dic objectForKey:@"STATE"]).integerValue;
+                             }
+                             [arr_dataSource addObject:dev];
+                         }
+                         
+                         self.dataSource = arr_dataSource;
+                         dispatch_async(dispatch_get_main_queue(), ^{
+                             [hud hideAnimated:YES];
+                             [self.tableView reloadData];
+                         });
+                     }
+                     failure:^(NSURLSessionDataTask *task, NSError *error) {
+                         dispatch_async(dispatch_get_main_queue(), ^{
+                             [hud hideAnimated:YES];
+                             [YLToast showWithText:@"获取设备列表失败"];
+                         });
+                     }];
+            }
+        }
     }
     
     CGFloat statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
@@ -154,7 +201,7 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     NSString* temperature = [NSString stringWithFormat:@"温度：%@",self.selectDevice.temperature];
     NSString* tds = [NSString stringWithFormat:@"TDS：%@",self.selectDevice.tds];
     NSString* ph = [NSString stringWithFormat:@"PH：%@",self.selectDevice.ph];
-    NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.selectDevice.isOff? @"开":@"关"];
+    NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.selectDevice.isOff? @"关":@"开"];
     self.dataSource = [NSMutableArray arrayWithObjects:temperature,tds,ph,isOff, nil];
     [self.tableView reloadData];
 #ifdef LOC_TEST
@@ -180,7 +227,6 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%s",__func__);
     UITableViewCell* cell = nil;
     if (self.dataSource.count > 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:rootCell_identifier];
@@ -193,7 +239,7 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
             if (indexPath.row == 3) {
                 UISwitch* s = [[UISwitch alloc] initWithFrame:CGRectZero];
                 cell.accessoryView = s;
-                [s setOn:self.selectDevice.isOff animated:NO];
+                [s setOn:!self.selectDevice.isOff animated:NO];
                 [s addTarget:self action:@selector(switchPress:) forControlEvents:UIControlEventValueChanged];
                 
             }
@@ -233,11 +279,32 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
             detail.selectDevice = [self.dataSource objectAtIndex:indexPath.row];
             self.selectDevice = detail.selectDevice;
             detail.title = self.selectDevice.name;
-            NSString* temperature = [NSString stringWithFormat:@"温度：%@",self.selectDevice.temperature];
-            NSString* tds = [NSString stringWithFormat:@"TDS：%@",self.selectDevice.tds];
-            NSString* ph = [NSString stringWithFormat:@"PH：%@",self.selectDevice.ph];
-            NSString* isOff = [NSString stringWithFormat:@"远程开关：%@",self.selectDevice.isOff? @"开":@"关"];
-            detail.dataSource = [NSMutableArray arrayWithObjects:temperature,tds,ph,isOff, nil];
+            NSString* str1;
+            NSString* str2;
+            NSString* str3;
+            NSString* str4 = [NSString stringWithFormat:@"远程开关：%@",self.selectDevice.isOff ? @"关":@"开"];
+            if ([self.selectDevice.temperature isEqual:[NSNull null]]) {
+                str1 = @"温度：未采集";
+            }
+            else
+            {
+                str1 = [NSString stringWithFormat:@"温度：%@",self.selectDevice.temperature];
+            }
+            if ([self.selectDevice.tds isEqual:[NSNull null]]) {
+                str2 = @"TDS：未采集";
+            }
+            else
+            {
+                str2 = [NSString stringWithFormat:@"TDS：%@",self.selectDevice.tds];
+            }
+            if ([self.selectDevice.ph isEqual:[NSNull null]]) {
+                str3 = @"PH：未采集";
+            }
+            else
+            {
+                str3 = [NSString stringWithFormat:@"PH：%@",self.selectDevice.ph];
+            }
+            detail.dataSource = [NSMutableArray arrayWithObjects:str1,str2,str3,str4, nil];
             [self.navigationController pushViewController:detail animated:YES];
         } else if (self.type == ViewControllerMineType) {
             UIViewController* vc = nil;

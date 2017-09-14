@@ -21,9 +21,16 @@
     // Override point for customization after application launch.
 
     RootViewController* device = [[RootViewController alloc] initWithType:ViewControllerDeviceType];
-    
     RootViewController* forum = [[RootViewController alloc] initWithType:ViewControllerForumType];
     RootViewController* mine = [[RootViewController alloc] initWithType:ViewControllerMineType];
+    
+    NSMutableArray* dataSource4Mine = [NSMutableArray array];
+    [dataSource4Mine addObject:@"添加设备"];
+    [dataSource4Mine addObject:@"Wifi 配置"];
+    [dataSource4Mine addObject:@"修改密码"];
+    [dataSource4Mine addObject:@"注销"];
+    [dataSource4Mine addObject:@"关于"];
+    mine.dataSource = dataSource4Mine;
     
     UINavigationController* nav0 = [[UINavigationController alloc] initWithRootViewController:device];
     UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:forum];
@@ -53,17 +60,7 @@
         dev.isOff = 1;
         [arr0 addObject:dev];
     }
-    
-    NSMutableArray* arr1 = [NSMutableArray array];
-    NSMutableArray* arr2 = [NSMutableArray array];
-    [arr2 addObject:@"添加设备"];
-    [arr2 addObject:@"Wifi 配置"];
-    [arr2 addObject:@"修改密码"];
-    [arr2 addObject:@"注销"];
-    [arr2 addObject:@"关于"];
-    
     device.dataSource = arr0;
-    mine.dataSource = arr2;
 #else
     
 #endif

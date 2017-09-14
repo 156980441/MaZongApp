@@ -31,6 +31,7 @@
     self.deviceNameTxtField.borderStyle = self.deviceIdTxtField.borderStyle = UITextBorderStyleRoundedRect;
     self.addBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.addBtn setTitle:@"添加" forState:UIControlStateNormal];
+    [self.addBtn addTarget:self action:@selector(addDeviceBtnPress:) forControlEvents:UIControlEventTouchDown];
     self.addBtn.layer.cornerRadius = 5;
     self.addBtn.tintColor = [UIColor whiteColor];
     [self.addBtn setBackgroundColor:[UIColor colorWithRed:83/255.0 green:149/255.0 blue:232/255.0 alpha:1]];
@@ -82,28 +83,30 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)addDeviceBtnPress:(id)sender {
+- (void)addDeviceBtnPress:(id)sender {
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    
-    
     NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:self.deviceIdTxtField.text,@"MACHINE_ID",self.deviceNameTxtField.text,@"MACHINE_TITLE",[NSString stringWithFormat:@"%zd",g_user.userNo],@"USER_NO", nil];
     
     [manager POST:URL_ADD_DEVICE parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSLog(@"POST请求完成,%@",responseObject);
+    
         NSDictionary* dic = (NSDictionary*)responseObject;
         NSString* detail = [dic objectForKey:@"message"];
         NSInteger statusCode = ((NSNumber*)[dic objectForKey:@"statusCode"]).integerValue;
+        
+        if (statusCode == 300) {
+            
+        } else if (statusCode == 200) {
+            
+        }
+        
         [YLToast showWithText:detail];
-        [self.navigationController popViewControllerAnimated:YES];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        
-        
+        [YLToast showWithText:@"网络请求失败"];
     }];
 }
 

@@ -227,7 +227,7 @@ static NSArray* g_city_arr = nil;
             [self saveToArchiver:g_user];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hideAnimated:YES];
-                [self performSegueWithIdentifier:@"main" sender:self];
+                [self dismissViewControllerAnimated:YES completion:nil];
             });
         }
         
