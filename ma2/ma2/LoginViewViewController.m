@@ -206,7 +206,7 @@ static NSArray* g_city_arr = nil;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     // Set the label text.
-    hud.labelText = NSLocalizedString(@"登录中...", @"HUD loading title");
+    hud.label.text = NSLocalizedString(@"登录中...", @"HUD loading title");
     // You can also adjust other label properties if needed.
     // hud.label.font = [UIFont italicSystemFontOfSize:16.f];
     
