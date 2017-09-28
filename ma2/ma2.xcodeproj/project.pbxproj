@@ -22,6 +22,7 @@
 		1941943F1F1625D000DE4748 /* ConfigUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941943E1F1625D000DE4748 /* ConfigUserViewController.m */; };
 		194194421F162A4000DE4748 /* LoginViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194194411F162A4000DE4748 /* LoginViewViewController.m */; };
 		1941944E1F17141100DE4748 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941944D1F17141100DE4748 /* RegisterViewController.m */; };
+		19F066491F7D0872008D2AD3 /* RetrievePassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F066481F7D0872008D2AD3 /* RetrievePassViewController.m */; };
 		D753B41F1F16616700557A4D /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D753B41E1F16616700557A4D /* logo.jpg */; };
 		D7FD59511F152CCF0043D4E5 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD594E1F152CCF0043D4E5 /* DeviceModel.m */; };
 		D7FD59521F152CCF0043D4E5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD59501F152CCF0043D4E5 /* User.m */; };
@@ -83,6 +84,8 @@
 		194194411F162A4000DE4748 /* LoginViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewViewController.m; sourceTree = "<group>"; };
 		1941944C1F17141100DE4748 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		1941944D1F17141100DE4748 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		19F066471F7D0872008D2AD3 /* RetrievePassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetrievePassViewController.h; sourceTree = "<group>"; };
+		19F066481F7D0872008D2AD3 /* RetrievePassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetrievePassViewController.m; sourceTree = "<group>"; };
 		1E3932F51FE786CA070094C0 /* libPods-ma2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ma2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D62EAAF160C3B5273F55DBB /* Pods-ma2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ma2.release.xcconfig"; path = "Pods/Target Support Files/Pods-ma2/Pods-ma2.release.xcconfig"; sourceTree = "<group>"; };
 		D753B41E1F16616700557A4D /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
@@ -214,6 +217,8 @@
 				194194411F162A4000DE4748 /* LoginViewViewController.m */,
 				1941944C1F17141100DE4748 /* RegisterViewController.h */,
 				1941944D1F17141100DE4748 /* RegisterViewController.m */,
+				19F066471F7D0872008D2AD3 /* RetrievePassViewController.h */,
+				19F066481F7D0872008D2AD3 /* RetrievePassViewController.m */,
 				1902B5B91F14DA8300D5CD36 /* RootViewController.h */,
 				1902B5BA1F14DA8300D5CD36 /* RootViewController.m */,
 			);
@@ -539,6 +544,7 @@
 				D7FD59991F1554490043D4E5 /* UIColor+HexString.m in Sources */,
 				D7FD59621F1551670043D4E5 /* ForumBodyView.m in Sources */,
 				1902B5BF1F15F6A500D5CD36 /* AddDeviceViewController.m in Sources */,
+				19F066491F7D0872008D2AD3 /* RetrievePassViewController.m in Sources */,
 				D7FD59961F1553BB0043D4E5 /* ForumToolBarView.m in Sources */,
 				1902B5A41F14D8E600D5CD36 /* main.m in Sources */,
 				D7FD59901F1552D50043D4E5 /* PYPhotoBrowseView.m in Sources */,

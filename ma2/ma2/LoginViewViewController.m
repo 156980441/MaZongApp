@@ -8,6 +8,7 @@
 
 #import "LoginViewViewController.h"
 #import "RegisterViewController.h"
+#import "RetrievePassViewController.h"
 #import "User.h"
 
 #import "YLToast.h"
@@ -176,7 +177,8 @@ static NSArray* g_city_arr = nil;
     [self.navigationController pushViewController:registerVc animated:YES];
 }
 - (void)forgetBtnPress:(id)sender {
-    NSLog(@"%s",__func__);
+    RetrievePassViewController* vc = [[RetrievePassViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)loginBtnPress:(id)sender {
     NSLog(@"%s",__func__);
@@ -227,7 +229,7 @@ static NSArray* g_city_arr = nil;
             [self saveToArchiver:g_user];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hideAnimated:YES];
-                [self dismissViewControllerAnimated:YES completion:nil];
+//                [self dismissViewControllerAnimated:YES completion:nil];
             });
         }
         
