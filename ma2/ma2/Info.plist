@@ -35,5 +35,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>鱼管家需要您的同意,才能在使用期间访问位置</string>
 </dict>
 </plist>
