@@ -69,7 +69,6 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     self.downScrollView.delegate = self;
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:rootCell_identifier];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     
     

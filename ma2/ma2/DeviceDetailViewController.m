@@ -16,9 +16,9 @@
 #import "MBProgressHUD.h"
 #import "YLToast.h"
 
-static NSString* rootCell_identifier = @"rootCell_identifier";
+static NSString* deviceDetailCell_identifier = @"device_detail_identifier";
 
-@interface DeviceDetailViewController ()
+@interface DeviceDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @end
 
@@ -29,33 +29,16 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     // Do any additional setup after loading the view.
     
     self.title = self.selectDevice.name;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceDetailCell_identifier];
     
-    NSString* str1;
-    NSString* str2;
-    NSString* str3;
-    NSString* str4 = [NSString stringWithFormat:@"远程开关：%@",self.selectDevice.isOff ? @"关":@"开"];
-    if ([self.selectDevice.temperature isEqual:[NSNull null]]) {
-        str1 = @"温度：未采集";
-    }
-    else
-    {
-        str1 = [NSString stringWithFormat:@"温度：%@",self.selectDevice.temperature];
-    }
-    if ([self.selectDevice.tds isEqual:[NSNull null]]) {
-        str2 = @"TDS：未采集";
-    }
-    else
-    {
-        str2 = [NSString stringWithFormat:@"TDS：%@",self.selectDevice.tds];
-    }
-    if ([self.selectDevice.ph isEqual:[NSNull null]]) {
-        str3 = @"PH：未采集";
-    }
-    else
-    {
-        str3 = [NSString stringWithFormat:@"PH：%@",self.selectDevice.ph];
-    }
-    self.dataSource = [NSMutableArray arrayWithObjects:str1,str2,str3,str4, nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.dataSource = [self deviceDetailDataSource];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,7 +58,7 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
 
 
 
-- (NSArray*) deviceDetailDataSource
+- (NSMutableArray*) deviceDetailDataSource
 {
     NSString* str1;
     NSString* str2;
@@ -102,7 +85,7 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
     {
         str3 = [NSString stringWithFormat:@"PH：%@",self.selectDevice.ph];
     }
-    return [NSArray arrayWithObjects:str1,str2,str3,str4, nil];
+    return [NSMutableArray arrayWithObjects:str1,str2,str3,str4, nil];
 }
 
 -(void)switchPress:(id)mySwitch
@@ -150,7 +133,7 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
 {
     UITableViewCell* cell = nil;
     if (self.dataSource.count > 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:rootCell_identifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:deviceDetailCell_identifier];
         cell.textLabel.text = [self.dataSource objectAtIndex:indexPath.row];
         if (indexPath.row == 3) {
             UISwitch* s = [[UISwitch alloc] initWithFrame:CGRectZero];

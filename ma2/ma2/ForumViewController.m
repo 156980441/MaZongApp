@@ -17,7 +17,7 @@
 #import "MBProgressHUD.h"
 #import "YLToast.h"
 
-@interface ForumViewController ()
+@interface ForumViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic,strong) NSMutableArray *moments;      //数据模型
 @property (nonatomic,strong) NSMutableArray *momentFrames; //ViewModel(包含cell子控件的Frame)
 @end
@@ -29,6 +29,14 @@
     // Do any additional setup after loading the view.
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     self.dataSource = self.momentFrames;
 }
 
