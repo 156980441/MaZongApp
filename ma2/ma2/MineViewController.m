@@ -94,6 +94,7 @@ static NSString* mineCell_identifier = @"mineCell_identifier";
             void (^action)(UIAlertAction* action) = ^(UIAlertAction* action){
                 LoginViewViewController* login = [[LoginViewViewController alloc] init];
                 g_user.logout = 1;
+                [login saveToArchiver:g_user];
                 [self presentViewController:login animated:YES completion:nil];
             };
             void (^cancel)(UIAlertAction* action) = ^(UIAlertAction* action){
