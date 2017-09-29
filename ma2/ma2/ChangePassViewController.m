@@ -6,13 +6,13 @@
 //  Copyright © 2017年 fanyl. All rights reserved.
 //
 
-#import "ConfigUserViewController.h"
+#import "ChangePassViewController.h"
 
-@interface ConfigUserViewController ()
+@interface ChangePassViewController ()
 
 @end
 
-@implementation ConfigUserViewController
+@implementation ChangePassViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

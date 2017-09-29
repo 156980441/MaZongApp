@@ -82,27 +82,21 @@
 {
     UITableViewCell* cell = nil;
     if (self.dataSource.count > 0) {
-        
-        {
-            cell = [ForumTableViewCell momentsTableViewCellWithTableView:tableView];
-            ForumTableViewCell* forumCell = (ForumTableViewCell*)cell;
-            forumCell.momentFrames = self.momentFrames[indexPath.row];
-        }
+        cell = [ForumTableViewCell momentsTableViewCellWithTableView:tableView];
+        ForumTableViewCell* forumCell = (ForumTableViewCell*)cell;
+        forumCell.momentFrames = self.momentFrames[indexPath.row];
     }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     //取数据
     ForumViewModel *momentFrame = self.momentFrames[indexPath.row];
     return momentFrame.cellHeight;
-    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%s",__func__);
     // indexPath.row 是从 0 开始的
     if (self.dataSource.count > 0) {
         

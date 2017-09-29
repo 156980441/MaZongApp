@@ -9,7 +9,7 @@
 #import "MineViewController.h"
 #import "AddDeviceViewController.h"
 #import "ConfigWifiViewController.h"
-#import "ConfigUserViewController.h"
+#import "ChangePassViewController.h"
 #import "LoginViewViewController.h"
 #import "User.h"
 #import "stdafx_MaZongApp.h"
@@ -86,7 +86,7 @@ static NSString* mineCell_identifier = @"mineCell_identifier";
             vc = [[ConfigWifiViewController alloc] init];
         }
         if (2 == indexPath.row) {
-            vc = [[ConfigUserViewController alloc] init];
+            vc = [[ChangePassViewController alloc] init];
         }
         if (3 == indexPath.row) {
             UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"用户注销" message:@"您确定要注销用户吗？" preferredStyle:UIAlertControllerStyleAlert];

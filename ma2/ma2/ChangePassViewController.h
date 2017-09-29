@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ConfigUserViewController : UIViewController
+@interface ChangePassViewController : UIViewController
 @property (strong, nonatomic) UITextField *oldTextField;
 @property (strong, nonatomic) UITextField *currentTextFiled;
 @property (strong, nonatomic) UITextField *confirmTextFiled;

@@ -19,7 +19,7 @@
 		1902B5D01F15F76C00D5CD36 /* YLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5C91F15F76C00D5CD36 /* YLLocationManager.m */; };
 		1902B5D11F15F76C00D5CD36 /* YLLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5CB1F15F76C00D5CD36 /* YLLog.m */; };
 		1902B5D21F15F76C00D5CD36 /* YLToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 1902B5CD1F15F76C00D5CD36 /* YLToast.m */; };
-		1941943F1F1625D000DE4748 /* ConfigUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941943E1F1625D000DE4748 /* ConfigUserViewController.m */; };
+		1941943F1F1625D000DE4748 /* ChangePassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941943E1F1625D000DE4748 /* ChangePassViewController.m */; };
 		194194421F162A4000DE4748 /* LoginViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 194194411F162A4000DE4748 /* LoginViewViewController.m */; };
 		1941944E1F17141100DE4748 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1941944D1F17141100DE4748 /* RegisterViewController.m */; };
 		19F066491F7D0872008D2AD3 /* RetrievePassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F066481F7D0872008D2AD3 /* RetrievePassViewController.m */; };
@@ -82,8 +82,8 @@
 		1902B5CB1F15F76C00D5CD36 /* YLLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLog.m; sourceTree = "<group>"; };
 		1902B5CC1F15F76C00D5CD36 /* YLToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLToast.h; sourceTree = "<group>"; };
 		1902B5CD1F15F76C00D5CD36 /* YLToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLToast.m; sourceTree = "<group>"; };
-		1941943D1F1625D000DE4748 /* ConfigUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigUserViewController.h; sourceTree = "<group>"; };
-		1941943E1F1625D000DE4748 /* ConfigUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigUserViewController.m; sourceTree = "<group>"; };
+		1941943D1F1625D000DE4748 /* ChangePassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePassViewController.h; sourceTree = "<group>"; };
+		1941943E1F1625D000DE4748 /* ChangePassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePassViewController.m; sourceTree = "<group>"; };
 		194194401F162A4000DE4748 /* LoginViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewViewController.h; sourceTree = "<group>"; };
 		194194411F162A4000DE4748 /* LoginViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewViewController.m; sourceTree = "<group>"; };
 		1941944C1F17141100DE4748 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -221,8 +221,8 @@
 			children = (
 				1902B5BD1F15F6A500D5CD36 /* AddDeviceViewController.h */,
 				1902B5BE1F15F6A500D5CD36 /* AddDeviceViewController.m */,
-				1941943D1F1625D000DE4748 /* ConfigUserViewController.h */,
-				1941943E1F1625D000DE4748 /* ConfigUserViewController.m */,
+				1941943D1F1625D000DE4748 /* ChangePassViewController.h */,
+				1941943E1F1625D000DE4748 /* ChangePassViewController.m */,
 				1902B5C01F15F71000D5CD36 /* ConfigWifiViewController.h */,
 				1902B5C11F15F71000D5CD36 /* ConfigWifiViewController.m */,
 				19F066531F7DF9EC008D2AD3 /* DeviceDetailViewController.h */,
@@ -583,7 +583,7 @@
 				D7FD59891F1552D50043D4E5 /* PYPhotosPreviewController.m in Sources */,
 				194194421F162A4000DE4748 /* LoginViewViewController.m in Sources */,
 				D7FD598A1F1552D50043D4E5 /* PYPhotosReaderController.m in Sources */,
-				1941943F1F1625D000DE4748 /* ConfigUserViewController.m in Sources */,
+				1941943F1F1625D000DE4748 /* ChangePassViewController.m in Sources */,
 				1902B5D11F15F76C00D5CD36 /* YLLog.m in Sources */,
 				1902B5BB1F14DA8300D5CD36 /* RootViewController.m in Sources */,
 				D7FD598B1F1552D50043D4E5 /* PYPhotosViewController.m in Sources */,
