@@ -22,6 +22,13 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = NO; // 隐藏 Navbar
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -29,13 +36,15 @@
 
 -(void)initView
 {
+    self.title = @"找回密码";
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.mailTextFiled = [[UITextField alloc] init];
     self.mailTextFiled.borderStyle = UITextBorderStyleRoundedRect;
+    self.mailTextFiled.placeholder = @"请输入您的邮箱";
 
     self.modfiyBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.modfiyBtn.translatesAutoresizingMaskIntoConstraints = NO;
+    self.mailTextFiled.translatesAutoresizingMaskIntoConstraints = self.modfiyBtn.translatesAutoresizingMaskIntoConstraints = NO;
     self.modfiyBtn.layer.cornerRadius = 5;
     self.modfiyBtn.tintColor = [UIColor whiteColor];
     [self.modfiyBtn setTitle:@"下一步" forState:UIControlStateNormal];
@@ -48,7 +57,7 @@
     CGFloat statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     CGFloat navHeight = self.navigationController.navigationBar.frame.size.height;
     
-    NSLayoutConstraint *name_top = [NSLayoutConstraint constraintWithItem:self.mailTextFiled attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:statusHeight + navHeight + 30];
+    NSLayoutConstraint *name_top = [NSLayoutConstraint constraintWithItem:self.mailTextFiled attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:statusHeight + navHeight + 60];
     NSLayoutConstraint *name_left = [NSLayoutConstraint constraintWithItem:self.mailTextFiled attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:60.0];
     NSLayoutConstraint *name_right = [NSLayoutConstraint constraintWithItem:self.mailTextFiled attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:-60];
     NSLayoutConstraint *name_hight = [NSLayoutConstraint constraintWithItem:self.mailTextFiled attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30];
@@ -56,7 +65,7 @@
     NSLayoutConstraint *bt_top = [NSLayoutConstraint constraintWithItem:self.modfiyBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.mailTextFiled attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
     NSLayoutConstraint *bt_left = [NSLayoutConstraint constraintWithItem:self.modfiyBtn attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.mailTextFiled attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
     NSLayoutConstraint *bt_right = [NSLayoutConstraint constraintWithItem:self.modfiyBtn attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.mailTextFiled attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
-    NSLayoutConstraint *bt_hight = [NSLayoutConstraint constraintWithItem:self.modfiyBtn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.mailTextFiled attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    NSLayoutConstraint *bt_hight = [NSLayoutConstraint constraintWithItem:self.modfiyBtn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.mailTextFiled attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
     
     NSArray *array = [NSArray arrayWithObjects:
                       name_top, name_left, name_right, name_hight,

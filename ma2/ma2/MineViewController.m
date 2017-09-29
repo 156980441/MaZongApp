@@ -95,7 +95,8 @@ static NSString* mineCell_identifier = @"mineCell_identifier";
                 LoginViewViewController* login = [[LoginViewViewController alloc] init];
                 g_user.logout = 1;
                 [login saveToArchiver:g_user];
-                [self presentViewController:login animated:YES completion:nil];
+                UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:login];
+                [self presentViewController:nav animated:YES completion:nil];
             };
             void (^cancel)(UIAlertAction* action) = ^(UIAlertAction* action){
                 [self dismissViewControllerAnimated:YES completion:nil];
@@ -105,7 +106,7 @@ static NSString* mineCell_identifier = @"mineCell_identifier";
             UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:cancel];
             [alert addAction:destructiveAction];
             [alert addAction:cancelAction];
-            [self presentViewController:alert animated:YES completion:nil];
+            [self.navigationController.topViewController presentViewController:alert animated:YES completion:nil];
         }
         if (4 == indexPath.row) {
             NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];

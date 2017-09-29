@@ -53,14 +53,14 @@ static NSArray* g_city_arr = nil;
     self.passTxt.text = @"123456";
     
     self.location = [[YLLocationManager alloc] initWithGpsUpdate:^(CLLocation *loc) {
-        // 初始化编码器
+        
         CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
         // 通过定位获取的经纬度坐标，反编码获取地理信息标记并打印改标记下得城市名
         [geoCoder reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) {
-            
             if (error) {
-                [YLToast showWithText:@"定位失败"];
-                NSLog(@"%s,%@",__FILE__,error.description);
+                dispatch_async(dispatch_get_main_queue(), ^(){
+                    [YLToast showWithText:@"定位失败"];
+                });
             }
             else {
                 if (g_user.cityId == -1) {
@@ -73,7 +73,7 @@ static NSArray* g_city_arr = nil;
         }];
     }];
     
-    [self.location startUpdatingLocation];
+//    [self.location startUpdatingLocation];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -186,7 +186,7 @@ static NSArray* g_city_arr = nil;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)loginBtnPress:(id)sender {
-    NSLog(@"%s",__func__);
+    
 #ifdef LOC_TEST
     g_user.password = @"123456";
     [self dismissViewControllerAnimated:YES completion:NO];
