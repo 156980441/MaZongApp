@@ -33,6 +33,58 @@ static NSArray* g_city_arr = nil;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self initView];
+    
+    g_city_arr = @[@"北京市"];
+    if (!g_user) {
+        g_user = [[User alloc] init];
+        g_user.cityId = -1;
+    }
+    
+    User* user = [self loadFromArchiver];
+    
+    if (user && user.logout == 0) {
+        [self checkuser:user.username withPass:user.password];
+    }
+    
+    // test
+    
+    self.nameTxt.text = @"admin";
+    self.passTxt.text = @"123456";
+    
+    self.location = [[YLLocationManager alloc] initWithGpsUpdate:^(CLLocation *loc) {
+        // 初始化编码器
+        CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+        // 通过定位获取的经纬度坐标，反编码获取地理信息标记并打印改标记下得城市名
+        [geoCoder reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) {
+            
+            if (error) {
+                [YLToast showWithText:@"定位失败"];
+                NSLog(@"%s,%@",__FILE__,error.description);
+            }
+            else {
+                if (g_user.cityId == -1) {
+                    CLPlacemark *placemark = [placemarks lastObject];
+                    NSString *cityName = placemark.locality;
+                    g_user.cityId = [g_city_arr indexOfObject:cityName];
+                    [self.location stopUpdatingLocation];
+                }
+            }
+        }];
+    }];
+    
+    [self.location startUpdatingLocation];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.navigationController.navigationBar.hidden = YES; // 隐藏 Navbar
+}
+
+-(void)initView
+{
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.logo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.jpg"]];
@@ -118,53 +170,6 @@ static NSArray* g_city_arr = nil;
     [self.loginBtn addTarget:self action:@selector(loginBtnPress:) forControlEvents:UIControlEventTouchDown];
     [self.registBtn addTarget:self action:@selector(registBtnPress:) forControlEvents:UIControlEventTouchDown];
     [self.fogretBtn addTarget:self action:@selector(forgetBtnPress:) forControlEvents:UIControlEventTouchDown];
-    
-    g_city_arr = @[@"北京市"];
-    if (!g_user) {
-        g_user = [[User alloc] init];
-        g_user.cityId = -1;
-    }
-    
-    User* user = [self loadFromArchiver];
-    
-    if (user) {
-        [self checkuser:user.username withPass:user.password];
-    }
-    
-    // test
-    
-    self.nameTxt.text = @"admin";
-    self.passTxt.text = @"123456";
-    
-    self.location = [[YLLocationManager alloc] initWithGpsUpdate:^(CLLocation *loc) {
-        // 初始化编码器
-        CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
-        // 通过定位获取的经纬度坐标，反编码获取地理信息标记并打印改标记下得城市名
-        [geoCoder reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) {
-            
-            if (error) {
-                [YLToast showWithText:@"定位失败"];
-                NSLog(@"%s,%@",__FILE__,error.description);
-            }
-            else {
-                if (g_user.cityId == -1) {
-                    CLPlacemark *placemark = [placemarks lastObject];
-                    NSString *cityName = placemark.locality;
-                    g_user.cityId = [g_city_arr indexOfObject:cityName];
-                    [self.location stopUpdatingLocation];
-                }
-            }
-        }];
-    }];
-    
-    [self.location startUpdatingLocation];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBar.hidden = YES; // 隐藏 Navbar
 }
 
 - (void)didReceiveMemoryWarning {
@@ -226,10 +231,11 @@ static NSArray* g_city_arr = nil;
         {
             NSDictionary* admin_dic = [jsonData objectForKey:@"admin"];
             [g_user initFromDictionary:admin_dic];
+            g_user.logout = 0;
             [self saveToArchiver:g_user];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hud hideAnimated:YES];
-//                [self dismissViewControllerAnimated:YES completion:nil];
+                [self dismissViewControllerAnimated:YES completion:nil];
             });
         }
         

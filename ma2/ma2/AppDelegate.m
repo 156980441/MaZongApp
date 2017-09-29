@@ -8,7 +8,10 @@
 
 #import "AppDelegate.h"
 #import "stdafx_MaZongApp.h"
-#import "RootViewController.h"
+#import "DevicesViewController.h"
+#import "ForumViewController.h"
+#import "MineViewController.h"
+#import "LoginViewViewController.h"
 #import "DeviceModel.h"
 @interface AppDelegate ()
 
@@ -20,17 +23,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
-    RootViewController* device = [[RootViewController alloc] initWithType:ViewControllerDeviceType];
-    RootViewController* forum = [[RootViewController alloc] initWithType:ViewControllerForumType];
-    RootViewController* mine = [[RootViewController alloc] initWithType:ViewControllerMineType];
-    
-    NSMutableArray* dataSource4Mine = [NSMutableArray array];
-    [dataSource4Mine addObject:@"添加设备"];
-    [dataSource4Mine addObject:@"Wifi 配置"];
-    [dataSource4Mine addObject:@"修改密码"];
-    [dataSource4Mine addObject:@"注销"];
-    [dataSource4Mine addObject:@"关于"];
-    mine.dataSource = dataSource4Mine;
+    DevicesViewController* device = [[DevicesViewController alloc] init];
+    ForumViewController* forum = [[ForumViewController alloc] init];
+    MineViewController* mine = [[MineViewController alloc] init];
     
     UINavigationController* nav0 = [[UINavigationController alloc] initWithRootViewController:device];
     UINavigationController* nav1 = [[UINavigationController alloc] initWithRootViewController:forum];

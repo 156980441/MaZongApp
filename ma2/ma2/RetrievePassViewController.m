@@ -18,16 +18,29 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.mailTextFiled = [[UITextField alloc] init];
-    self.modfiyBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self initView];
     
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)initView
+{
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.mailTextFiled = [[UITextField alloc] init];
     self.mailTextFiled.borderStyle = UITextBorderStyleRoundedRect;
-    [self.modfiyBtn setTitle:@"下一步" forState:UIControlStateNormal];
+
+    self.modfiyBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.modfiyBtn.translatesAutoresizingMaskIntoConstraints = NO;
     self.modfiyBtn.layer.cornerRadius = 5;
     self.modfiyBtn.tintColor = [UIColor whiteColor];
+    [self.modfiyBtn setTitle:@"下一步" forState:UIControlStateNormal];
     [self.modfiyBtn setBackgroundColor:[UIColor colorWithRed:83/255.0 green:149/255.0 blue:232/255.0 alpha:1]];
     
-    self.modfiyBtn.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.view addSubview:self.mailTextFiled];
     [self.view addSubview:self.modfiyBtn];
@@ -54,12 +67,6 @@
     
     [self.modfiyBtn addTarget:self action:@selector(confirmBtnPress:) forControlEvents:UIControlEventTouchDown];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 /*
 #pragma mark - Navigation
 

@@ -15,8 +15,9 @@ extern User* g_user;
 @interface User : NSObject
 @property(nonatomic,strong) NSString* username;
 @property (nonatomic, strong) NSString *password;
-@property (nonatomic, assign) NSInteger userNo;
-@property (nonatomic, assign) NSInteger cityId;
+@property (nonatomic) NSInteger userNo;
+@property (nonatomic) NSInteger cityId;
+@property (nonatomic) NSInteger logout;// 用户从注销界面退出
 @end
 
 @interface NSObject (YLObject)
