@@ -14,6 +14,7 @@
 @property (strong, nonatomic)  UITextField *confirmPassTxtFiled;
 @property (strong, nonatomic)  UITextField *deviceIDTxtField;
 @property (strong, nonatomic)  UITextField *validTxtField;
+@property (strong, nonatomic)  UITextField *mailTxtField;
 @property (strong, nonatomic)  UIButton *confirmBtn;
 
 @end

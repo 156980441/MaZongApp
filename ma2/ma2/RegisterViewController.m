@@ -30,6 +30,7 @@
     self.passTxtFiled = [[UITextField alloc] init];
     self.confirmPassTxtFiled = [[UITextField alloc] init];
     self.deviceIDTxtField = [[UITextField alloc] init];
+    self.mailTxtField = [[UITextField alloc] init];
     self.validTxtField = [[UITextField alloc] init];
     self.confirmBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
@@ -45,12 +46,14 @@
     self.confirmPassTxtFiled.placeholder = @"请再次输入密码";
     self.deviceIDTxtField.placeholder = @"请输入设备 ID";
     self.validTxtField.placeholder = @"请输入验证码";
+    self.mailTxtField.placeholder = @"请输入您的邮箱";
     
     [self.view addSubview:self.nameTxtField];
     [self.view addSubview:self.passTxtFiled];
     [self.view addSubview:self.confirmPassTxtFiled];
     [self.view addSubview:self.deviceIDTxtField];
     [self.view addSubview:self.validTxtField];
+    [self.view addSubview:self.mailTxtField];
     [self.view addSubview:self.confirmBtn];
     
     self.nameTxtField.translatesAutoresizingMaskIntoConstraints =
@@ -59,6 +62,7 @@
     self.deviceIDTxtField.translatesAutoresizingMaskIntoConstraints =
     self.deviceIDTxtField.translatesAutoresizingMaskIntoConstraints =
     self.validTxtField.translatesAutoresizingMaskIntoConstraints =
+    self.mailTxtField.translatesAutoresizingMaskIntoConstraints =
     self.confirmBtn.translatesAutoresizingMaskIntoConstraints = NO;
     
     CGFloat statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
@@ -84,7 +88,12 @@
     NSLayoutConstraint *id_right = [NSLayoutConstraint constraintWithItem:self.deviceIDTxtField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
     NSLayoutConstraint *id_hight = [NSLayoutConstraint constraintWithItem:self.deviceIDTxtField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.nameTxtField attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
     
-    NSLayoutConstraint *vali_top = [NSLayoutConstraint constraintWithItem:self.validTxtField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.deviceIDTxtField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *mail_top = [NSLayoutConstraint constraintWithItem:self.mailTxtField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.deviceIDTxtField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
+    NSLayoutConstraint *mail_left = [NSLayoutConstraint constraintWithItem:self.mailTxtField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *mail_right = [NSLayoutConstraint constraintWithItem:self.mailTxtField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *mail_hight = [NSLayoutConstraint constraintWithItem:self.mailTxtField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.nameTxtField attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
+    
+    NSLayoutConstraint *vali_top = [NSLayoutConstraint constraintWithItem:self.validTxtField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.mailTxtField attribute:NSLayoutAttributeBottom multiplier:1.0 constant:40];
     NSLayoutConstraint *vali_left = [NSLayoutConstraint constraintWithItem:self.validTxtField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
     NSLayoutConstraint *vali_right = [NSLayoutConstraint constraintWithItem:self.validTxtField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.nameTxtField attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
     NSLayoutConstraint *vali_hight = [NSLayoutConstraint constraintWithItem:self.validTxtField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.nameTxtField attribute:NSLayoutAttributeHeight multiplier:1.0 constant:0];
@@ -100,6 +109,7 @@
                       firm_top,firm_left,firm_right,firm_hight,
                       id_top,id_left,id_right,id_hight,
                       vali_top,vali_left,vali_right,vali_hight,
+                      mail_top,mail_left,mail_right,mail_hight,
                       bt_top,bt_left,bt_right,bt_hight,
                       nil];
     [self.view addConstraints:array];
@@ -113,6 +123,7 @@
     self.confirmPassTxtFiled.text = @"123";
     self.deviceIDTxtField.text = @"FYL201688888888";
     self.validTxtField.text = @"aaa";
+    self.mailTxtField.text = @"156980441@qq.com";
 #else
 #endif
 }
