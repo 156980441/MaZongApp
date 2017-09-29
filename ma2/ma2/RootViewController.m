@@ -82,6 +82,8 @@ static NSString* rootCell_identifier = @"rootCell_identifier";
 {
     [super viewWillAppear:animated];
     
+    self.tabBarController.tabBar.hidden = NO;
+    
     CGFloat statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
     CGFloat navHeight = self.navigationController.navigationBar.frame.size.height;
     CGFloat barHeight = self.tabBarController.tabBar.frame.size.height;

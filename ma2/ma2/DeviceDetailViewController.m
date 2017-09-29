@@ -29,9 +29,11 @@ static NSString* deviceDetailCell_identifier = @"device_detail_identifier";
     // Do any additional setup after loading the view.
     
     self.title = self.selectDevice.name;
+    self.tabBarController.tabBar.hidden = YES;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:deviceDetailCell_identifier];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
 }
 

@@ -23,7 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"添加设备";
-    
+    self.tabBarController.tabBar.hidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.deviceNameTxtField = [[UITextField alloc] init];

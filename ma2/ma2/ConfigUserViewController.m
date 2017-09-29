@@ -20,6 +20,7 @@
     
     self.title = @"修改密码";
     
+    self.tabBarController.tabBar.hidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.oldTextField = [[UITextField alloc] init];

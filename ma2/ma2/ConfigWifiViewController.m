@@ -39,6 +39,7 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
+    self.tabBarController.tabBar.hidden = YES;
     
     self.wifiTextField = [[UITextField alloc] init];
     self.passTextFiled = [[UITextField alloc] init];
