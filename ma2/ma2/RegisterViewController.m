@@ -142,7 +142,7 @@
     
     
     
-    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:self.nameTxtField.text,@"USER_NAME",self.passTxtFiled.text,@"PASSWORD", nil];
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:self.nameTxtField.text,@"USER_NAME",self.passTxtFiled.text,@"PASSWORD",self.mailTxtField.text,@"MAIL", nil];
     
     [manager POST:URL_USER_REGISTER parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
