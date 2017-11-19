@@ -65,7 +65,15 @@ static NSString* deviceDetailCell_identifier = @"device_detail_identifier";
     NSString* str1;
     NSString* str2;
     NSString* str3;
-    NSString* str4 = [NSString stringWithFormat:@"远程开关：%@",self.selectDevice.isOff ? @"关":@"开"];
+    NSString* str4;
+    
+    if (self.selectDevice.isOff) {
+        str4 = @"远程开关：关闭";
+    }
+    else {
+        str4 = @"远程开关：打开";
+    }
+    
     if ([self.selectDevice.temperature isEqual:[NSNull null]]) {
         str1 = @"温度：未采集";
     }
@@ -93,12 +101,13 @@ static NSString* deviceDetailCell_identifier = @"device_detail_identifier";
 -(void)switchPress:(id)mySwitch
 {
     UISwitch* s = (UISwitch*)mySwitch;
-    NSLog(@"------ %d",s.on);
-    
 #ifdef LOC_TEST
 #else
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     NSString* url_ads = [NSString stringWithFormat:@"%@/%@/%d",URL_CHANGE_DEVICE_STATE,self.selectDevice.deviceId, !self.selectDevice.isOff];
+    
+    NSLog(@"设置设备开关 %@",url_ads);
+    
     [session GET:url_ads parameters:nil
          success:^(NSURLSessionDataTask *task, id responseObject) {
              NSDictionary* jsonDic = (NSDictionary*)responseObject;
@@ -109,6 +118,7 @@ static NSString* deviceDetailCell_identifier = @"device_detail_identifier";
                      [s setOn:!self.selectDevice.isOff animated:YES];
                      self.dataSource = [self deviceDetailDataSource];
                      [self.tableView reloadData];
+                     [YLToast showWithText:[NSString stringWithFormat:@"设备%@",self.selectDevice.isOff == 1 ? @"关闭" : @"打开"]];
                  });
              }
              else
@@ -140,7 +150,12 @@ static NSString* deviceDetailCell_identifier = @"device_detail_identifier";
         if (indexPath.row == 3) {
             UISwitch* s = [[UISwitch alloc] initWithFrame:CGRectZero];
             cell.accessoryView = s;
-            [s setOn:!self.selectDevice.isOff animated:NO];
+            if (self.selectDevice.isOff) {
+                [s setOn:NO animated:NO];
+            }
+            else {
+                [s setOn:YES animated:NO];
+            }
             [s addTarget:self action:@selector(switchPress:) forControlEvents:UIControlEventValueChanged];
             
         }
